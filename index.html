@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
 
     <header>
         <h1>⚡ VoltLab</h1>
@@ -19,36 +25,237 @@
 
     <main>
 
-        <!-- HERO -->
+        <!-- =========================
+             HERO
+        ========================== -->
 
         <section class="hero">
 
-            <h2>Ohm's Law Visualizer</h2>
+            <h2>Interactive Electricity Lab</h2>
 
             <p>
-                Change the voltage and resistance to see how
-                current changes in real time.
+                Experiment with electrical values and see how
+                voltage, resistance and current interact.
             </p>
 
         </section>
 
 
-        <!-- CONTROLS AND RESULT -->
+        <!-- =========================
+             OHM'S LAW VISUALIZER
+        ========================== -->
 
-        <section class="lab-container">
+        <section class="ohms-section">
 
-            <div class="controls">
+            <h2>⚡ Ohm's Law Visualizer</h2>
 
-                <div class="control">
+            <p class="section-description">
+                Change the voltage and resistance to see how
+                current changes in real time.
+            </p>
+
+
+            <div class="lab-container">
+
+                <!-- CONTROLS -->
+
+                <div class="controls">
+
+                    <div class="control">
+
+                        <label>
+                            Voltage:
+                            <span id="voltageValue">12</span> V
+                        </label>
+
+                        <input
+                            type="range"
+                            id="voltage"
+                            min="1"
+                            max="100"
+                            value="12"
+                        >
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <label>
+                            Resistance:
+                            <span id="resistanceValue">6</span> Ω
+                        </label>
+
+                        <input
+                            type="range"
+                            id="resistance"
+                            min="1"
+                            max="100"
+                            value="6"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESULT -->
+
+                <div class="result">
+
+                    <h3>Current</h3>
+
+                    <div class="current-value">
+
+                        ⚡
+                        <span id="currentValue">2.00</span> A
+
+                    </div>
+
+                    <p>
+                        Formula: I = V ÷ R
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- LIVE CIRCUIT -->
+
+            <div class="live-circuit">
+
+                <h3>Live Circuit</h3>
+
+
+                <div class="circuit">
+
+                    <div class="battery">
+                        🔋
+                    </div>
+
+
+                    <div class="wire">
+
+                        <div class="electron electron-1"></div>
+                        <div class="electron electron-2"></div>
+                        <div class="electron electron-3"></div>
+
+                    </div>
+
+
+                    <div class="resistor">
+                        R
+                    </div>
+
+
+                    <div class="wire">
+
+                        <div class="electron electron-4"></div>
+                        <div class="electron electron-5"></div>
+
+                    </div>
+
+
+                    <div class="bulb" id="bulb">
+                        💡
+                    </div>
+
+                </div>
+
+
+                <!-- LIVE VALUES -->
+
+                <div class="circuit-info">
+
+                    <p>
+                        Voltage:
+                        <span id="circuitVoltage">12</span> V
+                    </p>
+
+
+                    <p>
+                        Resistance:
+                        <span id="circuitResistance">6</span> Ω
+                    </p>
+
+
+                    <p>
+                        Current:
+                        <span id="circuitCurrent">2.00</span> A
+                    </p>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <h3 id="circuitStatus">
+                    Circuit running normally ⚡
+                </h3>
+
+            </div>
+
+
+            <!-- OHM'S LAW EXPLANATION -->
+
+            <div class="concept-box">
+
+                <h3>What is Ohm's Law?</h3>
+
+                <p>
+                    Ohm's Law describes the relationship between
+                    voltage, current and resistance.
+                </p>
+
+                <div class="formula-box">
+                    V = I × R
+                </div>
+
+                <p>
+                    Current can be calculated using:
+                </p>
+
+                <div class="formula-box">
+                    I = V ÷ R
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SERIES CIRCUIT EXPLORER
+        ========================== -->
+
+        <section class="series-section">
+
+            <h2>🔗 Series Circuit Explorer</h2>
+
+            <p class="section-description">
+                Adjust the supply voltage and resistors to explore
+                current and voltage distribution in a series circuit.
+            </p>
+
+
+            <!-- SERIES CONTROLS -->
+
+            <div class="series-controls">
+
+
+                <!-- SUPPLY VOLTAGE -->
+
+                <div class="series-control">
 
                     <label>
-                        Voltage:
-                        <span id="voltageValue">12</span> V
+                        Supply Voltage:
+                        <span id="seriesVoltageValue">12</span> V
                     </label>
 
                     <input
                         type="range"
-                        id="voltage"
+                        id="seriesVoltage"
                         min="1"
                         max="100"
                         value="12"
@@ -57,19 +264,61 @@
                 </div>
 
 
-                <div class="control">
+                <!-- R1 -->
+
+                <div class="series-control">
 
                     <label>
-                        Resistance:
-                        <span id="resistanceValue">6</span> Ω
+                        Resistor R1:
+                        <span id="r1Value">10</span> Ω
                     </label>
 
                     <input
                         type="range"
-                        id="resistance"
+                        id="r1"
                         min="1"
                         max="100"
-                        value="6"
+                        value="10"
+                    >
+
+                </div>
+
+
+                <!-- R2 -->
+
+                <div class="series-control">
+
+                    <label>
+                        Resistor R2:
+                        <span id="r2Value">20</span> Ω
+                    </label>
+
+                    <input
+                        type="range"
+                        id="r2"
+                        min="1"
+                        max="100"
+                        value="20"
+                    >
+
+                </div>
+
+
+                <!-- R3 -->
+
+                <div class="series-control">
+
+                    <label>
+                        Resistor R3:
+                        <span id="r3Value">30</span> Ω
+                    </label>
+
+                    <input
+                        type="range"
+                        id="r3"
+                        min="1"
+                        max="100"
+                        value="30"
                     >
 
                 </div>
@@ -77,140 +326,130 @@
             </div>
 
 
-            <!-- RESULT -->
+            <!-- SERIES CIRCUIT DIAGRAM -->
 
-            <div class="result">
+            <div class="series-diagram">
 
-                <h3>Current</h3>
-
-                <div class="current-value">
-                    ⚡
-                    <span id="currentValue">2.00</span> A
-                </div>
-
-                <p id="formula">
-                    I = V / R
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- LIVE CIRCUIT -->
-
-        <section class="circuit-section">
-
-            <h2>Live Circuit</h2>
-
-            <div class="circuit">
-
-                <!-- BATTERY -->
-
-                <div class="battery">
+                <div class="series-battery">
                     🔋
                 </div>
 
+                <div class="series-line"></div>
 
-                <!-- WIRE 1 -->
-
-                <div class="wire">
-
-                    <div class="electron electron-1"></div>
-                    <div class="electron electron-2"></div>
-                    <div class="electron electron-3"></div>
-
+                <div class="series-resistor">
+                    R1
                 </div>
 
+                <div class="series-line"></div>
 
-                <!-- RESISTOR -->
-
-                <div class="resistor">
-
-                    <span>R</span>
-
+                <div class="series-resistor">
+                    R2
                 </div>
 
+                <div class="series-line"></div>
 
-                <!-- WIRE 2 -->
-
-                <div class="wire">
-
-                    <div class="electron electron-4"></div>
-                    <div class="electron electron-5"></div>
-
-                </div>
-
-
-                <!-- BULB -->
-
-                <div class="bulb" id="bulb">
-                    💡
+                <div class="series-resistor">
+                    R3
                 </div>
 
             </div>
 
 
-            <!-- LIVE CIRCUIT INFORMATION -->
+            <!-- SERIES RESULTS -->
 
-            <div class="circuit-info">
-
-                <p>
-                    Voltage:
-                    <span id="circuitVoltage">12</span> V
-                </p>
+            <div class="series-results">
 
 
-                <p>
-                    Resistance:
-                    <span id="circuitResistance">6</span> Ω
-                </p>
+                <div class="series-result-card">
+
+                    <h3>Total Resistance</h3>
+
+                    <p>
+                        <span id="totalResistance">60</span> Ω
+                    </p>
+
+                </div>
 
 
-                <p>
-                    Current:
-                    <span id="circuitCurrent">2.00</span> A
-                </p>
+                <div class="series-result-card">
 
-            </div>
+                    <h3>Circuit Current</h3>
 
+                    <p>
+                        <span id="seriesCurrent">0.20</span> A
+                    </p>
 
-            <!-- CIRCUIT STATUS -->
-
-            <h3 id="circuitStatus">
-                Circuit running normally ⚡
-            </h3>
-
-        </section>
-
-
-        <!-- EXPLANATION -->
-
-        <section class="explanation">
-
-            <h2>What is Ohm's Law?</h2>
-
-            <p>
-                Ohm's Law explains the relationship between
-                voltage, current and resistance.
-            </p>
-
-
-            <div class="formula-box">
-
-                V = I × R
+                </div>
 
             </div>
 
 
-            <p>
-                In this experiment, VoltLab calculates current using:
-            </p>
+            <!-- VOLTAGE DROPS -->
+
+            <div class="voltage-drops">
+
+                <h3>Voltage Drop Across Each Resistor</h3>
 
 
-            <div class="formula-box">
+                <div class="drop-container">
 
-                I = V / R
+
+                    <div class="drop-card">
+
+                        <h4>R1</h4>
+
+                        <p>
+                            <span id="voltageDrop1">2.00</span> V
+                        </p>
+
+                    </div>
+
+
+                    <div class="drop-card">
+
+                        <h4>R2</h4>
+
+                        <p>
+                            <span id="voltageDrop2">4.00</span> V
+                        </p>
+
+                    </div>
+
+
+                    <div class="drop-card">
+
+                        <h4>R3</h4>
+
+                        <p>
+                            <span id="voltageDrop3">6.00</span> V
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERIES CONCEPT -->
+
+            <div class="concept-box">
+
+                <h3>How Does a Series Circuit Work?</h3>
+
+                <p>
+                    In a series circuit, the same current flows
+                    through every resistor.
+                </p>
+
+                <div class="formula-box">
+                    R Total = R1 + R2 + R3
+                </div>
+
+                <p>
+                    The voltage is divided across the resistors.
+                    A larger resistance receives a larger voltage drop.
+                </p>
 
             </div>
 
@@ -219,12 +458,14 @@
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <footer>
 
         <p>
-            Built by Shantanu ⚡ | VoltLab v0.2
+            Built by Shantanu ⚡ | VoltLab v0.3
         </p>
 
     </footer>
@@ -233,4 +474,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
