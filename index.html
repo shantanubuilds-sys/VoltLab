@@ -19,6 +19,8 @@
 
     <main>
 
+        <!-- HERO -->
+
         <section class="hero">
 
             <h2>Ohm's Law Visualizer</h2>
@@ -31,16 +33,17 @@
         </section>
 
 
-        <section class="lab-container">
+        <!-- CONTROLS AND RESULT -->
 
-            <!-- CONTROLS -->
+        <section class="lab-container">
 
             <div class="controls">
 
                 <div class="control">
 
                     <label>
-                        Voltage: <span id="voltageValue">12</span> V
+                        Voltage:
+                        <span id="voltageValue">12</span> V
                     </label>
 
                     <input
@@ -57,7 +60,8 @@
                 <div class="control">
 
                     <label>
-                        Resistance: <span id="resistanceValue">6</span> Ω
+                        Resistance:
+                        <span id="resistanceValue">6</span> Ω
                     </label>
 
                     <input
@@ -80,7 +84,8 @@
                 <h3>Current</h3>
 
                 <div class="current-value">
-                    ⚡ <span id="currentValue">2.00</span> A
+                    ⚡
+                    <span id="currentValue">2.00</span> A
                 </div>
 
                 <p id="formula">
@@ -92,7 +97,7 @@
         </section>
 
 
-        <!-- CIRCUIT VISUALIZATION -->
+        <!-- LIVE CIRCUIT -->
 
         <section class="circuit-section">
 
@@ -100,23 +105,81 @@
 
             <div class="circuit">
 
+                <!-- BATTERY -->
+
                 <div class="battery">
                     🔋
                 </div>
 
-                <div class="wire"></div>
 
-                <div class="resistor">
-                    <span>R</span>
+                <!-- WIRE 1 -->
+
+                <div class="wire">
+
+                    <div class="electron electron-1"></div>
+                    <div class="electron electron-2"></div>
+                    <div class="electron electron-3"></div>
+
                 </div>
 
-                <div class="wire"></div>
 
-                <div class="bulb">
+                <!-- RESISTOR -->
+
+                <div class="resistor">
+
+                    <span>R</span>
+
+                </div>
+
+
+                <!-- WIRE 2 -->
+
+                <div class="wire">
+
+                    <div class="electron electron-4"></div>
+                    <div class="electron electron-5"></div>
+
+                </div>
+
+
+                <!-- BULB -->
+
+                <div class="bulb" id="bulb">
                     💡
                 </div>
 
             </div>
+
+
+            <!-- LIVE CIRCUIT INFORMATION -->
+
+            <div class="circuit-info">
+
+                <p>
+                    Voltage:
+                    <span id="circuitVoltage">12</span> V
+                </p>
+
+
+                <p>
+                    Resistance:
+                    <span id="circuitResistance">6</span> Ω
+                </p>
+
+
+                <p>
+                    Current:
+                    <span id="circuitCurrent">2.00</span> A
+                </p>
+
+            </div>
+
+
+            <!-- CIRCUIT STATUS -->
+
+            <h3 id="circuitStatus">
+                Circuit running normally ⚡
+            </h3>
 
         </section>
 
@@ -132,15 +195,18 @@
                 voltage, current and resistance.
             </p>
 
+
             <div class="formula-box">
 
                 V = I × R
 
             </div>
 
+
             <p>
                 In this experiment, VoltLab calculates current using:
             </p>
+
 
             <div class="formula-box">
 
@@ -153,10 +219,12 @@
     </main>
 
 
+    <!-- FOOTER -->
+
     <footer>
 
         <p>
-            Built by Shantanu ⚡ | VoltLab v0.1
+            Built by Shantanu ⚡ | VoltLab v0.2
         </p>
 
     </footer>
