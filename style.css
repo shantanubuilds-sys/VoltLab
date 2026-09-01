@@ -1,6 +1,11 @@
+/* =========================
+   GLOBAL SETTINGS
+========================= */
+
 * {
     box-sizing: border-box;
 }
+
 
 body {
     margin: 0;
@@ -10,7 +15,9 @@ body {
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header {
     text-align: center;
@@ -18,17 +25,21 @@ header {
     border-bottom: 1px solid #26304f;
 }
 
+
 header h1 {
     font-size: 3rem;
     margin-bottom: 10px;
 }
+
 
 header p {
     color: #aab4d6;
 }
 
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
 
 main {
     max-width: 1000px;
@@ -37,23 +48,29 @@ main {
 }
 
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
     text-align: center;
     margin-bottom: 40px;
 }
 
+
 .hero h2 {
     font-size: 2rem;
 }
+
 
 .hero p {
     color: #aab4d6;
 }
 
 
-/* LAB */
+/* =========================
+   LAB
+========================= */
 
 .lab-container {
     display: grid;
@@ -71,11 +88,19 @@ main {
 }
 
 
-/* CONTROL */
+/* =========================
+   CONTROLS
+========================= */
 
 .control {
     margin-bottom: 30px;
 }
+
+
+.control:last-child {
+    margin-bottom: 0;
+}
+
 
 .control label {
     display: block;
@@ -86,14 +111,18 @@ main {
 
 input[type="range"] {
     width: 100%;
+    cursor: pointer;
 }
 
 
-/* RESULT */
+/* =========================
+   RESULT
+========================= */
 
 .result {
     text-align: center;
 }
+
 
 .current-value {
     font-size: 3rem;
@@ -101,12 +130,15 @@ input[type="range"] {
 }
 
 
-/* CIRCUIT */
+/* =========================
+   LIVE CIRCUIT
+========================= */
 
 .circuit-section {
     text-align: center;
     margin-bottom: 50px;
 }
+
 
 .circuit {
     display: flex;
@@ -117,56 +149,201 @@ input[type="range"] {
     border-radius: 15px;
 }
 
+
+/* =========================
+   CIRCUIT COMPONENTS
+========================= */
+
 .battery,
 .bulb {
     font-size: 3rem;
 }
 
+
+/* RESISTOR */
+
 .resistor {
     width: 100px;
     height: 40px;
+
     border: 3px solid white;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    font-weight: bold;
 }
+
+
+/* WIRE */
 
 .wire {
     width: 100px;
     height: 4px;
-    background: #ffffff;
+
+    background: white;
+
+    position: relative;
+    overflow: hidden;
 }
 
 
-/* EXPLANATION */
+/* =========================
+   BULB
+========================= */
+
+.bulb {
+    transition: 0.4s;
+
+    filter: brightness(1);
+}
+
+
+/* =========================
+   ELECTRON FLOW
+========================= */
+
+.electron {
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    top: -4px;
+
+    animation: flow 2s linear infinite;
+}
+
+
+.electron-1 {
+    animation-delay: 0s;
+}
+
+
+.electron-2 {
+    animation-delay: 0.6s;
+}
+
+
+.electron-3 {
+    animation-delay: 1.2s;
+}
+
+
+.electron-4 {
+    animation-delay: 0.3s;
+}
+
+
+.electron-5 {
+    animation-delay: 0.9s;
+}
+
+
+/* ELECTRON ANIMATION */
+
+@keyframes flow {
+
+    0% {
+        left: -20px;
+    }
+
+
+    100% {
+        left: 100%;
+    }
+
+}
+
+
+/* =========================
+   CIRCUIT INFORMATION
+========================= */
+
+.circuit-info {
+    margin-top: 25px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+}
+
+
+.circuit-info p {
+    background: #0b1020;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    margin: 0;
+}
+
+
+#circuitStatus {
+    margin-top: 25px;
+}
+
+
+/* =========================
+   EXPLANATION
+========================= */
 
 .explanation {
     background: #141b33;
+
     padding: 30px;
+
     border-radius: 15px;
+
     text-align: center;
 }
+
 
 .formula-box {
     margin: 20px auto;
+
     padding: 15px;
+
     max-width: 300px;
+
     background: #0b1020;
+
     border-radius: 10px;
+
     font-size: 1.5rem;
+
+    font-weight: bold;
 }
 
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     text-align: center;
+
     padding: 30px;
+
     color: #aab4d6;
+
+    border-top: 1px solid #26304f;
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE DESIGN
+========================= */
 
 @media (max-width: 700px) {
 
@@ -174,12 +351,30 @@ footer {
         grid-template-columns: 1fr;
     }
 
+
     .circuit {
         padding: 30px 10px;
     }
 
+
     .wire {
         width: 40px;
+    }
+
+
+    .resistor {
+        width: 70px;
+    }
+
+
+    .battery,
+    .bulb {
+        font-size: 2rem;
+    }
+
+
+    .current-value {
+        font-size: 2.3rem;
     }
 
 }
