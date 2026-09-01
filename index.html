@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VoltLab ⚡</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>⚡ VoltLab</h1>
+        <p>Learn electricity by seeing it.</p>
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <h2>Ohm's Law Visualizer</h2>
+
+            <p>
+                Change the voltage and resistance to see how
+                current changes in real time.
+            </p>
+
+        </section>
+
+
+        <section class="lab-container">
+
+            <!-- CONTROLS -->
+
+            <div class="controls">
+
+                <div class="control">
+
+                    <label>
+                        Voltage: <span id="voltageValue">12</span> V
+                    </label>
+
+                    <input
+                        type="range"
+                        id="voltage"
+                        min="1"
+                        max="100"
+                        value="12"
+                    >
+
+                </div>
+
+
+                <div class="control">
+
+                    <label>
+                        Resistance: <span id="resistanceValue">6</span> Ω
+                    </label>
+
+                    <input
+                        type="range"
+                        id="resistance"
+                        min="1"
+                        max="100"
+                        value="6"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULT -->
+
+            <div class="result">
+
+                <h3>Current</h3>
+
+                <div class="current-value">
+                    ⚡ <span id="currentValue">2.00</span> A
+                </div>
+
+                <p id="formula">
+                    I = V / R
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CIRCUIT VISUALIZATION -->
+
+        <section class="circuit-section">
+
+            <h2>Live Circuit</h2>
+
+            <div class="circuit">
+
+                <div class="battery">
+                    🔋
+                </div>
+
+                <div class="wire"></div>
+
+                <div class="resistor">
+                    <span>R</span>
+                </div>
+
+                <div class="wire"></div>
+
+                <div class="bulb">
+                    💡
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPLANATION -->
+
+        <section class="explanation">
+
+            <h2>What is Ohm's Law?</h2>
+
+            <p>
+                Ohm's Law explains the relationship between
+                voltage, current and resistance.
+            </p>
+
+            <div class="formula-box">
+
+                V = I × R
+
+            </div>
+
+            <p>
+                In this experiment, VoltLab calculates current using:
+            </p>
+
+            <div class="formula-box">
+
+                I = V / R
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Built by Shantanu ⚡ | VoltLab v0.1
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
