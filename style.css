@@ -1,0 +1,185 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1020;
+    color: white;
+}
+
+
+/* HEADER */
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    border-bottom: 1px solid #26304f;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #aab4d6;
+}
+
+
+/* MAIN */
+
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero h2 {
+    font-size: 2rem;
+}
+
+.hero p {
+    color: #aab4d6;
+}
+
+
+/* LAB */
+
+.lab-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+
+.controls,
+.result {
+    background: #141b33;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+
+/* CONTROL */
+
+.control {
+    margin-bottom: 30px;
+}
+
+.control label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+
+input[type="range"] {
+    width: 100%;
+}
+
+
+/* RESULT */
+
+.result {
+    text-align: center;
+}
+
+.current-value {
+    font-size: 3rem;
+    margin: 30px 0;
+}
+
+
+/* CIRCUIT */
+
+.circuit-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.circuit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    background: #141b33;
+    border-radius: 15px;
+}
+
+.battery,
+.bulb {
+    font-size: 3rem;
+}
+
+.resistor {
+    width: 100px;
+    height: 40px;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wire {
+    width: 100px;
+    height: 4px;
+    background: #ffffff;
+}
+
+
+/* EXPLANATION */
+
+.explanation {
+    background: #141b33;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.formula-box {
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 300px;
+    background: #0b1020;
+    border-radius: 10px;
+    font-size: 1.5rem;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #aab4d6;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .lab-container {
+        grid-template-columns: 1fr;
+    }
+
+    .circuit {
+        padding: 30px 10px;
+    }
+
+    .wire {
+        width: 40px;
+    }
+
+}
