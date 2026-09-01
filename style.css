@@ -1,5 +1,5 @@
 /* =========================
-   GLOBAL SETTINGS
+   GLOBAL
 ========================= */
 
 * {
@@ -28,12 +28,13 @@ header {
 
 header h1 {
     font-size: 3rem;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
 }
 
 
 header p {
     color: #aab4d6;
+    margin: 0;
 }
 
 
@@ -54,7 +55,7 @@ main {
 
 .hero {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 
@@ -69,28 +70,44 @@ main {
 
 
 /* =========================
-   LAB
+   GENERAL SECTIONS
+========================= */
+
+.ohms-section,
+.series-section {
+    background: #141b33;
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+
+.section-description {
+    color: #aab4d6;
+    max-width: 700px;
+    margin: 15px auto 35px;
+}
+
+
+/* =========================
+   OHM'S LAW LAB
 ========================= */
 
 .lab-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    margin-bottom: 50px;
 }
 
 
 .controls,
 .result {
-    background: #141b33;
+    background: #0b1020;
     padding: 30px;
     border-radius: 15px;
 }
 
-
-/* =========================
-   CONTROLS
-========================= */
 
 .control {
     margin-bottom: 30px;
@@ -105,7 +122,6 @@ main {
 .control label {
     display: block;
     margin-bottom: 12px;
-    font-size: 1.1rem;
 }
 
 
@@ -116,13 +132,8 @@ input[type="range"] {
 
 
 /* =========================
-   RESULT
+   CURRENT RESULT
 ========================= */
-
-.result {
-    text-align: center;
-}
-
 
 .current-value {
     font-size: 3rem;
@@ -134,9 +145,8 @@ input[type="range"] {
    LIVE CIRCUIT
 ========================= */
 
-.circuit-section {
-    text-align: center;
-    margin-bottom: 50px;
+.live-circuit {
+    margin-top: 40px;
 }
 
 
@@ -144,15 +154,11 @@ input[type="range"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 50px;
-    background: #141b33;
+    padding: 40px 20px;
+    background: #0b1020;
     border-radius: 15px;
 }
 
-
-/* =========================
-   CIRCUIT COMPONENTS
-========================= */
 
 .battery,
 .bulb {
@@ -160,12 +166,9 @@ input[type="range"] {
 }
 
 
-/* RESISTOR */
-
 .resistor {
-    width: 100px;
+    width: 90px;
     height: 40px;
-
     border: 3px solid white;
 
     display: flex;
@@ -176,12 +179,9 @@ input[type="range"] {
 }
 
 
-/* WIRE */
-
 .wire {
     width: 100px;
     height: 4px;
-
     background: white;
 
     position: relative;
@@ -195,13 +195,11 @@ input[type="range"] {
 
 .bulb {
     transition: 0.4s;
-
-    filter: brightness(1);
 }
 
 
 /* =========================
-   ELECTRON FLOW
+   ELECTRON ANIMATION
 ========================= */
 
 .electron {
@@ -211,7 +209,6 @@ input[type="range"] {
     height: 12px;
 
     background: white;
-
     border-radius: 50%;
 
     top: -4px;
@@ -245,8 +242,6 @@ input[type="range"] {
 }
 
 
-/* ELECTRON ANIMATION */
-
 @keyframes flow {
 
     0% {
@@ -269,23 +264,17 @@ input[type="range"] {
     margin-top: 25px;
 
     display: flex;
-
     justify-content: center;
-
-    gap: 25px;
-
+    gap: 20px;
     flex-wrap: wrap;
 }
 
 
 .circuit-info p {
-    background: #0b1020;
-
-    padding: 12px 18px;
-
-    border-radius: 10px;
-
     margin: 0;
+    background: #0b1020;
+    padding: 12px 18px;
+    border-radius: 10px;
 }
 
 
@@ -295,33 +284,147 @@ input[type="range"] {
 
 
 /* =========================
-   EXPLANATION
+   CONCEPT BOX
 ========================= */
 
-.explanation {
-    background: #141b33;
-
+.concept-box {
+    margin-top: 40px;
     padding: 30px;
-
+    background: #0b1020;
     border-radius: 15px;
-
-    text-align: center;
 }
 
 
 .formula-box {
     margin: 20px auto;
-
     padding: 15px;
 
-    max-width: 300px;
+    max-width: 350px;
 
-    background: #0b1020;
+    background: #141b33;
 
     border-radius: 10px;
 
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
 
+
+/* =========================
+   SERIES CONTROLS
+========================= */
+
+.series-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+}
+
+
+.series-control {
+    background: #0b1020;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.series-control label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   SERIES DIAGRAM
+========================= */
+
+.series-diagram {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 40px 0;
+
+    flex-wrap: wrap;
+
+    font-size: 2rem;
+}
+
+
+.series-line {
+    width: 60px;
+    height: 4px;
+    background: white;
+}
+
+
+.series-resistor {
+    width: 70px;
+    height: 40px;
+
+    border: 3px solid white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+/* =========================
+   SERIES RESULTS
+========================= */
+
+.series-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+.series-result-card {
+    background: #0b1020;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+
+.series-result-card p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+/* =========================
+   VOLTAGE DROPS
+========================= */
+
+.voltage-drops {
+    margin-top: 30px;
+}
+
+
+.drop-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+.drop-card {
+    background: #0b1020;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.drop-card p {
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -332,28 +435,29 @@ input[type="range"] {
 
 footer {
     text-align: center;
-
     padding: 30px;
-
     color: #aab4d6;
-
     border-top: 1px solid #26304f;
 }
 
 
 /* =========================
-   MOBILE DESIGN
+   MOBILE
 ========================= */
 
 @media (max-width: 700px) {
 
-    .lab-container {
-        grid-template-columns: 1fr;
+    .ohms-section,
+    .series-section {
+        padding: 25px 15px;
     }
 
 
-    .circuit {
-        padding: 30px 10px;
+    .lab-container,
+    .series-controls,
+    .series-results,
+    .drop-container {
+        grid-template-columns: 1fr;
     }
 
 
@@ -362,19 +466,24 @@ footer {
     }
 
 
+    .series-line {
+        width: 25px;
+    }
+
+
     .resistor {
-        width: 70px;
+        width: 65px;
+    }
+
+
+    .series-resistor {
+        width: 55px;
     }
 
 
     .battery,
     .bulb {
         font-size: 2rem;
-    }
-
-
-    .current-value {
-        font-size: 2.3rem;
     }
 
 }
