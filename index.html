@@ -5,22 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>VoltLab ⚡</title>
+    <title>VoltLab ⚡ | Interactive Electricity Learning</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
+    <!-- =========================
+         DAY 5 NAVIGATION
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="nav-logo">
+            ⚡ VoltLab
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#home" class="active">Home</a>
+
+            <a href="#ohms">Ohm's Law</a>
+
+            <a href="#series">Series</a>
+
+            <a href="#parallel">Parallel</a>
+
+            <a href="#compare">Compare</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- SCROLL PROGRESS -->
+
+    <div class="progress-container">
+
+        <div
+            class="progress-bar"
+            id="progressBar">
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header id="home">
+
         <h1>⚡ VoltLab</h1>
-        <p>Learn electricity by seeing it.</p>
+
+        <p>
+            Learn electricity by seeing it.
+        </p>
+
     </header>
 
 
     <main>
 
-        <!-- HERO -->
+        <!-- =========================
+             HERO
+        ========================== -->
 
         <section class="hero">
 
@@ -34,9 +85,13 @@
         </section>
 
 
-        <!-- OHM'S LAW -->
+        <!-- =========================
+             OHM'S LAW
+        ========================== -->
 
-        <section class="ohms-section">
+        <section
+            class="ohms-section"
+            id="ohms">
 
             <h2>⚡ Ohm's Law Visualizer</h2>
 
@@ -47,20 +102,26 @@
 
             <div class="lab-container">
 
+
+                <!-- CONTROLS -->
+
                 <div class="controls">
 
                     <div class="control">
 
                         <label>
+
                             Voltage:
                             <span id="voltageValue">12</span> V
+
                         </label>
 
-                        <input type="range"
-                               id="voltage"
-                               min="1"
-                               max="100"
-                               value="12">
+                        <input
+                            type="range"
+                            id="voltage"
+                            min="1"
+                            max="100"
+                            value="12">
 
                     </div>
 
@@ -68,30 +129,43 @@
                     <div class="control">
 
                         <label>
+
                             Resistance:
                             <span id="resistanceValue">6</span> Ω
+
                         </label>
 
-                        <input type="range"
-                               id="resistance"
-                               min="1"
-                               max="100"
-                               value="6">
+                        <input
+                            type="range"
+                            id="resistance"
+                            min="1"
+                            max="100"
+                            value="6">
 
                     </div>
 
                 </div>
 
 
+                <!-- RESULT -->
+
                 <div class="result">
 
                     <h3>Current</h3>
 
                     <div class="current-value">
-                        ⚡ <span id="currentValue">2.00</span> A
+
+                        ⚡
+                        <span id="currentValue">
+                            2.00
+                        </span>
+                        A
+
                     </div>
 
-                    <p>Formula: I = V ÷ R</p>
+                    <p>
+                        Formula: I = V ÷ R
+                    </p>
 
                 </div>
 
@@ -107,30 +181,43 @@
 
                 <div class="circuit">
 
-                    <div class="battery">🔋</div>
+                    <div class="battery">
+                        🔋
+                    </div>
 
 
                     <div class="wire">
 
                         <div class="electron electron-1"></div>
+
                         <div class="electron electron-2"></div>
+
                         <div class="electron electron-3"></div>
 
                     </div>
 
 
-                    <div class="resistor">R</div>
+                    <div class="resistor">
+                        R
+                    </div>
 
 
                     <div class="wire">
 
                         <div class="electron electron-4"></div>
+
                         <div class="electron electron-5"></div>
 
                     </div>
 
 
-                    <div class="bulb" id="bulb">💡</div>
+                    <div
+                        class="bulb"
+                        id="bulb">
+
+                        💡
+
+                    </div>
 
                 </div>
 
@@ -138,45 +225,74 @@
                 <div class="circuit-info">
 
                     <p>
+
                         Voltage:
-                        <span id="circuitVoltage">12</span> V
+                        <span id="circuitVoltage">
+                            12
+                        </span>
+                        V
+
                     </p>
 
+
                     <p>
+
                         Resistance:
-                        <span id="circuitResistance">6</span> Ω
+                        <span id="circuitResistance">
+                            6
+                        </span>
+                        Ω
+
                     </p>
 
+
                     <p>
+
                         Current:
-                        <span id="circuitCurrent">2.00</span> A
+                        <span id="circuitCurrent">
+                            2.00
+                        </span>
+                        A
+
                     </p>
 
                 </div>
 
 
                 <h3 id="circuitStatus">
+
                     Circuit running normally ⚡
+
                 </h3>
 
             </div>
 
 
+            <!-- CONCEPT -->
+
             <div class="concept-box">
 
-                <h3>What is Ohm's Law?</h3>
+                <h3>
+                    What is Ohm's Law?
+                </h3>
 
                 <p>
-                    Ohm's Law describes the relationship between voltage,
-                    current and resistance.
+                    Ohm's Law describes the relationship between
+                    voltage, current and resistance.
                 </p>
 
-                <div class="formula-box">
-                    V = I × R
-                </div>
 
                 <div class="formula-box">
+
+                    V = I × R
+
+                </div>
+
+
+                <div class="formula-box">
+
                     I = V ÷ R
+
                 </div>
 
             </div>
@@ -184,31 +300,47 @@
         </section>
 
 
-        <!-- SERIES CIRCUIT -->
+        <!-- =========================
+             SERIES CIRCUIT
+        ========================== -->
 
-        <section class="series-section">
+        <section
+            class="series-section"
+            id="series">
 
             <h2>🔗 Series Circuit Explorer</h2>
 
             <p class="section-description">
-                Explore how voltage divides across resistors in series.
+
+                Explore how voltage divides across resistors
+                connected in series.
+
             </p>
 
 
+            <!-- CONTROLS -->
+
             <div class="series-controls">
 
+
                 <div class="series-control">
 
                     <label>
+
                         Supply Voltage:
-                        <span id="seriesVoltageValue">12</span> V
+                        <span id="seriesVoltageValue">
+                            12
+                        </span>
+                        V
+
                     </label>
 
-                    <input type="range"
-                           id="seriesVoltage"
-                           min="1"
-                           max="100"
-                           value="12">
+                    <input
+                        type="range"
+                        id="seriesVoltage"
+                        min="1"
+                        max="100"
+                        value="12">
 
                 </div>
 
@@ -216,15 +348,21 @@
                 <div class="series-control">
 
                     <label>
+
                         Resistor R1:
-                        <span id="r1Value">10</span> Ω
+                        <span id="r1Value">
+                            10
+                        </span>
+                        Ω
+
                     </label>
 
-                    <input type="range"
-                           id="r1"
-                           min="1"
-                           max="100"
-                           value="10">
+                    <input
+                        type="range"
+                        id="r1"
+                        min="1"
+                        max="100"
+                        value="10">
 
                 </div>
 
@@ -232,15 +370,21 @@
                 <div class="series-control">
 
                     <label>
+
                         Resistor R2:
-                        <span id="r2Value">20</span> Ω
+                        <span id="r2Value">
+                            20
+                        </span>
+                        Ω
+
                     </label>
 
-                    <input type="range"
-                           id="r2"
-                           min="1"
-                           max="100"
-                           value="20">
+                    <input
+                        type="range"
+                        id="r2"
+                        min="1"
+                        max="100"
+                        value="20">
 
                 </div>
 
@@ -248,48 +392,74 @@
                 <div class="series-control">
 
                     <label>
+
                         Resistor R3:
-                        <span id="r3Value">30</span> Ω
+                        <span id="r3Value">
+                            30
+                        </span>
+                        Ω
+
                     </label>
 
-                    <input type="range"
-                           id="r3"
-                           min="1"
-                           max="100"
-                           value="30">
+                    <input
+                        type="range"
+                        id="r3"
+                        min="1"
+                        max="100"
+                        value="30">
 
                 </div>
 
             </div>
 
+
+            <!-- SERIES DIAGRAM -->
 
             <div class="series-diagram">
 
-                <div class="series-battery">🔋</div>
+                <div class="series-battery">
+                    🔋
+                </div>
 
                 <div class="series-line"></div>
 
-                <div class="series-resistor">R1</div>
+                <div class="series-resistor">
+                    R1
+                </div>
 
                 <div class="series-line"></div>
 
-                <div class="series-resistor">R2</div>
+                <div class="series-resistor">
+                    R2
+                </div>
 
                 <div class="series-line"></div>
 
-                <div class="series-resistor">R3</div>
+                <div class="series-resistor">
+                    R3
+                </div>
 
             </div>
 
+
+            <!-- RESULTS -->
 
             <div class="series-results">
 
                 <div class="series-result-card">
 
-                    <h3>Total Resistance</h3>
+                    <h3>
+                        Total Resistance
+                    </h3>
 
                     <p>
-                        <span id="totalResistance">60</span> Ω
+
+                        <span id="totalResistance">
+                            60
+                        </span>
+
+                        Ω
+
                     </p>
 
                 </div>
@@ -297,10 +467,18 @@
 
                 <div class="series-result-card">
 
-                    <h3>Circuit Current</h3>
+                    <h3>
+                        Circuit Current
+                    </h3>
 
                     <p>
-                        <span id="seriesCurrent">0.20</span> A
+
+                        <span id="seriesCurrent">
+                            0.20
+                        </span>
+
+                        A
+
                     </p>
 
                 </div>
@@ -308,19 +486,30 @@
             </div>
 
 
+            <!-- VOLTAGE DROPS -->
+
             <div class="voltage-drops">
 
-                <h3>Voltage Drop Across Each Resistor</h3>
+                <h3>
+                    Voltage Drop Across Each Resistor
+                </h3>
 
 
                 <div class="drop-container">
+
 
                     <div class="drop-card">
 
                         <h4>R1</h4>
 
                         <p>
-                            <span id="voltageDrop1">2.00</span> V
+
+                            <span id="voltageDrop1">
+                                2.00
+                            </span>
+
+                            V
+
                         </p>
 
                     </div>
@@ -331,7 +520,13 @@
                         <h4>R2</h4>
 
                         <p>
-                            <span id="voltageDrop2">4.00</span> V
+
+                            <span id="voltageDrop2">
+                                4.00
+                            </span>
+
+                            V
+
                         </p>
 
                     </div>
@@ -342,7 +537,13 @@
                         <h4>R3</h4>
 
                         <p>
-                            <span id="voltageDrop3">6.00</span> V
+
+                            <span id="voltageDrop3">
+                                6.00
+                            </span>
+
+                            V
+
                         </p>
 
                     </div>
@@ -352,9 +553,13 @@
             </div>
 
 
+            <!-- CONCEPT -->
+
             <div class="concept-box">
 
-                <h3>Series Circuit Rule</h3>
+                <h3>
+                    Series Circuit Rule
+                </h3>
 
                 <p>
                     The same current flows through every resistor.
@@ -362,7 +567,9 @@
                 </p>
 
                 <div class="formula-box">
+
                     R Total = R1 + R2 + R3
+
                 </div>
 
             </div>
@@ -370,15 +577,21 @@
         </section>
 
 
-        <!-- PARALLEL CIRCUIT -->
+        <!-- =========================
+             PARALLEL CIRCUIT
+        ========================== -->
 
-        <section class="parallel-section">
+        <section
+            class="parallel-section"
+            id="parallel">
 
             <h2>⚡ Parallel Circuit Explorer</h2>
 
             <p class="section-description">
-                Explore how current divides between multiple branches
-                while voltage remains the same.
+
+                Explore how current divides between multiple
+                branches while voltage remains the same.
+
             </p>
 
 
@@ -386,18 +599,26 @@
 
             <div class="parallel-controls">
 
+
                 <div class="parallel-control">
 
                     <label>
+
                         Supply Voltage:
-                        <span id="parallelVoltageValue">12</span> V
+                        <span id="parallelVoltageValue">
+                            12
+                        </span>
+
+                        V
+
                     </label>
 
-                    <input type="range"
-                           id="parallelVoltage"
-                           min="1"
-                           max="100"
-                           value="12">
+                    <input
+                        type="range"
+                        id="parallelVoltage"
+                        min="1"
+                        max="100"
+                        value="12">
 
                 </div>
 
@@ -405,15 +626,22 @@
                 <div class="parallel-control">
 
                     <label>
+
                         Resistor R1:
-                        <span id="parallelR1Value">10</span> Ω
+                        <span id="parallelR1Value">
+                            10
+                        </span>
+
+                        Ω
+
                     </label>
 
-                    <input type="range"
-                           id="parallelR1"
-                           min="1"
-                           max="100"
-                           value="10">
+                    <input
+                        type="range"
+                        id="parallelR1"
+                        min="1"
+                        max="100"
+                        value="10">
 
                 </div>
 
@@ -421,15 +649,22 @@
                 <div class="parallel-control">
 
                     <label>
+
                         Resistor R2:
-                        <span id="parallelR2Value">20</span> Ω
+                        <span id="parallelR2Value">
+                            20
+                        </span>
+
+                        Ω
+
                     </label>
 
-                    <input type="range"
-                           id="parallelR2"
-                           min="1"
-                           max="100"
-                           value="20">
+                    <input
+                        type="range"
+                        id="parallelR2"
+                        min="1"
+                        max="100"
+                        value="20">
 
                 </div>
 
@@ -437,15 +672,22 @@
                 <div class="parallel-control">
 
                     <label>
+
                         Resistor R3:
-                        <span id="parallelR3Value">30</span> Ω
+                        <span id="parallelR3Value">
+                            30
+                        </span>
+
+                        Ω
+
                     </label>
 
-                    <input type="range"
-                           id="parallelR3"
-                           min="1"
-                           max="100"
-                           value="30">
+                    <input
+                        type="range"
+                        id="parallelR3"
+                        min="1"
+                        max="100"
+                        value="30">
 
                 </div>
 
@@ -457,11 +699,14 @@
             <div class="parallel-diagram">
 
                 <div class="parallel-battery">
+
                     🔋
+
                 </div>
 
 
                 <div class="parallel-branches">
+
 
                     <div class="parallel-branch">
 
@@ -492,14 +737,21 @@
 
             <div class="parallel-results">
 
+
                 <div class="parallel-result-card">
 
-                    <h3>Equivalent Resistance</h3>
+                    <h3>
+                        Equivalent Resistance
+                    </h3>
 
                     <p>
+
                         <span id="parallelTotalResistance">
                             5.45
-                        </span> Ω
+                        </span>
+
+                        Ω
+
                     </p>
 
                 </div>
@@ -507,12 +759,18 @@
 
                 <div class="parallel-result-card">
 
-                    <h3>Total Current</h3>
+                    <h3>
+                        Total Current
+                    </h3>
 
                     <p>
+
                         <span id="parallelTotalCurrent">
                             2.20
-                        </span> A
+                        </span>
+
+                        A
+
                     </p>
 
                 </div>
@@ -524,19 +782,28 @@
 
             <div class="branch-currents">
 
-                <h3>Current Through Each Branch</h3>
+                <h3>
+                    Current Through Each Branch
+                </h3>
 
 
                 <div class="branch-container">
 
+
                     <div class="branch-card">
 
-                        <h4>Branch R1</h4>
+                        <h4>
+                            Branch R1
+                        </h4>
 
                         <p>
+
                             <span id="branchCurrent1">
                                 1.20
-                            </span> A
+                            </span>
+
+                            A
+
                         </p>
 
                     </div>
@@ -544,12 +811,18 @@
 
                     <div class="branch-card">
 
-                        <h4>Branch R2</h4>
+                        <h4>
+                            Branch R2
+                        </h4>
 
                         <p>
+
                             <span id="branchCurrent2">
                                 0.60
-                            </span> A
+                            </span>
+
+                            A
+
                         </p>
 
                     </div>
@@ -557,12 +830,18 @@
 
                     <div class="branch-card">
 
-                        <h4>Branch R3</h4>
+                        <h4>
+                            Branch R3
+                        </h4>
 
                         <p>
+
                             <span id="branchCurrent3">
                                 0.40
-                            </span> A
+                            </span>
+
+                            A
+
                         </p>
 
                     </div>
@@ -576,19 +855,27 @@
 
             <div class="concept-box">
 
-                <h3>Parallel Circuit Rule</h3>
+                <h3>
+                    Parallel Circuit Rule
+                </h3>
 
                 <p>
                     Every branch receives the same voltage.
                     Current divides between branches.
                 </p>
 
+
                 <div class="formula-box">
-                    1 / R Total = 1 / R1 + 1 / R2 + 1 / R3
+
+                    1 / R Total =
+                    1 / R1 + 1 / R2 + 1 / R3
+
                 </div>
 
+
                 <p>
-                    Total current equals the sum of all branch currents.
+                    Total current equals the sum of
+                    all branch currents.
                 </p>
 
             </div>
@@ -596,36 +883,60 @@
         </section>
 
 
-        <!-- COMPARISON -->
+        <!-- =========================
+             COMPARISON
+        ========================== -->
 
-        <section class="comparison-section">
+        <section
+            class="comparison-section"
+            id="compare">
 
-            <h2>🔬 Series vs Parallel</h2>
+            <h2>
+                🔬 Series vs Parallel
+            </h2>
+
 
             <div class="comparison-grid">
 
+
                 <div class="comparison-card">
 
-                    <h3>Series</h3>
+                    <h3>
+                        Series
+                    </h3>
 
-                    <p>Same current through every component.</p>
+                    <p>
+                        Same current through every component.
+                    </p>
 
-                    <p>Voltage divides across resistors.</p>
+                    <p>
+                        Voltage divides across resistors.
+                    </p>
 
-                    <p>One path for current.</p>
+                    <p>
+                        One path for current.
+                    </p>
 
                 </div>
 
 
                 <div class="comparison-card">
 
-                    <h3>Parallel</h3>
+                    <h3>
+                        Parallel
+                    </h3>
 
-                    <p>Same voltage across every branch.</p>
+                    <p>
+                        Same voltage across every branch.
+                    </p>
 
-                    <p>Current divides between branches.</p>
+                    <p>
+                        Current divides between branches.
+                    </p>
 
-                    <p>Multiple paths for current.</p>
+                    <p>
+                        Multiple paths for current.
+                    </p>
 
                 </div>
 
@@ -636,13 +947,29 @@
     </main>
 
 
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer>
 
         <p>
-            Built by Shantanu ⚡ | VoltLab v0.4
+            Built by Shantanu ⚡ | VoltLab v0.5
         </p>
 
     </footer>
+
+
+    <!-- BACK TO TOP -->
+
+    <button
+        id="backToTop"
+        class="back-to-top"
+        aria-label="Back to top">
+
+        ↑
+
+    </button>
 
 
     <script src="script.js"></script>
