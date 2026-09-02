@@ -1,264 +1,131 @@
 /* =========================
-   DAY 1 + DAY 2
    OHM'S LAW VISUALIZER
 ========================= */
 
+const voltageSlider = document.getElementById("voltage");
+const resistanceSlider = document.getElementById("resistance");
 
-// INPUT SLIDERS
+const voltageValue = document.getElementById("voltageValue");
+const resistanceValue = document.getElementById("resistanceValue");
+const currentValue = document.getElementById("currentValue");
 
-const voltageSlider =
-    document.getElementById("voltage");
+const circuitVoltage = document.getElementById("circuitVoltage");
+const circuitResistance = document.getElementById("circuitResistance");
+const circuitCurrent = document.getElementById("circuitCurrent");
 
-const resistanceSlider =
-    document.getElementById("resistance");
+const bulb = document.getElementById("bulb");
+const circuitStatus = document.getElementById("circuitStatus");
 
+const electrons = document.querySelectorAll(".electron");
 
-// MAIN DISPLAY VALUES
-
-const voltageValue =
-    document.getElementById("voltageValue");
-
-const resistanceValue =
-    document.getElementById("resistanceValue");
-
-const currentValue =
-    document.getElementById("currentValue");
-
-
-// LIVE CIRCUIT VALUES
-
-const circuitVoltage =
-    document.getElementById("circuitVoltage");
-
-const circuitResistance =
-    document.getElementById("circuitResistance");
-
-const circuitCurrent =
-    document.getElementById("circuitCurrent");
-
-
-// CIRCUIT VISUALS
-
-const bulb =
-    document.getElementById("bulb");
-
-const circuitStatus =
-    document.getElementById("circuitStatus");
-
-const electrons =
-    document.querySelectorAll(".electron");
-
-
-// CALCULATE OHM'S LAW
 
 function calculateCurrent() {
 
+    const voltage = Number(voltageSlider.value);
+    const resistance = Number(resistanceSlider.value);
 
-    // GET VALUES
-
-    const voltage =
-        Number(voltageSlider.value);
-
-    const resistance =
-        Number(resistanceSlider.value);
+    const current = voltage / resistance;
 
 
-    // OHM'S LAW
-
-    const current =
-        voltage / resistance;
-
-
-    // UPDATE MAIN DISPLAY
-
-    voltageValue.textContent =
-        voltage;
-
-    resistanceValue.textContent =
-        resistance;
-
-    currentValue.textContent =
-        current.toFixed(2);
+    voltageValue.textContent = voltage;
+    resistanceValue.textContent = resistance;
+    currentValue.textContent = current.toFixed(2);
 
 
-    // UPDATE LIVE CIRCUIT
-
-    circuitVoltage.textContent =
-        voltage;
-
-    circuitResistance.textContent =
-        resistance;
-
-    circuitCurrent.textContent =
-        current.toFixed(2);
+    circuitVoltage.textContent = voltage;
+    circuitResistance.textContent = resistance;
+    circuitCurrent.textContent = current.toFixed(2);
 
 
-    // BULB BRIGHTNESS
-
-    let brightness =
-        1 + current / 2;
-
+    let brightness = 1 + current / 2;
 
     if (brightness > 3) {
-
         brightness = 3;
-
     }
 
-
-    bulb.style.filter =
-        `brightness(${brightness})`;
+    bulb.style.filter = `brightness(${brightness})`;
 
 
-    // CURRENT FLOW SPEED
-
-    let speed =
-        3 - current / 5;
-
+    let speed = 3 - current / 5;
 
     if (speed < 0.4) {
-
         speed = 0.4;
-
     }
 
 
     electrons.forEach(function (electron) {
 
-        electron.style.animationDuration =
-            `${speed}s`;
+        electron.style.animationDuration = `${speed}s`;
 
     });
 
 
-    // CIRCUIT STATUS
-
     if (current < 0.5) {
 
-        circuitStatus.textContent =
-            "Very low current 💤";
+        circuitStatus.textContent = "Very low current 💤";
 
     }
 
     else if (current < 2) {
 
-        circuitStatus.textContent =
-            "Low current ⚡";
+        circuitStatus.textContent = "Low current ⚡";
 
     }
 
     else if (current < 5) {
 
-        circuitStatus.textContent =
-            "Circuit running normally ⚡";
+        circuitStatus.textContent = "Circuit running normally ⚡";
 
     }
 
     else {
 
-        circuitStatus.textContent =
-            "High current ⚠️";
+        circuitStatus.textContent = "High current ⚠️";
 
     }
 
 }
 
 
-// EVENT LISTENERS
-
-voltageSlider.addEventListener(
-    "input",
-    calculateCurrent
-);
-
-
-resistanceSlider.addEventListener(
-    "input",
-    calculateCurrent
-);
-
-
-// RUN ON PAGE LOAD
+voltageSlider.addEventListener("input", calculateCurrent);
+resistanceSlider.addEventListener("input", calculateCurrent);
 
 calculateCurrent();
 
 
 
 /* =========================
-   DAY 3
-   SERIES CIRCUIT EXPLORER
+   SERIES CIRCUIT
 ========================= */
 
+const seriesVoltage = document.getElementById("seriesVoltage");
 
-// INPUT ELEMENTS
+const r1 = document.getElementById("r1");
+const r2 = document.getElementById("r2");
+const r3 = document.getElementById("r3");
 
-const seriesVoltage =
-    document.getElementById("seriesVoltage");
+const seriesVoltageValue = document.getElementById("seriesVoltageValue");
 
-const r1 =
-    document.getElementById("r1");
+const r1Value = document.getElementById("r1Value");
+const r2Value = document.getElementById("r2Value");
+const r3Value = document.getElementById("r3Value");
 
-const r2 =
-    document.getElementById("r2");
+const totalResistance = document.getElementById("totalResistance");
+const seriesCurrent = document.getElementById("seriesCurrent");
 
-const r3 =
-    document.getElementById("r3");
+const voltageDrop1 = document.getElementById("voltageDrop1");
+const voltageDrop2 = document.getElementById("voltageDrop2");
+const voltageDrop3 = document.getElementById("voltageDrop3");
 
-
-// VALUE DISPLAYS
-
-const seriesVoltageValue =
-    document.getElementById("seriesVoltageValue");
-
-const r1Value =
-    document.getElementById("r1Value");
-
-const r2Value =
-    document.getElementById("r2Value");
-
-const r3Value =
-    document.getElementById("r3Value");
-
-
-// RESULT DISPLAYS
-
-const totalResistance =
-    document.getElementById("totalResistance");
-
-const seriesCurrent =
-    document.getElementById("seriesCurrent");
-
-const voltageDrop1 =
-    document.getElementById("voltageDrop1");
-
-const voltageDrop2 =
-    document.getElementById("voltageDrop2");
-
-const voltageDrop3 =
-    document.getElementById("voltageDrop3");
-
-
-// CALCULATE SERIES CIRCUIT
 
 function calculateSeriesCircuit() {
 
+    const voltage = Number(seriesVoltage.value);
 
-    // GET USER VALUES
+    const resistor1 = Number(r1.value);
+    const resistor2 = Number(r2.value);
+    const resistor3 = Number(r3.value);
 
-    const voltage =
-        Number(seriesVoltage.value);
-
-    const resistor1 =
-        Number(r1.value);
-
-    const resistor2 =
-        Number(r2.value);
-
-    const resistor3 =
-        Number(r3.value);
-
-
-    // TOTAL RESISTANCE
 
     const total =
         resistor1 +
@@ -266,15 +133,9 @@ function calculateSeriesCircuit() {
         resistor3;
 
 
-    // SAME CURRENT FLOWS
-    // THROUGH SERIES CIRCUIT
-
     const current =
         voltage / total;
 
-
-    // VOLTAGE DROP
-    // V = I × R
 
     const drop1 =
         current * resistor1;
@@ -286,31 +147,18 @@ function calculateSeriesCircuit() {
         current * resistor3;
 
 
-    // UPDATE CONTROL VALUES
+    seriesVoltageValue.textContent = voltage;
 
-    seriesVoltageValue.textContent =
-        voltage;
-
-    r1Value.textContent =
-        resistor1;
-
-    r2Value.textContent =
-        resistor2;
-
-    r3Value.textContent =
-        resistor3;
+    r1Value.textContent = resistor1;
+    r2Value.textContent = resistor2;
+    r3Value.textContent = resistor3;
 
 
-    // UPDATE RESULTS
-
-    totalResistance.textContent =
-        total;
+    totalResistance.textContent = total;
 
     seriesCurrent.textContent =
         current.toFixed(2);
 
-
-    // UPDATE VOLTAGE DROPS
 
     voltageDrop1.textContent =
         drop1.toFixed(2);
@@ -324,25 +172,20 @@ function calculateSeriesCircuit() {
 }
 
 
-// EVENT LISTENERS
-
 seriesVoltage.addEventListener(
     "input",
     calculateSeriesCircuit
 );
-
 
 r1.addEventListener(
     "input",
     calculateSeriesCircuit
 );
 
-
 r2.addEventListener(
     "input",
     calculateSeriesCircuit
 );
-
 
 r3.addEventListener(
     "input",
@@ -350,6 +193,171 @@ r3.addEventListener(
 );
 
 
+calculateSeriesCircuit();
+
+
+
+/* =========================
+   DAY 4
+   PARALLEL CIRCUIT
+========================= */
+
+const parallelVoltage =
+    document.getElementById("parallelVoltage");
+
+const parallelR1 =
+    document.getElementById("parallelR1");
+
+const parallelR2 =
+    document.getElementById("parallelR2");
+
+const parallelR3 =
+    document.getElementById("parallelR3");
+
+
+const parallelVoltageValue =
+    document.getElementById("parallelVoltageValue");
+
+const parallelR1Value =
+    document.getElementById("parallelR1Value");
+
+const parallelR2Value =
+    document.getElementById("parallelR2Value");
+
+const parallelR3Value =
+    document.getElementById("parallelR3Value");
+
+
+const parallelTotalResistance =
+    document.getElementById("parallelTotalResistance");
+
+const parallelTotalCurrent =
+    document.getElementById("parallelTotalCurrent");
+
+
+const branchCurrent1 =
+    document.getElementById("branchCurrent1");
+
+const branchCurrent2 =
+    document.getElementById("branchCurrent2");
+
+const branchCurrent3 =
+    document.getElementById("branchCurrent3");
+
+
+function calculateParallelCircuit() {
+
+
+    // GET VALUES
+
+    const voltage =
+        Number(parallelVoltage.value);
+
+    const resistor1 =
+        Number(parallelR1.value);
+
+    const resistor2 =
+        Number(parallelR2.value);
+
+    const resistor3 =
+        Number(parallelR3.value);
+
+
+    // EQUIVALENT RESISTANCE
+
+    const inverseResistance =
+        (1 / resistor1) +
+        (1 / resistor2) +
+        (1 / resistor3);
+
+
+    const equivalentResistance =
+        1 / inverseResistance;
+
+
+    // BRANCH CURRENTS
+
+    const current1 =
+        voltage / resistor1;
+
+    const current2 =
+        voltage / resistor2;
+
+    const current3 =
+        voltage / resistor3;
+
+
+    // TOTAL CURRENT
+
+    const totalCurrent =
+        current1 +
+        current2 +
+        current3;
+
+
+    // UPDATE SLIDER VALUES
+
+    parallelVoltageValue.textContent =
+        voltage;
+
+    parallelR1Value.textContent =
+        resistor1;
+
+    parallelR2Value.textContent =
+        resistor2;
+
+    parallelR3Value.textContent =
+        resistor3;
+
+
+    // UPDATE RESULTS
+
+    parallelTotalResistance.textContent =
+        equivalentResistance.toFixed(2);
+
+
+    parallelTotalCurrent.textContent =
+        totalCurrent.toFixed(2);
+
+
+    branchCurrent1.textContent =
+        current1.toFixed(2);
+
+    branchCurrent2.textContent =
+        current2.toFixed(2);
+
+    branchCurrent3.textContent =
+        current3.toFixed(2);
+
+}
+
+
+// EVENT LISTENERS
+
+parallelVoltage.addEventListener(
+    "input",
+    calculateParallelCircuit
+);
+
+
+parallelR1.addEventListener(
+    "input",
+    calculateParallelCircuit
+);
+
+
+parallelR2.addEventListener(
+    "input",
+    calculateParallelCircuit
+);
+
+
+parallelR3.addEventListener(
+    "input",
+    calculateParallelCircuit
+);
+
+
 // RUN ON PAGE LOAD
 
-calculateSeriesCircuit();
+calculateParallelCircuit();
