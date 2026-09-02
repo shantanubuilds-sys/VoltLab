@@ -1,5 +1,5 @@
 /* =========================
-   OHM'S LAW VISUALIZER
+   OHM'S LAW
 ========================= */
 
 const voltageSlider =
@@ -48,21 +48,17 @@ function calculateCurrent() {
         voltage / resistance;
 
 
-    voltageValue.textContent =
-        voltage;
+    voltageValue.textContent = voltage;
 
-    resistanceValue.textContent =
-        resistance;
+    resistanceValue.textContent = resistance;
 
     currentValue.textContent =
         current.toFixed(2);
 
 
-    circuitVoltage.textContent =
-        voltage;
+    circuitVoltage.textContent = voltage;
 
-    circuitResistance.textContent =
-        resistance;
+    circuitResistance.textContent = resistance;
 
     circuitCurrent.textContent =
         current.toFixed(2);
@@ -71,11 +67,8 @@ function calculateCurrent() {
     let brightness =
         1 + current / 2;
 
-
     if (brightness > 3) {
-
         brightness = 3;
-
     }
 
 
@@ -86,11 +79,8 @@ function calculateCurrent() {
     let speed =
         3 - current / 5;
 
-
     if (speed < 0.4) {
-
         speed = 0.4;
-
     }
 
 
@@ -138,12 +128,10 @@ voltageSlider.addEventListener(
     calculateCurrent
 );
 
-
 resistanceSlider.addEventListener(
     "input",
     calculateCurrent
 );
-
 
 calculateCurrent();
 
@@ -185,7 +173,6 @@ const totalResistance =
 const seriesCurrent =
     document.getElementById("seriesCurrent");
 
-
 const voltageDrop1 =
     document.getElementById("voltageDrop1");
 
@@ -221,45 +208,29 @@ function calculateSeriesCircuit() {
         voltage / total;
 
 
-    const drop1 =
-        current * resistor1;
+    seriesVoltageValue.textContent = voltage;
 
-    const drop2 =
-        current * resistor2;
+    r1Value.textContent = resistor1;
 
-    const drop3 =
-        current * resistor3;
+    r2Value.textContent = resistor2;
 
-
-    seriesVoltageValue.textContent =
-        voltage;
-
-    r1Value.textContent =
-        resistor1;
-
-    r2Value.textContent =
-        resistor2;
-
-    r3Value.textContent =
-        resistor3;
+    r3Value.textContent = resistor3;
 
 
-    totalResistance.textContent =
-        total;
-
+    totalResistance.textContent = total;
 
     seriesCurrent.textContent =
         current.toFixed(2);
 
 
     voltageDrop1.textContent =
-        drop1.toFixed(2);
+        (current * resistor1).toFixed(2);
 
     voltageDrop2.textContent =
-        drop2.toFixed(2);
+        (current * resistor2).toFixed(2);
 
     voltageDrop3.textContent =
-        drop3.toFixed(2);
+        (current * resistor3).toFixed(2);
 
 }
 
@@ -269,24 +240,20 @@ seriesVoltage.addEventListener(
     calculateSeriesCircuit
 );
 
-
 r1.addEventListener(
     "input",
     calculateSeriesCircuit
 );
-
 
 r2.addEventListener(
     "input",
     calculateSeriesCircuit
 );
 
-
 r3.addEventListener(
     "input",
     calculateSeriesCircuit
 );
-
 
 calculateSeriesCircuit();
 
@@ -331,7 +298,6 @@ const parallelTotalCurrent =
     document.getElementById(
         "parallelTotalCurrent"
     );
-
 
 const branchCurrent1 =
     document.getElementById(
@@ -406,7 +372,6 @@ function calculateParallelCircuit() {
     parallelTotalResistance.textContent =
         equivalentResistance.toFixed(2);
 
-
     parallelTotalCurrent.textContent =
         totalCurrent.toFixed(2);
 
@@ -428,31 +393,190 @@ parallelVoltage.addEventListener(
     calculateParallelCircuit
 );
 
-
 parallelR1.addEventListener(
     "input",
     calculateParallelCircuit
 );
-
 
 parallelR2.addEventListener(
     "input",
     calculateParallelCircuit
 );
 
-
 parallelR3.addEventListener(
     "input",
     calculateParallelCircuit
 );
-
 
 calculateParallelCircuit();
 
 
 
 /* =========================
-   DAY 5 NAVIGATION SYSTEM
+   DAY 6 POWER & ENERGY LAB
+========================= */
+
+const powerVoltage =
+    document.getElementById("powerVoltage");
+
+const powerCurrent =
+    document.getElementById("powerCurrent");
+
+const usageTime =
+    document.getElementById("usageTime");
+
+
+const powerVoltageValue =
+    document.getElementById("powerVoltageValue");
+
+const powerCurrentValue =
+    document.getElementById("powerCurrentValue");
+
+const usageTimeValue =
+    document.getElementById("usageTimeValue");
+
+
+const powerResult =
+    document.getElementById("powerResult");
+
+const energyWh =
+    document.getElementById("energyWh");
+
+const energyKwh =
+    document.getElementById("energyKwh");
+
+
+const powerMeterFill =
+    document.getElementById("powerMeterFill");
+
+const powerStatus =
+    document.getElementById("powerStatus");
+
+const energyInsight =
+    document.getElementById("energyInsight");
+
+
+function calculatePower() {
+
+    const voltage =
+        Number(powerVoltage.value);
+
+    const current =
+        Number(powerCurrent.value);
+
+    const time =
+        Number(usageTime.value);
+
+
+    const power =
+        voltage * current;
+
+
+    const energy =
+        power * time;
+
+
+    const kwh =
+        energy / 1000;
+
+
+    powerVoltageValue.textContent =
+        voltage;
+
+    powerCurrentValue.textContent =
+        current;
+
+    usageTimeValue.textContent =
+        time;
+
+
+    powerResult.textContent =
+        power.toFixed(1);
+
+    energyWh.textContent =
+        energy.toFixed(1);
+
+    energyKwh.textContent =
+        kwh.toFixed(2);
+
+
+    let meterPercentage =
+        (power / 4800) * 100;
+
+
+    if (meterPercentage > 100) {
+        meterPercentage = 100;
+    }
+
+
+    powerMeterFill.style.width =
+        meterPercentage + "%";
+
+
+    if (power < 100) {
+
+        powerStatus.textContent =
+            "Low Power 🟢";
+
+        energyInsight.textContent =
+            "This represents a low-power electrical load.";
+
+    }
+
+    else if (power < 500) {
+
+        powerStatus.textContent =
+            "Medium Power 🟡";
+
+        energyInsight.textContent =
+            "This circuit is consuming a moderate amount of electrical power.";
+
+    }
+
+    else if (power < 1500) {
+
+        powerStatus.textContent =
+            "High Power 🟠";
+
+        energyInsight.textContent =
+            "This circuit is consuming a significant amount of electrical power.";
+
+    }
+
+    else {
+
+        powerStatus.textContent =
+            "Very High Power 🔴";
+
+        energyInsight.textContent =
+            "This represents a high-power electrical load. In real systems, components and wiring must be appropriately rated.";
+
+    }
+
+}
+
+
+powerVoltage.addEventListener(
+    "input",
+    calculatePower
+);
+
+powerCurrent.addEventListener(
+    "input",
+    calculatePower
+);
+
+usageTime.addEventListener(
+    "input",
+    calculatePower
+);
+
+calculatePower();
+
+
+
+/* =========================
+   NAVIGATION
 ========================= */
 
 const progressBar =
@@ -462,11 +586,13 @@ const backToTop =
     document.getElementById("backToTop");
 
 const navigationLinks =
-    document.querySelectorAll(".nav-links a");
+    document.querySelectorAll(
+        ".nav-links a"
+    );
 
 const sections =
     document.querySelectorAll(
-        "#home, #ohms, #series, #parallel, #compare"
+        "#home, #ohms, #series, #parallel, #power, #compare"
     );
 
 
@@ -534,7 +660,9 @@ window.addEventListener(
         navigationLinks.forEach(
             function (link) {
 
-                link.classList.remove("active");
+                link.classList.remove(
+                    "active"
+                );
 
 
                 if (
@@ -542,7 +670,9 @@ window.addEventListener(
                     "#" + currentSection
                 ) {
 
-                    link.classList.add("active");
+                    link.classList.add(
+                        "active"
+                    );
 
                 }
 
