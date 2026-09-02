@@ -2,93 +2,148 @@
    OHM'S LAW VISUALIZER
 ========================= */
 
-const voltageSlider = document.getElementById("voltage");
-const resistanceSlider = document.getElementById("resistance");
+const voltageSlider =
+    document.getElementById("voltage");
 
-const voltageValue = document.getElementById("voltageValue");
-const resistanceValue = document.getElementById("resistanceValue");
-const currentValue = document.getElementById("currentValue");
+const resistanceSlider =
+    document.getElementById("resistance");
 
-const circuitVoltage = document.getElementById("circuitVoltage");
-const circuitResistance = document.getElementById("circuitResistance");
-const circuitCurrent = document.getElementById("circuitCurrent");
+const voltageValue =
+    document.getElementById("voltageValue");
 
-const bulb = document.getElementById("bulb");
-const circuitStatus = document.getElementById("circuitStatus");
+const resistanceValue =
+    document.getElementById("resistanceValue");
 
-const electrons = document.querySelectorAll(".electron");
+const currentValue =
+    document.getElementById("currentValue");
+
+const circuitVoltage =
+    document.getElementById("circuitVoltage");
+
+const circuitResistance =
+    document.getElementById("circuitResistance");
+
+const circuitCurrent =
+    document.getElementById("circuitCurrent");
+
+const bulb =
+    document.getElementById("bulb");
+
+const circuitStatus =
+    document.getElementById("circuitStatus");
+
+const electrons =
+    document.querySelectorAll(".electron");
 
 
 function calculateCurrent() {
 
-    const voltage = Number(voltageSlider.value);
-    const resistance = Number(resistanceSlider.value);
+    const voltage =
+        Number(voltageSlider.value);
 
-    const current = voltage / resistance;
+    const resistance =
+        Number(resistanceSlider.value);
 
-
-    voltageValue.textContent = voltage;
-    resistanceValue.textContent = resistance;
-    currentValue.textContent = current.toFixed(2);
-
-
-    circuitVoltage.textContent = voltage;
-    circuitResistance.textContent = resistance;
-    circuitCurrent.textContent = current.toFixed(2);
+    const current =
+        voltage / resistance;
 
 
-    let brightness = 1 + current / 2;
+    voltageValue.textContent =
+        voltage;
+
+    resistanceValue.textContent =
+        resistance;
+
+    currentValue.textContent =
+        current.toFixed(2);
+
+
+    circuitVoltage.textContent =
+        voltage;
+
+    circuitResistance.textContent =
+        resistance;
+
+    circuitCurrent.textContent =
+        current.toFixed(2);
+
+
+    let brightness =
+        1 + current / 2;
+
 
     if (brightness > 3) {
+
         brightness = 3;
+
     }
 
-    bulb.style.filter = `brightness(${brightness})`;
+
+    bulb.style.filter =
+        `brightness(${brightness})`;
 
 
-    let speed = 3 - current / 5;
+    let speed =
+        3 - current / 5;
+
 
     if (speed < 0.4) {
+
         speed = 0.4;
+
     }
 
 
     electrons.forEach(function (electron) {
 
-        electron.style.animationDuration = `${speed}s`;
+        electron.style.animationDuration =
+            `${speed}s`;
 
     });
 
 
     if (current < 0.5) {
 
-        circuitStatus.textContent = "Very low current 💤";
+        circuitStatus.textContent =
+            "Very low current 💤";
 
     }
 
     else if (current < 2) {
 
-        circuitStatus.textContent = "Low current ⚡";
+        circuitStatus.textContent =
+            "Low current ⚡";
 
     }
 
     else if (current < 5) {
 
-        circuitStatus.textContent = "Circuit running normally ⚡";
+        circuitStatus.textContent =
+            "Circuit running normally ⚡";
 
     }
 
     else {
 
-        circuitStatus.textContent = "High current ⚠️";
+        circuitStatus.textContent =
+            "High current ⚠️";
 
     }
 
 }
 
 
-voltageSlider.addEventListener("input", calculateCurrent);
-resistanceSlider.addEventListener("input", calculateCurrent);
+voltageSlider.addEventListener(
+    "input",
+    calculateCurrent
+);
+
+
+resistanceSlider.addEventListener(
+    "input",
+    calculateCurrent
+);
+
 
 calculateCurrent();
 
@@ -98,33 +153,62 @@ calculateCurrent();
    SERIES CIRCUIT
 ========================= */
 
-const seriesVoltage = document.getElementById("seriesVoltage");
+const seriesVoltage =
+    document.getElementById("seriesVoltage");
 
-const r1 = document.getElementById("r1");
-const r2 = document.getElementById("r2");
-const r3 = document.getElementById("r3");
+const r1 =
+    document.getElementById("r1");
 
-const seriesVoltageValue = document.getElementById("seriesVoltageValue");
+const r2 =
+    document.getElementById("r2");
 
-const r1Value = document.getElementById("r1Value");
-const r2Value = document.getElementById("r2Value");
-const r3Value = document.getElementById("r3Value");
+const r3 =
+    document.getElementById("r3");
 
-const totalResistance = document.getElementById("totalResistance");
-const seriesCurrent = document.getElementById("seriesCurrent");
 
-const voltageDrop1 = document.getElementById("voltageDrop1");
-const voltageDrop2 = document.getElementById("voltageDrop2");
-const voltageDrop3 = document.getElementById("voltageDrop3");
+const seriesVoltageValue =
+    document.getElementById("seriesVoltageValue");
+
+const r1Value =
+    document.getElementById("r1Value");
+
+const r2Value =
+    document.getElementById("r2Value");
+
+const r3Value =
+    document.getElementById("r3Value");
+
+
+const totalResistance =
+    document.getElementById("totalResistance");
+
+const seriesCurrent =
+    document.getElementById("seriesCurrent");
+
+
+const voltageDrop1 =
+    document.getElementById("voltageDrop1");
+
+const voltageDrop2 =
+    document.getElementById("voltageDrop2");
+
+const voltageDrop3 =
+    document.getElementById("voltageDrop3");
 
 
 function calculateSeriesCircuit() {
 
-    const voltage = Number(seriesVoltage.value);
+    const voltage =
+        Number(seriesVoltage.value);
 
-    const resistor1 = Number(r1.value);
-    const resistor2 = Number(r2.value);
-    const resistor3 = Number(r3.value);
+    const resistor1 =
+        Number(r1.value);
+
+    const resistor2 =
+        Number(r2.value);
+
+    const resistor3 =
+        Number(r3.value);
 
 
     const total =
@@ -147,14 +231,22 @@ function calculateSeriesCircuit() {
         current * resistor3;
 
 
-    seriesVoltageValue.textContent = voltage;
+    seriesVoltageValue.textContent =
+        voltage;
 
-    r1Value.textContent = resistor1;
-    r2Value.textContent = resistor2;
-    r3Value.textContent = resistor3;
+    r1Value.textContent =
+        resistor1;
+
+    r2Value.textContent =
+        resistor2;
+
+    r3Value.textContent =
+        resistor3;
 
 
-    totalResistance.textContent = total;
+    totalResistance.textContent =
+        total;
+
 
     seriesCurrent.textContent =
         current.toFixed(2);
@@ -177,15 +269,18 @@ seriesVoltage.addEventListener(
     calculateSeriesCircuit
 );
 
+
 r1.addEventListener(
     "input",
     calculateSeriesCircuit
 );
 
+
 r2.addEventListener(
     "input",
     calculateSeriesCircuit
 );
+
 
 r3.addEventListener(
     "input",
@@ -198,7 +293,6 @@ calculateSeriesCircuit();
 
 
 /* =========================
-   DAY 4
    PARALLEL CIRCUIT
 ========================= */
 
@@ -229,26 +323,33 @@ const parallelR3Value =
 
 
 const parallelTotalResistance =
-    document.getElementById("parallelTotalResistance");
+    document.getElementById(
+        "parallelTotalResistance"
+    );
 
 const parallelTotalCurrent =
-    document.getElementById("parallelTotalCurrent");
+    document.getElementById(
+        "parallelTotalCurrent"
+    );
 
 
 const branchCurrent1 =
-    document.getElementById("branchCurrent1");
+    document.getElementById(
+        "branchCurrent1"
+    );
 
 const branchCurrent2 =
-    document.getElementById("branchCurrent2");
+    document.getElementById(
+        "branchCurrent2"
+    );
 
 const branchCurrent3 =
-    document.getElementById("branchCurrent3");
+    document.getElementById(
+        "branchCurrent3"
+    );
 
 
 function calculateParallelCircuit() {
-
-
-    // GET VALUES
 
     const voltage =
         Number(parallelVoltage.value);
@@ -263,8 +364,6 @@ function calculateParallelCircuit() {
         Number(parallelR3.value);
 
 
-    // EQUIVALENT RESISTANCE
-
     const inverseResistance =
         (1 / resistor1) +
         (1 / resistor2) +
@@ -274,8 +373,6 @@ function calculateParallelCircuit() {
     const equivalentResistance =
         1 / inverseResistance;
 
-
-    // BRANCH CURRENTS
 
     const current1 =
         voltage / resistor1;
@@ -287,15 +384,11 @@ function calculateParallelCircuit() {
         voltage / resistor3;
 
 
-    // TOTAL CURRENT
-
     const totalCurrent =
         current1 +
         current2 +
         current3;
 
-
-    // UPDATE SLIDER VALUES
 
     parallelVoltageValue.textContent =
         voltage;
@@ -309,8 +402,6 @@ function calculateParallelCircuit() {
     parallelR3Value.textContent =
         resistor3;
 
-
-    // UPDATE RESULTS
 
     parallelTotalResistance.textContent =
         equivalentResistance.toFixed(2);
@@ -331,8 +422,6 @@ function calculateParallelCircuit() {
 
 }
 
-
-// EVENT LISTENERS
 
 parallelVoltage.addEventListener(
     "input",
@@ -358,6 +447,126 @@ parallelR3.addEventListener(
 );
 
 
-// RUN ON PAGE LOAD
-
 calculateParallelCircuit();
+
+
+
+/* =========================
+   DAY 5 NAVIGATION SYSTEM
+========================= */
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const backToTop =
+    document.getElementById("backToTop");
+
+const navigationLinks =
+    document.querySelectorAll(".nav-links a");
+
+const sections =
+    document.querySelectorAll(
+        "#home, #ohms, #series, #parallel, #compare"
+    );
+
+
+window.addEventListener(
+    "scroll",
+
+    function () {
+
+        const scrollTop =
+            window.scrollY;
+
+
+        const documentHeight =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+
+        const progress =
+            documentHeight > 0
+                ? (scrollTop / documentHeight) * 100
+                : 0;
+
+
+        progressBar.style.width =
+            progress + "%";
+
+
+        if (scrollTop > 500) {
+
+            backToTop.classList.add("show");
+
+        }
+
+        else {
+
+            backToTop.classList.remove("show");
+
+        }
+
+
+        let currentSection =
+            "home";
+
+
+        sections.forEach(
+            function (section) {
+
+                const sectionTop =
+                    section.offsetTop - 150;
+
+
+                if (
+                    window.scrollY >= sectionTop
+                ) {
+
+                    currentSection =
+                        section.getAttribute("id");
+
+                }
+
+            }
+        );
+
+
+        navigationLinks.forEach(
+            function (link) {
+
+                link.classList.remove("active");
+
+
+                if (
+                    link.getAttribute("href") ===
+                    "#" + currentSection
+                ) {
+
+                    link.classList.add("active");
+
+                }
+
+            }
+        );
+
+    }
+
+);
+
+
+backToTop.addEventListener(
+    "click",
+
+    function () {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+);
