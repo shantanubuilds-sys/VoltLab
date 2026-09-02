@@ -7,6 +7,11 @@
 }
 
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -15,10 +20,95 @@ body {
 }
 
 
+/* =========================
+   DAY 5 NAVIGATION
+========================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 8%;
+
+    background: rgba(11, 16, 32, 0.95);
+    border-bottom: 1px solid #26304f;
+
+    backdrop-filter: blur(12px);
+}
+
+
+.nav-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+
+.nav-links a {
+    color: #aab4d6;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+
+.nav-links a:hover {
+    color: white;
+}
+
+
+.nav-links a.active {
+    color: white;
+    font-weight: bold;
+}
+
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    z-index: 2000;
+}
+
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+
+    background: white;
+
+    transition: width 0.1s;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
 header {
     text-align: center;
     padding: 50px 20px;
     border-bottom: 1px solid #26304f;
+
+    scroll-margin-top: 100px;
 }
 
 
@@ -33,6 +123,10 @@ header p,
     color: #aab4d6;
 }
 
+
+/* =========================
+   MAIN
+========================= */
 
 main {
     max-width: 1000px;
@@ -56,10 +150,16 @@ main {
 .parallel-section,
 .comparison-section {
     background: #141b33;
+
     padding: 40px;
+
     border-radius: 15px;
+
     margin-bottom: 50px;
+
     text-align: center;
+
+    scroll-margin-top: 100px;
 }
 
 
@@ -131,8 +231,11 @@ input[type="range"] {
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 40px 20px;
+
     background: #0b1020;
+
     border-radius: 15px;
 }
 
@@ -146,7 +249,9 @@ input[type="range"] {
 .resistor {
     width: 90px;
     height: 40px;
+
     border: 3px solid white;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,7 +261,9 @@ input[type="range"] {
 .wire {
     width: 100px;
     height: 4px;
+
     background: white;
+
     position: relative;
     overflow: hidden;
 }
@@ -164,11 +271,16 @@ input[type="range"] {
 
 .electron {
     position: absolute;
+
     width: 12px;
     height: 12px;
+
     background: white;
+
     border-radius: 50%;
+
     top: -4px;
+
     animation: flow 2s linear infinite;
 }
 
@@ -213,17 +325,23 @@ input[type="range"] {
 
 .circuit-info {
     margin-top: 25px;
+
     display: flex;
     justify-content: center;
+
     gap: 20px;
+
     flex-wrap: wrap;
 }
 
 
 .circuit-info p {
     margin: 0;
+
     background: #0b1020;
+
     padding: 12px 18px;
+
     border-radius: 10px;
 }
 
@@ -234,19 +352,28 @@ input[type="range"] {
 
 .concept-box {
     margin-top: 40px;
+
     padding: 30px;
+
     background: #0b1020;
+
     border-radius: 15px;
 }
 
 
 .formula-box {
     margin: 20px auto;
+
     padding: 15px;
+
     max-width: 450px;
+
     background: #141b33;
+
     border-radius: 10px;
+
     font-size: 1.3rem;
+
     font-weight: bold;
 }
 
@@ -258,8 +385,11 @@ input[type="range"] {
 .series-controls,
 .parallel-controls {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: 20px;
+
     text-align: left;
 }
 
@@ -267,23 +397,34 @@ input[type="range"] {
 .series-control,
 .parallel-control {
     background: #0b1020;
+
     padding: 20px;
+
     border-radius: 10px;
 }
 
 
 .series-diagram {
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     margin: 40px 0;
+
     flex-wrap: wrap;
+}
+
+
+.series-battery {
+    font-size: 3rem;
 }
 
 
 .series-line {
     width: 60px;
     height: 4px;
+
     background: white;
 }
 
@@ -291,7 +432,9 @@ input[type="range"] {
 .series-resistor {
     width: 70px;
     height: 40px;
+
     border: 3px solid white;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -301,7 +444,9 @@ input[type="range"] {
 .series-results,
 .parallel-results {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: 20px;
 }
 
@@ -309,7 +454,9 @@ input[type="range"] {
 .series-result-card,
 .parallel-result-card {
     background: #0b1020;
+
     padding: 25px;
+
     border-radius: 10px;
 }
 
@@ -321,7 +468,9 @@ input[type="range"] {
 }
 
 
-/* VOLTAGE DROPS */
+/* =========================
+   VOLTAGE DROPS
+========================= */
 
 .voltage-drops {
     margin-top: 30px;
@@ -331,7 +480,9 @@ input[type="range"] {
 .drop-container,
 .branch-container {
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
+
     gap: 20px;
 }
 
@@ -339,7 +490,9 @@ input[type="range"] {
 .drop-card,
 .branch-card {
     background: #0b1020;
+
     padding: 20px;
+
     border-radius: 10px;
 }
 
@@ -357,12 +510,18 @@ input[type="range"] {
 
 .parallel-diagram {
     margin: 40px auto;
+
     padding: 30px;
+
     background: #0b1020;
+
     border-radius: 15px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 50px;
 }
 
@@ -374,7 +533,9 @@ input[type="range"] {
 
 .parallel-branches {
     display: flex;
+
     flex-direction: column;
+
     gap: 20px;
 }
 
@@ -382,8 +543,11 @@ input[type="range"] {
 .parallel-branch {
     width: 180px;
     height: 45px;
+
     border: 3px solid white;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
 }
@@ -400,14 +564,18 @@ input[type="range"] {
 
 .comparison-grid {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: 25px;
 }
 
 
 .comparison-card {
     background: #0b1020;
+
     padding: 25px;
+
     border-radius: 10px;
 }
 
@@ -418,9 +586,52 @@ input[type="range"] {
 
 footer {
     text-align: center;
+
     padding: 30px;
+
     color: #aab4d6;
+
     border-top: 1px solid #26304f;
+}
+
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+.back-to-top {
+    position: fixed;
+
+    bottom: 25px;
+    right: 25px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: translateY(20px);
+
+    transition: 0.3s;
+}
+
+
+.back-to-top.show {
+    opacity: 1;
+
+    pointer-events: auto;
+
+    transform: translateY(0);
 }
 
 
@@ -429,6 +640,29 @@ footer {
 ========================= */
 
 @media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 15px;
+    }
+
+
+    .nav-links {
+        gap: 12px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
 
     .ohms-section,
     .series-section,
@@ -462,7 +696,14 @@ footer {
 
     .parallel-diagram {
         flex-direction: column;
+
         gap: 25px;
+    }
+
+
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
     }
 
 }
