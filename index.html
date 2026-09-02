@@ -3,18 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>VoltLab ⚡ | Interactive Electricity Learning</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        VoltLab ⚡ | Interactive Electricity Learning
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
 </head>
+
 
 <body>
 
-    <!-- =========================
-         DAY 5 NAVIGATION
-    ========================== -->
+
+    <!-- NAVIGATION -->
 
     <nav class="navbar">
 
@@ -22,24 +30,39 @@
             ⚡ VoltLab
         </div>
 
+
         <div class="nav-links">
 
-            <a href="#home" class="active">Home</a>
+            <a href="#home" class="active">
+                Home
+            </a>
 
-            <a href="#ohms">Ohm's Law</a>
+            <a href="#ohms">
+                Ohm's Law
+            </a>
 
-            <a href="#series">Series</a>
+            <a href="#series">
+                Series
+            </a>
 
-            <a href="#parallel">Parallel</a>
+            <a href="#parallel">
+                Parallel
+            </a>
 
-            <a href="#compare">Compare</a>
+            <a href="#power">
+                Power
+            </a>
+
+            <a href="#compare">
+                Compare
+            </a>
 
         </div>
 
     </nav>
 
 
-    <!-- SCROLL PROGRESS -->
+    <!-- PROGRESS BAR -->
 
     <div class="progress-container">
 
@@ -52,9 +75,7 @@
     </div>
 
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+    <!-- HEADER -->
 
     <header id="home">
 
@@ -69,52 +90,57 @@
 
     <main>
 
-        <!-- =========================
-             HERO
-        ========================== -->
+
+        <!-- HERO -->
 
         <section class="hero">
 
-            <h2>Interactive Electricity Lab</h2>
+            <h2>
+                Interactive Electricity Lab
+            </h2>
 
             <p>
-                Experiment with electrical values and see how
-                voltage, resistance and current interact.
+                Experiment with electrical values and discover
+                how electricity behaves in real time.
             </p>
 
         </section>
 
 
-        <!-- =========================
-             OHM'S LAW
-        ========================== -->
+        <!-- OHM'S LAW -->
 
         <section
             class="ohms-section"
             id="ohms">
 
-            <h2>⚡ Ohm's Law Visualizer</h2>
+            <h2>
+                ⚡ Ohm's Law Visualizer
+            </h2>
 
             <p class="section-description">
-                Change voltage and resistance to see how current changes.
+                Change voltage and resistance to see how
+                current changes.
             </p>
 
 
             <div class="lab-container">
 
 
-                <!-- CONTROLS -->
-
                 <div class="controls">
+
 
                     <div class="control">
 
                         <label>
 
                             Voltage:
-                            <span id="voltageValue">12</span> V
+                            <span id="voltageValue">
+                                12
+                            </span>
+                            V
 
                         </label>
+
 
                         <input
                             type="range"
@@ -126,14 +152,19 @@
                     </div>
 
 
+
                     <div class="control">
 
                         <label>
 
                             Resistance:
-                            <span id="resistanceValue">6</span> Ω
+                            <span id="resistanceValue">
+                                6
+                            </span>
+                            Ω
 
                         </label>
+
 
                         <input
                             type="range"
@@ -144,24 +175,29 @@
 
                     </div>
 
+
                 </div>
 
 
-                <!-- RESULT -->
-
                 <div class="result">
 
-                    <h3>Current</h3>
+                    <h3>
+                        Current
+                    </h3>
+
 
                     <div class="current-value">
 
                         ⚡
+
                         <span id="currentValue">
                             2.00
                         </span>
+
                         A
 
                     </div>
+
 
                     <p>
                         Formula: I = V ÷ R
@@ -169,17 +205,22 @@
 
                 </div>
 
+
             </div>
+
 
 
             <!-- LIVE CIRCUIT -->
 
             <div class="live-circuit">
 
-                <h3>Live Circuit</h3>
+                <h3>
+                    Live Circuit
+                </h3>
 
 
                 <div class="circuit">
+
 
                     <div class="battery">
                         🔋
@@ -219,17 +260,22 @@
 
                     </div>
 
+
                 </div>
+
 
 
                 <div class="circuit-info">
 
+
                     <p>
 
                         Voltage:
+
                         <span id="circuitVoltage">
                             12
                         </span>
+
                         V
 
                     </p>
@@ -238,9 +284,11 @@
                     <p>
 
                         Resistance:
+
                         <span id="circuitResistance">
                             6
                         </span>
+
                         Ω
 
                     </p>
@@ -249,12 +297,15 @@
                     <p>
 
                         Current:
+
                         <span id="circuitCurrent">
                             2.00
                         </span>
+
                         A
 
                     </p>
+
 
                 </div>
 
@@ -265,10 +316,10 @@
 
                 </h3>
 
+
             </div>
 
 
-            <!-- CONCEPT -->
 
             <div class="concept-box">
 
@@ -283,32 +334,32 @@
 
 
                 <div class="formula-box">
-
                     V = I × R
-
                 </div>
 
 
                 <div class="formula-box">
-
                     I = V ÷ R
-
                 </div>
 
             </div>
 
+
         </section>
 
 
-        <!-- =========================
-             SERIES CIRCUIT
-        ========================== -->
+
+        <!-- SERIES CIRCUIT -->
 
         <section
             class="series-section"
             id="series">
 
-            <h2>🔗 Series Circuit Explorer</h2>
+
+            <h2>
+                🔗 Series Circuit Explorer
+            </h2>
+
 
             <p class="section-description">
 
@@ -318,7 +369,6 @@
             </p>
 
 
-            <!-- CONTROLS -->
 
             <div class="series-controls">
 
@@ -328,12 +378,15 @@
                     <label>
 
                         Supply Voltage:
+
                         <span id="seriesVoltageValue">
                             12
                         </span>
+
                         V
 
                     </label>
+
 
                     <input
                         type="range"
@@ -345,17 +398,21 @@
                 </div>
 
 
+
                 <div class="series-control">
 
                     <label>
 
                         Resistor R1:
+
                         <span id="r1Value">
                             10
                         </span>
+
                         Ω
 
                     </label>
+
 
                     <input
                         type="range"
@@ -367,17 +424,21 @@
                 </div>
 
 
+
                 <div class="series-control">
 
                     <label>
 
                         Resistor R2:
+
                         <span id="r2Value">
                             20
                         </span>
+
                         Ω
 
                     </label>
+
 
                     <input
                         type="range"
@@ -389,17 +450,21 @@
                 </div>
 
 
+
                 <div class="series-control">
 
                     <label>
 
                         Resistor R3:
+
                         <span id="r3Value">
                             30
                         </span>
+
                         Ω
 
                     </label>
+
 
                     <input
                         type="range"
@@ -410,10 +475,10 @@
 
                 </div>
 
+
             </div>
 
 
-            <!-- SERIES DIAGRAM -->
 
             <div class="series-diagram">
 
@@ -442,9 +507,9 @@
             </div>
 
 
-            <!-- RESULTS -->
 
             <div class="series-results">
+
 
                 <div class="series-result-card">
 
@@ -465,6 +530,7 @@
                 </div>
 
 
+
                 <div class="series-result-card">
 
                     <h3>
@@ -483,10 +549,10 @@
 
                 </div>
 
+
             </div>
 
 
-            <!-- VOLTAGE DROPS -->
 
             <div class="voltage-drops">
 
@@ -515,6 +581,7 @@
                     </div>
 
 
+
                     <div class="drop-card">
 
                         <h4>R2</h4>
@@ -530,6 +597,7 @@
                         </p>
 
                     </div>
+
 
 
                     <div class="drop-card">
@@ -548,12 +616,13 @@
 
                     </div>
 
+
                 </div>
+
 
             </div>
 
 
-            <!-- CONCEPT -->
 
             <div class="concept-box">
 
@@ -566,26 +635,29 @@
                     Voltage is divided between the resistors.
                 </p>
 
+
                 <div class="formula-box">
-
                     R Total = R1 + R2 + R3
-
                 </div>
 
             </div>
 
+
         </section>
 
 
-        <!-- =========================
-             PARALLEL CIRCUIT
-        ========================== -->
+
+        <!-- PARALLEL CIRCUIT -->
 
         <section
             class="parallel-section"
             id="parallel">
 
-            <h2>⚡ Parallel Circuit Explorer</h2>
+
+            <h2>
+                ⚡ Parallel Circuit Explorer
+            </h2>
+
 
             <p class="section-description">
 
@@ -595,7 +667,6 @@
             </p>
 
 
-            <!-- CONTROLS -->
 
             <div class="parallel-controls">
 
@@ -605,6 +676,7 @@
                     <label>
 
                         Supply Voltage:
+
                         <span id="parallelVoltageValue">
                             12
                         </span>
@@ -612,6 +684,7 @@
                         V
 
                     </label>
+
 
                     <input
                         type="range"
@@ -623,11 +696,13 @@
                 </div>
 
 
+
                 <div class="parallel-control">
 
                     <label>
 
                         Resistor R1:
+
                         <span id="parallelR1Value">
                             10
                         </span>
@@ -635,6 +710,7 @@
                         Ω
 
                     </label>
+
 
                     <input
                         type="range"
@@ -646,11 +722,13 @@
                 </div>
 
 
+
                 <div class="parallel-control">
 
                     <label>
 
                         Resistor R2:
+
                         <span id="parallelR2Value">
                             20
                         </span>
@@ -658,6 +736,7 @@
                         Ω
 
                     </label>
+
 
                     <input
                         type="range"
@@ -669,11 +748,13 @@
                 </div>
 
 
+
                 <div class="parallel-control">
 
                     <label>
 
                         Resistor R3:
+
                         <span id="parallelR3Value">
                             30
                         </span>
@@ -681,6 +762,7 @@
                         Ω
 
                     </label>
+
 
                     <input
                         type="range"
@@ -691,49 +773,39 @@
 
                 </div>
 
+
             </div>
 
 
-            <!-- PARALLEL DIAGRAM -->
 
             <div class="parallel-diagram">
 
+
                 <div class="parallel-battery">
-
                     🔋
-
                 </div>
 
 
                 <div class="parallel-branches">
 
-
                     <div class="parallel-branch">
-
-                        <span>R1</span>
-
+                        R1
                     </div>
 
-
                     <div class="parallel-branch">
-
-                        <span>R2</span>
-
+                        R2
                     </div>
 
-
                     <div class="parallel-branch">
-
-                        <span>R3</span>
-
+                        R3
                     </div>
 
                 </div>
 
+
             </div>
 
 
-            <!-- RESULTS -->
 
             <div class="parallel-results">
 
@@ -757,6 +829,7 @@
                 </div>
 
 
+
                 <div class="parallel-result-card">
 
                     <h3>
@@ -775,10 +848,10 @@
 
                 </div>
 
+
             </div>
 
 
-            <!-- BRANCH CURRENTS -->
 
             <div class="branch-currents">
 
@@ -809,6 +882,7 @@
                     </div>
 
 
+
                     <div class="branch-card">
 
                         <h4>
@@ -826,6 +900,7 @@
                         </p>
 
                     </div>
+
 
 
                     <div class="branch-card">
@@ -846,12 +921,13 @@
 
                     </div>
 
+
                 </div>
+
 
             </div>
 
 
-            <!-- CONCEPT -->
 
             <div class="concept-box">
 
@@ -872,24 +948,279 @@
 
                 </div>
 
-
-                <p>
-                    Total current equals the sum of
-                    all branch currents.
-                </p>
-
             </div>
+
 
         </section>
 
 
-        <!-- =========================
-             COMPARISON
-        ========================== -->
+
+        <!-- DAY 6 POWER LAB -->
+
+        <section
+            class="power-section"
+            id="power">
+
+
+            <h2>
+                ⚡ Power & Energy Lab
+            </h2>
+
+
+            <p class="section-description">
+
+                Discover how voltage, current and time determine
+                electrical power and energy consumption.
+
+            </p>
+
+
+
+            <div class="power-controls">
+
+
+                <div class="power-control">
+
+                    <label>
+
+                        Voltage:
+
+                        <span id="powerVoltageValue">
+                            230
+                        </span>
+
+                        V
+
+                    </label>
+
+
+                    <input
+                        type="range"
+                        id="powerVoltage"
+                        min="1"
+                        max="240"
+                        value="230">
+
+                </div>
+
+
+
+                <div class="power-control">
+
+                    <label>
+
+                        Current:
+
+                        <span id="powerCurrentValue">
+                            2
+                        </span>
+
+                        A
+
+                    </label>
+
+
+                    <input
+                        type="range"
+                        id="powerCurrent"
+                        min="0.1"
+                        max="20"
+                        step="0.1"
+                        value="2">
+
+                </div>
+
+
+
+                <div class="power-control">
+
+                    <label>
+
+                        Usage Time:
+
+                        <span id="usageTimeValue">
+                            5
+                        </span>
+
+                        Hours
+
+                    </label>
+
+
+                    <input
+                        type="range"
+                        id="usageTime"
+                        min="1"
+                        max="24"
+                        value="5">
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- POWER METER -->
+
+            <div class="power-meter-container">
+
+                <h3>
+                    Live Power Meter
+                </h3>
+
+
+                <div class="power-meter">
+
+                    <div
+                        class="power-meter-fill"
+                        id="powerMeterFill">
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    class="power-status"
+                    id="powerStatus">
+
+                    Medium Power ⚡
+
+                </p>
+
+            </div>
+
+
+
+            <!-- POWER RESULTS -->
+
+            <div class="power-results">
+
+
+                <div class="power-result-card">
+
+                    <h3>
+                        Electrical Power
+                    </h3>
+
+                    <p>
+
+                        <span id="powerResult">
+                            460
+                        </span>
+
+                        W
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="power-result-card">
+
+                    <h3>
+                        Energy Used
+                    </h3>
+
+                    <p>
+
+                        <span id="energyWh">
+                            2300
+                        </span>
+
+                        Wh
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="power-result-card">
+
+                    <h3>
+                        Energy in kWh
+                    </h3>
+
+                    <p>
+
+                        <span id="energyKwh">
+                            2.30
+                        </span>
+
+                        kWh
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- REAL WORLD -->
+
+            <div class="energy-insight">
+
+                <h3>
+                    🔍 What does this mean?
+                </h3>
+
+                <p id="energyInsight">
+
+                    Your circuit is consuming energy at a moderate
+                    rate.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="concept-box">
+
+                <h3>
+                    Electrical Power Formula
+                </h3>
+
+
+                <div class="formula-box">
+                    P = V × I
+                </div>
+
+
+                <p>
+                    Power tells us how quickly electrical energy
+                    is being used.
+                </p>
+
+
+                <div class="formula-box">
+                    Energy = Power × Time
+                </div>
+
+
+                <div class="formula-box">
+                    kWh = Watts × Hours ÷ 1000
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- COMPARISON -->
 
         <section
             class="comparison-section"
             id="compare">
+
 
             <h2>
                 🔬 Series vs Parallel
@@ -920,6 +1251,7 @@
                 </div>
 
 
+
                 <div class="comparison-card">
 
                     <h3>
@@ -940,27 +1272,26 @@
 
                 </div>
 
+
             </div>
 
+
         </section>
+
 
     </main>
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
 
     <footer>
 
         <p>
-            Built by Shantanu ⚡ | VoltLab v0.5
+            Built by Shantanu ⚡ | VoltLab v0.6
         </p>
 
     </footer>
 
 
-    <!-- BACK TO TOP -->
 
     <button
         id="backToTop"
