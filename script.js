@@ -48,17 +48,21 @@ function calculateCurrent() {
         voltage / resistance;
 
 
-    voltageValue.textContent = voltage;
+    voltageValue.textContent =
+        voltage;
 
-    resistanceValue.textContent = resistance;
+    resistanceValue.textContent =
+        resistance;
 
     currentValue.textContent =
         current.toFixed(2);
 
 
-    circuitVoltage.textContent = voltage;
+    circuitVoltage.textContent =
+        voltage;
 
-    circuitResistance.textContent = resistance;
+    circuitResistance.textContent =
+        resistance;
 
     circuitCurrent.textContent =
         current.toFixed(2);
@@ -208,16 +212,21 @@ function calculateSeriesCircuit() {
         voltage / total;
 
 
-    seriesVoltageValue.textContent = voltage;
+    seriesVoltageValue.textContent =
+        voltage;
 
-    r1Value.textContent = resistor1;
+    r1Value.textContent =
+        resistor1;
 
-    r2Value.textContent = resistor2;
+    r2Value.textContent =
+        resistor2;
 
-    r3Value.textContent = resistor3;
+    r3Value.textContent =
+        resistor3;
 
 
-    totalResistance.textContent = total;
+    totalResistance.textContent =
+        total;
 
     seriesCurrent.textContent =
         current.toFixed(2);
@@ -413,7 +422,7 @@ calculateParallelCircuit();
 
 
 /* =========================
-   DAY 6 POWER & ENERGY LAB
+   POWER & ENERGY LAB
 ========================= */
 
 const powerVoltage =
@@ -505,7 +514,9 @@ function calculatePower() {
 
 
     if (meterPercentage > 100) {
+
         meterPercentage = 100;
+
     }
 
 
@@ -576,6 +587,492 @@ calculatePower();
 
 
 /* =========================
+   DAY 7 QUIZ SYSTEM
+========================= */
+
+const quizQuestions = [
+
+    {
+
+        question:
+            "According to Ohm's Law, what is the current when voltage is 12 V and resistance is 6 Ω?",
+
+        options: [
+            "0.5 A",
+            "2 A",
+            "6 A",
+            "72 A"
+        ],
+
+        answer: 1,
+
+        explanation:
+            "Using I = V ÷ R, the current is 12 ÷ 6 = 2 A."
+
+    },
+
+
+    {
+
+        question:
+            "What remains the same through every component in a series circuit?",
+
+        options: [
+            "Voltage",
+            "Resistance",
+            "Current",
+            "Power"
+        ],
+
+        answer: 2,
+
+        explanation:
+            "A series circuit has only one path, so the same current flows through every component."
+
+    },
+
+
+    {
+
+        question:
+            "What remains the same across every branch in a parallel circuit?",
+
+        options: [
+            "Current",
+            "Voltage",
+            "Resistance",
+            "Power"
+        ],
+
+        answer: 1,
+
+        explanation:
+            "Each branch in a parallel circuit is connected across the same supply, so each branch receives the same voltage."
+
+    },
+
+
+    {
+
+        question:
+            "What is the electrical power when voltage is 10 V and current is 2 A?",
+
+        options: [
+            "5 W",
+            "8 W",
+            "12 W",
+            "20 W"
+        ],
+
+        answer: 3,
+
+        explanation:
+            "Using P = V × I, the power is 10 × 2 = 20 W."
+
+    },
+
+
+    {
+
+        question:
+            "Which statement about a parallel circuit is correct?",
+
+        options: [
+            "It has only one path for current.",
+            "The same current flows through every branch.",
+            "Current divides between branches.",
+            "Voltage divides equally across all branches."
+        ],
+
+        answer: 2,
+
+        explanation:
+            "A parallel circuit has multiple paths, so current divides between the branches."
+
+    }
+
+];
+
+
+let currentQuestionIndex =
+    0;
+
+let quizScore =
+    0;
+
+let questionAnswered =
+    false;
+
+
+const quizQuestion =
+    document.getElementById("quizQuestion");
+
+const quizOptions =
+    document.getElementById("quizOptions");
+
+const quizFeedback =
+    document.getElementById("quizFeedback");
+
+const quizNextButton =
+    document.getElementById("quizNextButton");
+
+const quizProgressText =
+    document.getElementById("quizProgressText");
+
+const quizProgressFill =
+    document.getElementById("quizProgressFill");
+
+const quizCard =
+    document.getElementById("quizCard");
+
+const quizResult =
+    document.getElementById("quizResult");
+
+const finalScore =
+    document.getElementById("finalScore");
+
+const performanceTitle =
+    document.getElementById("performanceTitle");
+
+const performanceMessage =
+    document.getElementById("performanceMessage");
+
+const restartQuiz =
+    document.getElementById("restartQuiz");
+
+
+function loadQuestion() {
+
+    questionAnswered =
+        false;
+
+
+    quizNextButton.disabled =
+        true;
+
+
+    quizFeedback.className =
+        "quiz-feedback";
+
+
+    quizFeedback.textContent =
+        "";
+
+
+    const currentQuestion =
+        quizQuestions[currentQuestionIndex];
+
+
+    quizQuestion.textContent =
+        currentQuestion.question;
+
+
+    quizOptions.innerHTML =
+        "";
+
+
+    currentQuestion.options.forEach(
+        function (option, index) {
+
+            const optionButton =
+                document.createElement("button");
+
+
+            optionButton.className =
+                "quiz-option";
+
+
+            optionButton.textContent =
+                option;
+
+
+            optionButton.addEventListener(
+                "click",
+
+                function () {
+
+                    checkAnswer(
+                        index,
+                        optionButton
+                    );
+
+                }
+
+            );
+
+
+            quizOptions.appendChild(
+                optionButton
+            );
+
+        }
+
+    );
+
+
+    quizProgressText.textContent =
+        `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+
+
+    const progress =
+        ((currentQuestionIndex + 1) /
+            quizQuestions.length) * 100;
+
+
+    quizProgressFill.style.width =
+        progress + "%";
+
+
+    if (
+        currentQuestionIndex ===
+        quizQuestions.length - 1
+    ) {
+
+        quizNextButton.textContent =
+            "See Results 🏆";
+
+    }
+
+    else {
+
+        quizNextButton.textContent =
+            "Next Question →";
+
+    }
+
+}
+
+
+function checkAnswer(
+    selectedIndex,
+    selectedButton
+) {
+
+    if (questionAnswered) {
+
+        return;
+
+    }
+
+
+    questionAnswered =
+        true;
+
+
+    const currentQuestion =
+        quizQuestions[currentQuestionIndex];
+
+
+    const optionButtons =
+        document.querySelectorAll(
+            ".quiz-option"
+        );
+
+
+    optionButtons.forEach(
+        function (button, index) {
+
+            button.classList.add(
+                "disabled"
+            );
+
+
+            button.disabled =
+                true;
+
+
+            if (
+                index ===
+                currentQuestion.answer
+            ) {
+
+                button.classList.add(
+                    "correct"
+                );
+
+            }
+
+        }
+
+    );
+
+
+    if (
+        selectedIndex ===
+        currentQuestion.answer
+    ) {
+
+        quizScore++;
+
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+
+        quizFeedback.classList.add(
+            "show",
+            "correct-feedback"
+        );
+
+
+        quizFeedback.innerHTML =
+            `✅ Correct! <br><br>${currentQuestion.explanation}`;
+
+    }
+
+    else {
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+
+        quizFeedback.classList.add(
+            "show",
+            "wrong-feedback"
+        );
+
+
+        quizFeedback.innerHTML =
+            `❌ Not quite. <br><br>${currentQuestion.explanation}`;
+
+    }
+
+
+    quizNextButton.disabled =
+        false;
+
+}
+
+
+function showQuizResult() {
+
+    quizCard.style.display =
+        "none";
+
+
+    quizResult.classList.add(
+        "show"
+    );
+
+
+    finalScore.textContent =
+        quizScore;
+
+
+    const percentage =
+        (quizScore /
+            quizQuestions.length) * 100;
+
+
+    if (percentage === 100) {
+
+        performanceTitle.textContent =
+            "⚡ Electrical Master";
+
+        performanceMessage.textContent =
+            "Perfect score. Your understanding of the concepts covered in VoltLab is strong.";
+
+    }
+
+    else if (percentage >= 80) {
+
+        performanceTitle.textContent =
+            "🔋 Circuit Explorer";
+
+        performanceMessage.textContent =
+            "Strong performance. You understand most of the core electricity concepts.";
+
+    }
+
+    else if (percentage >= 60) {
+
+        performanceTitle.textContent =
+            "⚙️ Voltage Learner";
+
+        performanceMessage.textContent =
+            "You have a solid foundation, but revisiting a few concepts will make it stronger.";
+
+    }
+
+    else {
+
+        performanceTitle.textContent =
+            "🧠 Future Engineer";
+
+        performanceMessage.textContent =
+            "The foundation is still being built. Explore the interactive labs again and then take the challenge once more.";
+
+    }
+
+}
+
+
+quizNextButton.addEventListener(
+    "click",
+
+    function () {
+
+        currentQuestionIndex++;
+
+
+        if (
+            currentQuestionIndex <
+            quizQuestions.length
+        ) {
+
+            loadQuestion();
+
+        }
+
+        else {
+
+            showQuizResult();
+
+        }
+
+    }
+
+);
+
+
+restartQuiz.addEventListener(
+    "click",
+
+    function () {
+
+        currentQuestionIndex =
+            0;
+
+        quizScore =
+            0;
+
+        questionAnswered =
+            false;
+
+
+        quizResult.classList.remove(
+            "show"
+        );
+
+
+        quizCard.style.display =
+            "block";
+
+
+        loadQuestion();
+
+    }
+
+);
+
+
+loadQuestion();
+
+
+
+/* =========================
    NAVIGATION
 ========================= */
 
@@ -592,7 +1089,7 @@ const navigationLinks =
 
 const sections =
     document.querySelectorAll(
-        "#home, #ohms, #series, #parallel, #power, #compare"
+        "#home, #ohms, #series, #parallel, #power, #compare, #quiz"
     );
 
 
@@ -622,13 +1119,17 @@ window.addEventListener(
 
         if (scrollTop > 500) {
 
-            backToTop.classList.add("show");
+            backToTop.classList.add(
+                "show"
+            );
 
         }
 
         else {
 
-            backToTop.classList.remove("show");
+            backToTop.classList.remove(
+                "show"
+            );
 
         }
 
@@ -645,7 +1146,8 @@ window.addEventListener(
 
 
                 if (
-                    window.scrollY >= sectionTop
+                    window.scrollY >=
+                    sectionTop
                 ) {
 
                     currentSection =
@@ -654,6 +1156,7 @@ window.addEventListener(
                 }
 
             }
+
         );
 
 
@@ -677,6 +1180,7 @@ window.addEventListener(
                 }
 
             }
+
         );
 
     }
