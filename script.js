@@ -1,3 +1,9 @@
+/* =====================================================
+   VOLTLAB v0.8
+   INTERACTIVE ELECTRICITY ENGINE
+===================================================== */
+
+
 /* =========================
    OHM'S LAW
 ========================= */
@@ -71,8 +77,11 @@ function calculateCurrent() {
     let brightness =
         1 + current / 2;
 
+
     if (brightness > 3) {
+
         brightness = 3;
+
     }
 
 
@@ -83,8 +92,11 @@ function calculateCurrent() {
     let speed =
         3 - current / 5;
 
+
     if (speed < 0.4) {
+
         speed = 0.4;
+
     }
 
 
@@ -137,6 +149,7 @@ resistanceSlider.addEventListener(
     calculateCurrent
 );
 
+
 calculateCurrent();
 
 
@@ -159,7 +172,9 @@ const r3 =
 
 
 const seriesVoltageValue =
-    document.getElementById("seriesVoltageValue");
+    document.getElementById(
+        "seriesVoltageValue"
+    );
 
 const r1Value =
     document.getElementById("r1Value");
@@ -172,19 +187,29 @@ const r3Value =
 
 
 const totalResistance =
-    document.getElementById("totalResistance");
+    document.getElementById(
+        "totalResistance"
+    );
 
 const seriesCurrent =
-    document.getElementById("seriesCurrent");
+    document.getElementById(
+        "seriesCurrent"
+    );
 
 const voltageDrop1 =
-    document.getElementById("voltageDrop1");
+    document.getElementById(
+        "voltageDrop1"
+    );
 
 const voltageDrop2 =
-    document.getElementById("voltageDrop2");
+    document.getElementById(
+        "voltageDrop2"
+    );
 
 const voltageDrop3 =
-    document.getElementById("voltageDrop3");
+    document.getElementById(
+        "voltageDrop3"
+    );
 
 
 function calculateSeriesCircuit() {
@@ -233,13 +258,16 @@ function calculateSeriesCircuit() {
 
 
     voltageDrop1.textContent =
-        (current * resistor1).toFixed(2);
+        (current * resistor1)
+            .toFixed(2);
 
     voltageDrop2.textContent =
-        (current * resistor2).toFixed(2);
+        (current * resistor2)
+            .toFixed(2);
 
     voltageDrop3.textContent =
-        (current * resistor3).toFixed(2);
+        (current * resistor3)
+            .toFixed(2);
 
 }
 
@@ -264,6 +292,7 @@ r3.addEventListener(
     calculateSeriesCircuit
 );
 
+
 calculateSeriesCircuit();
 
 
@@ -273,29 +302,45 @@ calculateSeriesCircuit();
 ========================= */
 
 const parallelVoltage =
-    document.getElementById("parallelVoltage");
+    document.getElementById(
+        "parallelVoltage"
+    );
 
 const parallelR1 =
-    document.getElementById("parallelR1");
+    document.getElementById(
+        "parallelR1"
+    );
 
 const parallelR2 =
-    document.getElementById("parallelR2");
+    document.getElementById(
+        "parallelR2"
+    );
 
 const parallelR3 =
-    document.getElementById("parallelR3");
+    document.getElementById(
+        "parallelR3"
+    );
 
 
 const parallelVoltageValue =
-    document.getElementById("parallelVoltageValue");
+    document.getElementById(
+        "parallelVoltageValue"
+    );
 
 const parallelR1Value =
-    document.getElementById("parallelR1Value");
+    document.getElementById(
+        "parallelR1Value"
+    );
 
 const parallelR2Value =
-    document.getElementById("parallelR2Value");
+    document.getElementById(
+        "parallelR2Value"
+    );
 
 const parallelR3Value =
-    document.getElementById("parallelR3Value");
+    document.getElementById(
+        "parallelR3Value"
+    );
 
 
 const parallelTotalResistance =
@@ -417,52 +462,77 @@ parallelR3.addEventListener(
     calculateParallelCircuit
 );
 
+
 calculateParallelCircuit();
 
 
 
 /* =========================
-   POWER & ENERGY LAB
+   POWER & ENERGY
 ========================= */
 
 const powerVoltage =
-    document.getElementById("powerVoltage");
+    document.getElementById(
+        "powerVoltage"
+    );
 
 const powerCurrent =
-    document.getElementById("powerCurrent");
+    document.getElementById(
+        "powerCurrent"
+    );
 
 const usageTime =
-    document.getElementById("usageTime");
+    document.getElementById(
+        "usageTime"
+    );
 
 
 const powerVoltageValue =
-    document.getElementById("powerVoltageValue");
+    document.getElementById(
+        "powerVoltageValue"
+    );
 
 const powerCurrentValue =
-    document.getElementById("powerCurrentValue");
+    document.getElementById(
+        "powerCurrentValue"
+    );
 
 const usageTimeValue =
-    document.getElementById("usageTimeValue");
+    document.getElementById(
+        "usageTimeValue"
+    );
 
 
 const powerResult =
-    document.getElementById("powerResult");
+    document.getElementById(
+        "powerResult"
+    );
 
 const energyWh =
-    document.getElementById("energyWh");
+    document.getElementById(
+        "energyWh"
+    );
 
 const energyKwh =
-    document.getElementById("energyKwh");
+    document.getElementById(
+        "energyKwh"
+    );
 
 
 const powerMeterFill =
-    document.getElementById("powerMeterFill");
+    document.getElementById(
+        "powerMeterFill"
+    );
 
 const powerStatus =
-    document.getElementById("powerStatus");
+    document.getElementById(
+        "powerStatus"
+    );
 
 const energyInsight =
-    document.getElementById("energyInsight");
+    document.getElementById(
+        "energyInsight"
+    );
 
 
 function calculatePower() {
@@ -480,10 +550,8 @@ function calculatePower() {
     const power =
         voltage * current;
 
-
     const energy =
         power * time;
-
 
     const kwh =
         energy / 1000;
@@ -582,12 +650,13 @@ usageTime.addEventListener(
     calculatePower
 );
 
+
 calculatePower();
 
 
 
 /* =========================
-   DAY 7 QUIZ SYSTEM
+   QUIZ SYSTEM
 ========================= */
 
 const quizQuestions = [
@@ -598,10 +667,12 @@ const quizQuestions = [
             "According to Ohm's Law, what is the current when voltage is 12 V and resistance is 6 Ω?",
 
         options: [
+
             "0.5 A",
             "2 A",
             "6 A",
             "72 A"
+
         ],
 
         answer: 1,
@@ -618,16 +689,18 @@ const quizQuestions = [
             "What remains the same through every component in a series circuit?",
 
         options: [
+
             "Voltage",
             "Resistance",
             "Current",
             "Power"
+
         ],
 
         answer: 2,
 
         explanation:
-            "A series circuit has only one path, so the same current flows through every component."
+            "A series circuit has one path, so the same current flows through every component."
 
     },
 
@@ -638,16 +711,18 @@ const quizQuestions = [
             "What remains the same across every branch in a parallel circuit?",
 
         options: [
+
             "Current",
             "Voltage",
             "Resistance",
             "Power"
+
         ],
 
         answer: 1,
 
         explanation:
-            "Each branch in a parallel circuit is connected across the same supply, so each branch receives the same voltage."
+            "Each branch is connected across the same supply, so every branch receives the same voltage."
 
     },
 
@@ -658,10 +733,12 @@ const quizQuestions = [
             "What is the electrical power when voltage is 10 V and current is 2 A?",
 
         options: [
+
             "5 W",
             "8 W",
             "12 W",
             "20 W"
+
         ],
 
         answer: 3,
@@ -678,16 +755,18 @@ const quizQuestions = [
             "Which statement about a parallel circuit is correct?",
 
         options: [
+
             "It has only one path for current.",
             "The same current flows through every branch.",
             "Current divides between branches.",
             "Voltage divides equally across all branches."
+
         ],
 
         answer: 2,
 
         explanation:
-            "A parallel circuit has multiple paths, so current divides between the branches."
+            "A parallel circuit has multiple paths, so current divides between branches."
 
     }
 
@@ -705,40 +784,64 @@ let questionAnswered =
 
 
 const quizQuestion =
-    document.getElementById("quizQuestion");
+    document.getElementById(
+        "quizQuestion"
+    );
 
 const quizOptions =
-    document.getElementById("quizOptions");
+    document.getElementById(
+        "quizOptions"
+    );
 
 const quizFeedback =
-    document.getElementById("quizFeedback");
+    document.getElementById(
+        "quizFeedback"
+    );
 
 const quizNextButton =
-    document.getElementById("quizNextButton");
+    document.getElementById(
+        "quizNextButton"
+    );
 
 const quizProgressText =
-    document.getElementById("quizProgressText");
+    document.getElementById(
+        "quizProgressText"
+    );
 
 const quizProgressFill =
-    document.getElementById("quizProgressFill");
+    document.getElementById(
+        "quizProgressFill"
+    );
 
 const quizCard =
-    document.getElementById("quizCard");
+    document.getElementById(
+        "quizCard"
+    );
 
 const quizResult =
-    document.getElementById("quizResult");
+    document.getElementById(
+        "quizResult"
+    );
 
 const finalScore =
-    document.getElementById("finalScore");
+    document.getElementById(
+        "finalScore"
+    );
 
 const performanceTitle =
-    document.getElementById("performanceTitle");
+    document.getElementById(
+        "performanceTitle"
+    );
 
 const performanceMessage =
-    document.getElementById("performanceMessage");
+    document.getElementById(
+        "performanceMessage"
+    );
 
 const restartQuiz =
-    document.getElementById("restartQuiz");
+    document.getElementById(
+        "restartQuiz"
+    );
 
 
 function loadQuestion() {
@@ -746,14 +849,11 @@ function loadQuestion() {
     questionAnswered =
         false;
 
-
     quizNextButton.disabled =
         true;
 
-
     quizFeedback.className =
         "quiz-feedback";
-
 
     quizFeedback.textContent =
         "";
@@ -775,7 +875,9 @@ function loadQuestion() {
         function (option, index) {
 
             const optionButton =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
 
             optionButton.className =
@@ -872,11 +974,6 @@ function checkAnswer(
     optionButtons.forEach(
         function (button, index) {
 
-            button.classList.add(
-                "disabled"
-            );
-
-
             button.disabled =
                 true;
 
@@ -903,11 +1000,6 @@ function checkAnswer(
     ) {
 
         quizScore++;
-
-
-        selectedButton.classList.add(
-            "correct"
-        );
 
 
         quizFeedback.classList.add(
@@ -972,7 +1064,7 @@ function showQuizResult() {
             "⚡ Electrical Master";
 
         performanceMessage.textContent =
-            "Perfect score. Your understanding of the concepts covered in VoltLab is strong.";
+            "Perfect score. Your understanding of VoltLab concepts is strong.";
 
     }
 
@@ -1002,7 +1094,7 @@ function showQuizResult() {
             "🧠 Future Engineer";
 
         performanceMessage.textContent =
-            "The foundation is still being built. Explore the interactive labs again and then take the challenge once more.";
+            "The foundation is still being built. Explore the labs again and take the challenge once more.";
 
     }
 
@@ -1077,10 +1169,14 @@ loadQuestion();
 ========================= */
 
 const progressBar =
-    document.getElementById("progressBar");
+    document.getElementById(
+        "progressBar"
+    );
 
 const backToTop =
-    document.getElementById("backToTop");
+    document.getElementById(
+        "backToTop"
+    );
 
 const navigationLinks =
     document.querySelectorAll(
@@ -1109,7 +1205,8 @@ window.addEventListener(
 
         const progress =
             documentHeight > 0
-                ? (scrollTop / documentHeight) * 100
+                ? (scrollTop /
+                    documentHeight) * 100
                 : 0;
 
 
@@ -1142,7 +1239,8 @@ window.addEventListener(
             function (section) {
 
                 const sectionTop =
-                    section.offsetTop - 150;
+                    section.offsetTop -
+                    150;
 
 
                 if (
@@ -1151,7 +1249,9 @@ window.addEventListener(
                 ) {
 
                     currentSection =
-                        section.getAttribute("id");
+                        section.getAttribute(
+                            "id"
+                        );
 
                 }
 
