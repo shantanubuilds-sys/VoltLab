@@ -1,3 +1,13 @@
+/* =====================================================
+   VOLTLAB DESIGN SYSTEM
+   Soft Dark UI + Glass + Interactive Motion
+===================================================== */
+
+
+/* =========================
+   GLOBAL
+========================= */
+
 * {
     box-sizing: border-box;
 }
@@ -8,111 +18,374 @@ html {
 }
 
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0b1020;
-    color: white;
+:root {
+
+    --bg-main: #111827;
+    --bg-secondary: #182235;
+    --bg-card: #1b2638;
+    --bg-card-light: #223047;
+
+    --text-main: #f4f7fb;
+    --text-secondary: #aab6c8;
+
+    --accent: #67b7ff;
+    --accent-soft: rgba(103, 183, 255, 0.18);
+
+    --border: rgba(255, 255, 255, 0.08);
+
+    --shadow-dark:
+        14px 14px 28px rgba(5, 10, 18, 0.55);
+
+    --shadow-light:
+        -8px -8px 20px rgba(255, 255, 255, 0.025);
+
+    --radius-large: 24px;
+    --radius-medium: 16px;
+    --radius-small: 12px;
+
 }
 
 
+body {
+
+    margin: 0;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    color: var(--text-main);
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            rgba(103, 183, 255, 0.08),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(103, 183, 255, 0.05),
+            transparent 35%
+        ),
+
+        var(--bg-main);
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
 .navbar {
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    padding: 18px 8%;
+    padding:
 
-    background: rgba(11, 16, 32, 0.95);
-    border-bottom: 1px solid #26304f;
+        18px 7%;
 
-    backdrop-filter: blur(12px);
+    background:
+
+        rgba(17, 24, 39, 0.82);
+
+    backdrop-filter:
+
+        blur(18px);
+
+    border-bottom:
+
+        1px solid var(--border);
+
+    box-shadow:
+
+        0 10px 30px rgba(0, 0, 0, 0.15);
+
 }
 
 
 .nav-logo {
-    font-size: 1.4rem;
-    font-weight: bold;
+
+    font-size: 1.45rem;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+
+    color: white;
+
 }
 
 
 .nav-links {
+
     display: flex;
-    gap: 20px;
+
+    gap: 8px;
+
     flex-wrap: wrap;
+
 }
 
 
 .nav-links a {
-    color: #aab4d6;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: 0.3s;
+
+    color:
+
+        var(--text-secondary);
+
+    text-decoration:
+
+        none;
+
+    padding:
+
+        9px 14px;
+
+    border-radius:
+
+        10px;
+
+    font-size:
+
+        0.9rem;
+
+    transition:
+
+        all 0.25s ease;
+
 }
 
 
-.nav-links a:hover,
+.nav-links a:hover {
+
+    color:
+
+        white;
+
+    background:
+
+        rgba(255, 255, 255, 0.06);
+
+}
+
+
 .nav-links a.active {
-    color: white;
-    font-weight: bold;
+
+    color:
+
+        var(--accent);
+
+    background:
+
+        var(--accent-soft);
+
 }
 
+
+/* =========================
+   PROGRESS BAR
+========================= */
 
 .progress-container {
+
     position: fixed;
+
     top: 0;
+
     left: 0;
 
     width: 100%;
-    height: 4px;
+
+    height: 3px;
 
     z-index: 2000;
+
 }
 
 
 .progress-bar {
+
     width: 0%;
+
     height: 100%;
-    background: white;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #67b7ff,
+            #b5ddff
+        );
+
+    box-shadow:
+
+        0 0 12px rgba(103, 183, 255, 0.8);
+
 }
 
 
+/* =========================
+   HEADER
+========================= */
+
 header {
+
     text-align: center;
-    padding: 50px 20px;
-    border-bottom: 1px solid #26304f;
-    scroll-margin-top: 100px;
+
+    padding:
+
+        90px 20px
+        70px;
+
+    border-bottom:
+
+        1px solid var(--border);
+
+    scroll-margin-top:
+
+        100px;
+
 }
 
 
 header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+
+    font-size:
+
+        clamp(
+            3rem,
+            7vw,
+            5.5rem
+        );
+
+    margin:
+
+        0;
+
+    letter-spacing:
+
+        -3px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #8fcaff
+        );
+
+    -webkit-background-clip:
+
+        text;
+
+    -webkit-text-fill-color:
+
+        transparent;
+
 }
 
 
-header p,
-.section-description {
-    color: #aab4d6;
+header p {
+
+    color:
+
+        var(--text-secondary);
+
+    font-size:
+
+        1.1rem;
+
+    margin-top:
+
+        12px;
+
 }
 
+
+/* =========================
+   MAIN
+========================= */
 
 main {
-    max-width: 1000px;
-    margin: auto;
-    padding: 40px 20px;
+
+    max-width:
+
+        1150px;
+
+    margin:
+
+        auto;
+
+    padding:
+
+        60px 20px;
+
 }
 
 
 .hero {
-    text-align: center;
-    margin-bottom: 50px;
+
+    text-align:
+
+        center;
+
+    max-width:
+
+        750px;
+
+    margin:
+
+        0 auto
+        70px;
+
 }
 
+
+.hero h2 {
+
+    font-size:
+
+        2.4rem;
+
+    margin-bottom:
+
+        10px;
+
+}
+
+
+.hero p {
+
+    color:
+
+        var(--text-secondary);
+
+    font-size:
+
+        1.05rem;
+
+}
+
+
+/* =========================
+   MAIN SECTIONS
+========================= */
 
 .ohms-section,
 .series-section,
@@ -120,41 +393,252 @@ main {
 .power-section,
 .comparison-section,
 .quiz-section {
-    background: #141b33;
-    padding: 40px;
-    border-radius: 15px;
-    margin-bottom: 50px;
-    text-align: center;
-    scroll-margin-top: 100px;
+
+    position:
+
+        relative;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(34, 48, 71, 0.9),
+            rgba(24, 34, 53, 0.95)
+        );
+
+    padding:
+
+        50px;
+
+    border-radius:
+
+        var(--radius-large);
+
+    margin-bottom:
+
+        55px;
+
+    border:
+
+        1px solid var(--border);
+
+    box-shadow:
+
+        var(--shadow-dark),
+        var(--shadow-light);
+
+    scroll-margin-top:
+
+        110px;
+
+    overflow:
+
+        hidden;
+
+    transition:
+
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+
+}
+
+
+.ohms-section::before,
+.series-section::before,
+.parallel-section::before,
+.power-section::before,
+.comparison-section::before,
+.quiz-section::before {
+
+    content:
+
+        "";
+
+    position:
+
+        absolute;
+
+    width:
+
+        250px;
+
+    height:
+
+        250px;
+
+    border-radius:
+
+        50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(103, 183, 255, 0.07),
+            transparent 70%
+        );
+
+    top:
+
+        -100px;
+
+    right:
+
+        -100px;
+
+    pointer-events:
+
+        none;
+
+}
+
+
+.ohms-section:hover,
+.series-section:hover,
+.parallel-section:hover,
+.power-section:hover,
+.comparison-section:hover,
+.quiz-section:hover {
+
+    transform:
+
+        translateY(-3px);
+
+    box-shadow:
+
+        18px 18px 35px rgba(5, 10, 18, 0.6),
+        -8px -8px 22px rgba(255, 255, 255, 0.025);
+
+}
+
+
+.ohms-section h2,
+.series-section h2,
+.parallel-section h2,
+.power-section h2,
+.comparison-section h2,
+.quiz-section h2 {
+
+    font-size:
+
+        2rem;
+
+    margin-top:
+
+        0;
+
 }
 
 
 .section-description {
-    max-width: 700px;
-    margin: 15px auto 35px;
+
+    color:
+
+        var(--text-secondary);
+
+    max-width:
+
+        720px;
+
+    margin:
+
+        15px auto
+        40px;
+
+    text-align:
+
+        center;
+
 }
 
 
-.lab-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
+/* =========================
+   SOFT UI CARDS
+========================= */
 
 .controls,
 .result,
 .power-control,
 .series-control,
-.parallel-control {
-    background: #0b1020;
-    padding: 25px;
-    border-radius: 12px;
+.parallel-control,
+.concept-box,
+.comparison-card,
+.quiz-container {
+
+    background:
+
+        var(--bg-secondary);
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        var(--radius-medium);
+
+    box-shadow:
+
+        inset
+        1px 1px 0
+        rgba(255, 255, 255, 0.03),
+
+        var(--shadow-dark);
+
 }
 
 
+.controls,
+.result {
+
+    padding:
+
+        30px;
+
+}
+
+
+/* =========================
+   OHM'S LAW GRID
+========================= */
+
+.lab-container {
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        1fr
+        1fr;
+
+    gap:
+
+        28px;
+
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
 .control {
-    margin-bottom: 30px;
+
+    margin-bottom:
+
+        32px;
+
+}
+
+
+.control:last-child {
+
+    margin-bottom:
+
+        0;
+
 }
 
 
@@ -162,596 +646,1689 @@ main {
 .series-control label,
 .parallel-control label,
 .power-control label {
-    display: block;
-    margin-bottom: 12px;
+
+    display:
+
+        flex;
+
+    justify-content:
+
+        space-between;
+
+    align-items:
+
+        center;
+
+    margin-bottom:
+
+        14px;
+
+    font-weight:
+
+        600;
+
 }
 
 
+.control span,
+.series-control span,
+.parallel-control span,
+.power-control span {
+
+    color:
+
+        var(--accent);
+
+    font-weight:
+
+        700;
+
+}
+
+
+/* =========================
+   RANGE SLIDERS
+========================= */
+
 input[type="range"] {
-    width: 100%;
-    cursor: pointer;
+
+    appearance:
+
+        none;
+
+    width:
+
+        100%;
+
+    height:
+
+        8px;
+
+    border-radius:
+
+        20px;
+
+    background:
+
+        #111827;
+
+    outline:
+
+        none;
+
+    cursor:
+
+        pointer;
+
+}
+
+
+input[type="range"]::-webkit-slider-thumb {
+
+    appearance:
+
+        none;
+
+    width:
+
+        20px;
+
+    height:
+
+        20px;
+
+    border-radius:
+
+        50%;
+
+    background:
+
+        var(--accent);
+
+    border:
+
+        3px solid #d9efff;
+
+    box-shadow:
+
+        0 0 14px
+        rgba(103, 183, 255, 0.65);
+
+    cursor:
+
+        pointer;
+
+    transition:
+
+        transform 0.2s ease;
+
+}
+
+
+input[type="range"]::-webkit-slider-thumb:hover {
+
+    transform:
+
+        scale(1.2);
+
+}
+
+
+/* =========================
+   CURRENT RESULT
+========================= */
+
+.result {
+
+    text-align:
+
+        center;
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    justify-content:
+
+        center;
+
 }
 
 
 .current-value {
-    font-size: 3rem;
-    margin: 30px 0;
+
+    font-size:
+
+        clamp(
+            2.5rem,
+            5vw,
+            4rem
+        );
+
+    font-weight:
+
+        700;
+
+    margin:
+
+        25px 0;
+
+    color:
+
+        var(--accent);
+
+    text-shadow:
+
+        0 0 20px
+        rgba(103, 183, 255, 0.25);
+
 }
 
 
+/* =========================
+   LIVE CIRCUIT
+========================= */
+
 .live-circuit {
-    margin-top: 40px;
+
+    margin-top:
+
+        45px;
+
+}
+
+
+.live-circuit h3 {
+
+    text-align:
+
+        center;
+
 }
 
 
 .circuit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-    background: #0b1020;
-    border-radius: 15px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    padding:
+
+        45px 20px;
+
+    background:
+
+        #121b2b;
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        var(--radius-large);
+
+    box-shadow:
+
+        inset
+        0 0 35px
+        rgba(0, 0, 0, 0.25);
+
 }
 
 
 .battery,
 .bulb {
-    font-size: 3rem;
+
+    font-size:
+
+        3.2rem;
+
+    transition:
+
+        filter 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+.bulb:hover {
+
+    transform:
+
+        scale(1.12);
+
 }
 
 
 .resistor {
-    width: 90px;
-    height: 40px;
-    border: 3px solid white;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width:
+
+        90px;
+
+    height:
+
+        42px;
+
+    border:
+
+        2px solid var(--accent);
+
+    border-radius:
+
+        8px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    color:
+
+        var(--accent);
+
+    background:
+
+        rgba(103, 183, 255, 0.06);
+
 }
 
 
 .wire {
-    width: 100px;
-    height: 4px;
-    background: white;
-    position: relative;
-    overflow: hidden;
+
+    width:
+
+        100px;
+
+    height:
+
+        4px;
+
+    background:
+
+        rgba(103, 183, 255, 0.55);
+
+    position:
+
+        relative;
+
+    overflow:
+
+        hidden;
+
+    box-shadow:
+
+        0 0 10px
+        rgba(103, 183, 255, 0.35);
+
 }
 
 
 .electron {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-    top: -4px;
-    animation: flow 2s linear infinite;
+
+    position:
+
+        absolute;
+
+    width:
+
+        10px;
+
+    height:
+
+        10px;
+
+    background:
+
+        #ffffff;
+
+    border-radius:
+
+        50%;
+
+    top:
+
+        -3px;
+
+    box-shadow:
+
+        0 0 12px
+        var(--accent);
+
+    animation:
+
+        flow
+        2s
+        linear
+        infinite;
+
 }
 
 
 .electron-2 {
-    animation-delay: 0.6s;
+
+    animation-delay:
+
+        0.6s;
+
 }
 
 
 .electron-3 {
-    animation-delay: 1.2s;
+
+    animation-delay:
+
+        1.2s;
+
 }
 
 
 .electron-4 {
-    animation-delay: 0.3s;
+
+    animation-delay:
+
+        0.3s;
+
 }
 
 
 .electron-5 {
-    animation-delay: 0.9s;
+
+    animation-delay:
+
+        0.9s;
+
 }
 
 
 @keyframes flow {
 
     0% {
-        left: -20px;
+
+        left:
+
+            -20px;
+
     }
 
     100% {
-        left: 100%;
+
+        left:
+
+            110%;
+
     }
 
 }
 
 
+/* =========================
+   CIRCUIT INFO
+========================= */
+
 .circuit-info {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+
+    margin-top:
+
+        25px;
+
+    display:
+
+        flex;
+
+    justify-content:
+
+        center;
+
+    gap:
+
+        15px;
+
+    flex-wrap:
+
+        wrap;
+
 }
 
 
 .circuit-info p {
-    background: #0b1020;
-    padding: 12px 18px;
-    border-radius: 10px;
+
+    background:
+
+        var(--bg-secondary);
+
+    padding:
+
+        12px 18px;
+
+    border-radius:
+
+        12px;
+
+    border:
+
+        1px solid var(--border);
+
+    transition:
+
+        transform 0.25s ease;
+
 }
 
 
+.circuit-info p:hover {
+
+    transform:
+
+        translateY(-3px);
+
+}
+
+
+/* =========================
+   CONCEPT BOX
+========================= */
+
 .concept-box {
-    margin-top: 40px;
-    padding: 30px;
-    background: #0b1020;
-    border-radius: 15px;
+
+    margin-top:
+
+        40px;
+
+    padding:
+
+        30px;
+
+    text-align:
+
+        center;
+
 }
 
 
 .formula-box {
-    margin: 20px auto;
-    padding: 15px;
-    max-width: 500px;
-    background: #141b33;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
+
+    margin:
+
+        18px auto;
+
+    padding:
+
+        18px;
+
+    max-width:
+
+        550px;
+
+    background:
+
+        #111827;
+
+    border:
+
+        1px solid
+        rgba(103, 183, 255, 0.15);
+
+    border-radius:
+
+        12px;
+
+    font-size:
+
+        1.15rem;
+
+    font-weight:
+
+        700;
+
+    color:
+
+        var(--accent);
+
+    transition:
+
+        transform 0.25s ease,
+        background 0.25s ease;
+
 }
 
+
+.formula-box:hover {
+
+    transform:
+
+        scale(1.02);
+
+    background:
+
+        rgba(103, 183, 255, 0.08);
+
+}
+
+
+/* =========================
+   SERIES CONTROLS
+========================= */
 
 .series-controls,
 .parallel-controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    text-align: left;
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        1fr
+        1fr;
+
+    gap:
+
+        20px;
+
 }
 
 
+.series-control,
+.parallel-control {
+
+    padding:
+
+        22px;
+
+}
+
+
+/* =========================
+   SERIES DIAGRAM
+========================= */
+
 .series-diagram {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 40px 0;
-    flex-wrap: wrap;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    margin:
+
+        45px 0;
+
+    flex-wrap:
+
+        wrap;
+
 }
 
 
 .series-battery {
-    font-size: 3rem;
+
+    font-size:
+
+        3rem;
+
 }
 
 
 .series-line {
-    width: 60px;
-    height: 4px;
-    background: white;
+
+    width:
+
+        60px;
+
+    height:
+
+        4px;
+
+    background:
+
+        var(--accent);
+
+    box-shadow:
+
+        0 0 10px
+        rgba(103, 183, 255, 0.35);
+
 }
 
 
 .series-resistor {
-    width: 70px;
-    height: 40px;
-    border: 3px solid white;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width:
+
+        75px;
+
+    height:
+
+        42px;
+
+    border:
+
+        2px solid var(--accent);
+
+    border-radius:
+
+        8px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    background:
+
+        rgba(103, 183, 255, 0.06);
+
 }
 
 
+/* =========================
+   RESULTS
+========================= */
+
 .series-results,
 .parallel-results {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        1fr
+        1fr;
+
+    gap:
+
+        20px;
+
 }
 
 
 .series-result-card,
 .parallel-result-card,
-.power-result-card {
-    background: #0b1020;
-    padding: 25px;
-    border-radius: 12px;
+.power-result-card,
+.drop-card,
+.branch-card {
+
+    background:
+
+        var(--bg-secondary);
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        var(--radius-medium);
+
+    padding:
+
+        25px;
+
+    text-align:
+
+        center;
+
+    box-shadow:
+
+        var(--shadow-dark);
+
+    transition:
+
+        transform 0.25s ease,
+        border 0.25s ease;
+
+}
+
+
+.series-result-card:hover,
+.parallel-result-card:hover,
+.power-result-card:hover,
+.drop-card:hover,
+.branch-card:hover {
+
+    transform:
+
+        translateY(-5px);
+
+    border-color:
+
+        rgba(103, 183, 255, 0.3);
+
 }
 
 
 .series-result-card p,
 .parallel-result-card p,
-.power-result-card p {
-    font-size: 2rem;
-    font-weight: bold;
+.power-result-card p,
+.drop-card p,
+.branch-card p {
+
+    font-size:
+
+        1.8rem;
+
+    font-weight:
+
+        700;
+
+    color:
+
+        var(--accent);
+
 }
 
 
-.voltage-drops,
-.branch-currents {
-    margin-top: 30px;
-}
-
+/* =========================
+   DROP + BRANCH CARDS
+========================= */
 
 .drop-container,
 .branch-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+
+        18px;
+
+    margin-top:
+
+        20px;
+
 }
 
 
-.drop-card,
-.branch-card {
-    background: #0b1020;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-
-.drop-card p,
-.branch-card p {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
+/* =========================
+   PARALLEL CIRCUIT
+========================= */
 
 .parallel-diagram {
-    margin: 40px auto;
-    padding: 30px;
-    background: #0b1020;
-    border-radius: 15px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
+    margin:
+
+        45px auto;
+
+    padding:
+
+        35px;
+
+    background:
+
+        #121b2b;
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        var(--radius-large);
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    gap:
+
+        50px;
+
 }
 
 
 .parallel-battery {
-    font-size: 3rem;
+
+    font-size:
+
+        3.2rem;
+
 }
 
 
 .parallel-branches {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    gap:
+
+        16px;
+
 }
 
 
 .parallel-branch {
-    width: 180px;
-    height: 45px;
-    border: 3px solid white;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width:
+
+        200px;
+
+    height:
+
+        45px;
+
+    border:
+
+        2px solid
+        rgba(103, 183, 255, 0.7);
+
+    border-radius:
+
+        10px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    background:
+
+        rgba(103, 183, 255, 0.05);
+
 }
 
 
-/* DAY 6 POWER LAB */
+/* =========================
+   POWER LAB
+========================= */
 
 .power-controls {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    text-align: left;
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+
+        20px;
+
+}
+
+
+.power-control {
+
+    padding:
+
+        22px;
+
 }
 
 
 .power-meter-container {
-    margin-top: 35px;
-    padding: 30px;
-    background: #0b1020;
-    border-radius: 15px;
+
+    margin-top:
+
+        35px;
+
+    padding:
+
+        30px;
+
+    background:
+
+        var(--bg-secondary);
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        var(--radius-medium);
+
 }
 
 
 .power-meter {
-    width: 100%;
-    height: 28px;
-    background: #26304f;
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 25px 0;
+
+    width:
+
+        100%;
+
+    height:
+
+        14px;
+
+    background:
+
+        #0e1625;
+
+    border-radius:
+
+        30px;
+
+    overflow:
+
+        hidden;
+
+    margin:
+
+        25px 0;
+
 }
 
 
 .power-meter-fill {
-    width: 0%;
-    height: 100%;
-    background: white;
-    border-radius: 20px;
-    transition: width 0.3s ease;
+
+    width:
+
+        0%;
+
+    height:
+
+        100%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #4d9eff,
+            #b7e1ff
+        );
+
+    border-radius:
+
+        30px;
+
+    box-shadow:
+
+        0 0 18px
+        rgba(103, 183, 255, 0.65);
+
+    transition:
+
+        width
+        0.35s
+        ease;
+
 }
 
 
 .power-status {
-    font-size: 1.2rem;
-    font-weight: bold;
+
+    font-weight:
+
+        700;
+
+    color:
+
+        var(--accent);
+
 }
 
 
 .power-results {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 25px;
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+
+        20px;
+
+    margin-top:
+
+        25px;
+
 }
 
 
 .energy-insight {
-    margin-top: 25px;
-    padding: 25px;
-    background: #0b1020;
-    border-radius: 15px;
+
+    margin-top:
+
+        25px;
+
+    padding:
+
+        28px;
+
+    background:
+
+        var(--bg-secondary);
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        var(--radius-medium);
+
 }
 
 
+/* =========================
+   COMPARISON
+========================= */
+
 .comparison-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        1fr
+        1fr;
+
+    gap:
+
+        25px;
+
 }
 
 
 .comparison-card {
-    background: #0b1020;
-    padding: 25px;
-    border-radius: 12px;
+
+    padding:
+
+        30px;
+
+    transition:
+
+        transform 0.3s ease;
+
 }
 
 
-/* DAY 7 QUIZ */
+.comparison-card:hover {
+
+    transform:
+
+        translateY(-6px);
+
+}
+
+
+.comparison-card h3 {
+
+    color:
+
+        var(--accent);
+
+}
+
+
+/* =========================
+   QUIZ
+========================= */
 
 .quiz-container {
-    max-width: 800px;
-    margin: auto;
+
+    padding:
+
+        35px;
+
+    max-width:
+
+        800px;
+
+    margin:
+
+        auto;
+
 }
 
 
 .quiz-progress-text {
-    margin-bottom: 12px;
-    color: #aab4d6;
-    font-weight: bold;
+
+    text-align:
+
+        center;
+
+    color:
+
+        var(--text-secondary);
+
+    margin-bottom:
+
+        12px;
+
 }
 
 
 .quiz-progress-track {
-    width: 100%;
-    height: 12px;
-    background: #0b1020;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 30px;
+
+    width:
+
+        100%;
+
+    height:
+
+        8px;
+
+    background:
+
+        #0f1726;
+
+    border-radius:
+
+        20px;
+
+    overflow:
+
+        hidden;
+
+    margin-bottom:
+
+        30px;
+
 }
 
 
 .quiz-progress-fill {
-    width: 20%;
-    height: 100%;
-    background: white;
-    border-radius: 20px;
-    transition: width 0.4s ease;
+
+    width:
+
+        20%;
+
+    height:
+
+        100%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #67b7ff,
+            #d2efff
+        );
+
+    border-radius:
+
+        20px;
+
+    transition:
+
+        width 0.4s ease;
+
 }
 
 
 .quiz-card {
-    background: #0b1020;
-    padding: 35px;
-    border-radius: 15px;
+
+    background:
+
+        #141f31;
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        var(--radius-medium);
+
+    padding:
+
+        30px;
+
 }
 
 
 .quiz-question {
-    font-size: 1.4rem;
-    font-weight: bold;
-    line-height: 1.6;
-    margin-bottom: 30px;
+
+    font-size:
+
+        1.25rem;
+
+    font-weight:
+
+        600;
+
+    margin-bottom:
+
+        25px;
+
 }
 
 
 .quiz-options {
-    display: grid;
-    gap: 15px;
+
+    display:
+
+        grid;
+
+    gap:
+
+        14px;
+
 }
 
 
-.quiz-option {
-    width: 100%;
-    padding: 18px 20px;
+/* Supports typical quiz buttons */
 
-    background: #141b33;
-    color: white;
+.quiz-options button {
 
-    border: 2px solid #26304f;
-    border-radius: 10px;
+    width:
 
-    cursor: pointer;
-    text-align: left;
+        100%;
 
-    font-size: 1rem;
+    padding:
 
-    transition: 0.25s;
+        16px;
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        12px;
+
+    background:
+
+        #19263a;
+
+    color:
+
+        white;
+
+    text-align:
+
+        left;
+
+    cursor:
+
+        pointer;
+
+    transition:
+
+        all 0.25s ease;
+
 }
 
 
-.quiz-option:hover {
-    border-color: white;
-    transform: translateY(-2px);
-}
+.quiz-options button:hover {
 
+    transform:
 
-.quiz-option.correct {
-    border-color: #45d483;
-}
+        translateX(5px);
 
+    border-color:
 
-.quiz-option.wrong {
-    border-color: #ff6b6b;
-}
+        var(--accent);
 
+    background:
 
-.quiz-option.disabled {
-    cursor: not-allowed;
-    opacity: 0.75;
+        rgba(103, 183, 255, 0.08);
+
 }
 
 
 .quiz-feedback {
-    display: none;
-    margin-top: 25px;
-    padding: 20px;
-    border-radius: 10px;
-    line-height: 1.6;
-}
 
+    margin-top:
 
-.quiz-feedback.show {
-    display: block;
-}
+        22px;
 
+    font-weight:
 
-.quiz-feedback.correct-feedback {
-    border: 1px solid #45d483;
-}
+        600;
 
-
-.quiz-feedback.wrong-feedback {
-    border: 1px solid #ff6b6b;
 }
 
 
 .quiz-next-btn,
-.restart-btn {
-    margin-top: 25px;
+.restart-btn,
+.back-to-top {
 
-    padding: 14px 25px;
+    border:
 
-    border: none;
-    border-radius: 10px;
+        none;
 
-    background: white;
-    color: #0b1020;
+    cursor:
 
-    font-size: 1rem;
-    font-weight: bold;
+        pointer;
 
-    cursor: pointer;
+    color:
 
-    transition: 0.25s;
+        #08111f;
+
+    background:
+
+        var(--accent);
+
+    font-weight:
+
+        700;
+
+    transition:
+
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.quiz-next-btn {
+
+    margin-top:
+
+        25px;
+
+    padding:
+
+        14px 22px;
+
+    border-radius:
+
+        12px;
+
 }
 
 
 .quiz-next-btn:hover,
 .restart-btn:hover {
-    transform: translateY(-2px);
+
+    transform:
+
+        translateY(-3px);
+
+    box-shadow:
+
+        0 8px 20px
+        rgba(103, 183, 255, 0.25);
+
 }
 
 
 .quiz-next-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-    transform: none;
+
+    opacity:
+
+        0.4;
+
+    cursor:
+
+        not-allowed;
+
 }
 
 
 .quiz-result {
-    display: none;
 
-    background: #0b1020;
+    display:
 
-    padding: 50px 30px;
+        none;
 
-    border-radius: 15px;
-}
+    text-align:
 
+        center;
 
-.quiz-result.show {
-    display: block;
+    padding:
+
+        35px;
+
 }
 
 
 .result-icon {
-    font-size: 4rem;
+
+    font-size:
+
+        4rem;
+
 }
 
 
 .final-score {
-    font-size: 2rem;
-    font-weight: bold;
+
+    font-size:
+
+        1.8rem;
+
+    color:
+
+        var(--accent);
+
+    font-weight:
+
+        700;
+
 }
 
 
-.performance-title {
-    font-size: 1.4rem;
-    font-weight: bold;
+.restart-btn {
+
+    padding:
+
+        14px 24px;
+
+    border-radius:
+
+        12px;
+
 }
 
 
-.performance-message {
-    color: #aab4d6;
-    max-width: 500px;
-    margin: 20px auto;
-    line-height: 1.6;
-}
-
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-    text-align: center;
-    padding: 30px;
-    color: #aab4d6;
-    border-top: 1px solid #26304f;
+
+    text-align:
+
+        center;
+
+    padding:
+
+        40px 20px;
+
+    color:
+
+        var(--text-secondary);
+
+    border-top:
+
+        1px solid var(--border);
+
 }
 
 
+/* =========================
+   BACK TO TOP
+========================= */
+
 .back-to-top {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
 
-    width: 50px;
-    height: 50px;
+    position:
 
-    border: none;
-    border-radius: 50%;
+        fixed;
 
-    font-size: 1.5rem;
-    cursor: pointer;
+    bottom:
 
-    opacity: 0;
-    pointer-events: none;
+        25px;
 
-    transform: translateY(20px);
-    transition: 0.3s;
+    right:
+
+        25px;
+
+    width:
+
+        52px;
+
+    height:
+
+        52px;
+
+    border-radius:
+
+        50%;
+
+    font-size:
+
+        1.5rem;
+
+    opacity:
+
+        0;
+
+    pointer-events:
+
+        none;
+
+    transform:
+
+        translateY(20px);
+
 }
 
 
 .back-to-top.show {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
+
+    opacity:
+
+        1;
+
+    pointer-events:
+
+        auto;
+
+    transform:
+
+        translateY(0);
+
 }
 
 
-@media (max-width: 700px) {
+.back-to-top:hover {
+
+    transform:
+
+        translateY(-4px);
+
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (
+    max-width: 800px
+) {
 
     .navbar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
+
+        flex-direction:
+
+            column;
+
+        gap:
+
+            15px;
+
+        padding:
+
+            16px;
+
     }
 
 
     .nav-links {
-        justify-content: center;
-        gap: 12px;
+
+        justify-content:
+
+            center;
+
     }
 
 
     .nav-links a {
-        font-size: 0.8rem;
+
+        font-size:
+
+            0.8rem;
+
+        padding:
+
+            7px 10px;
+
     }
 
 
@@ -761,7 +2338,11 @@ footer {
     .power-section,
     .comparison-section,
     .quiz-section {
-        padding: 25px 15px;
+
+        padding:
+
+            30px 18px;
+
     }
 
 
@@ -775,34 +2356,61 @@ footer {
     .power-controls,
     .power-results,
     .comparison-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+
+    .circuit {
+
+        flex-wrap:
+
+            wrap;
+
     }
 
 
     .wire {
-        width: 35px;
+
+        width:
+
+            40px;
+
     }
 
 
     .series-line {
-        width: 20px;
+
+        width:
+
+            25px;
+
     }
 
 
     .parallel-diagram {
-        flex-direction: column;
-        gap: 25px;
+
+        flex-direction:
+
+            column;
+
+        gap:
+
+            25px;
+
     }
 
 
-    .quiz-card {
-        padding: 25px 15px;
-    }
+    header {
 
+        padding:
 
-    .back-to-top {
-        bottom: 15px;
-        right: 15px;
+            70px 20px
+            50px;
+
     }
 
 }
