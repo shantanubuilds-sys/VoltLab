@@ -24,75 +24,47 @@
 <body>
 
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+    <!-- NAVIGATION -->
 
     <nav class="navbar">
 
-        <a
-            href="#home"
-            class="nav-logo">
-
-            <span class="logo-icon">
-                ⚡
-            </span>
-
-            VoltLab
-
-        </a>
+        <div class="nav-logo">
+            ⚡ VoltLab
+        </div>
 
 
         <div class="nav-links">
 
-            <a
-                href="#home"
-                class="active">
-
+            <a href="#home" class="active">
                 Home
-
             </a>
-
 
             <a href="#ohms">
-
                 Ohm's Law
-
             </a>
-
 
             <a href="#series">
-
                 Series
-
             </a>
-
 
             <a href="#parallel">
-
                 Parallel
-
             </a>
-
 
             <a href="#power">
-
                 Power
-
             </a>
-
 
             <a href="#compare">
-
                 Compare
-
             </a>
 
+            <a href="#missions">
+                Missions
+            </a>
 
             <a href="#quiz">
-
                 Quiz
-
             </a>
 
         </div>
@@ -101,9 +73,7 @@
 
 
 
-    <!-- =========================
-         PROGRESS BAR
-    ========================== -->
+    <!-- PAGE PROGRESS -->
 
     <div class="progress-container">
 
@@ -117,106 +87,51 @@
 
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
+    <!-- HEADER -->
 
     <header id="home">
 
-
         <div class="hero-badge">
-
-            ⚡ Interactive Learning Lab
-
+            INTERACTIVE ELECTRICITY LAB
         </div>
 
-
         <h1>
-
-            Learn Electricity
-            <span>By Seeing It.</span>
-
+            ⚡ VoltLab
         </h1>
 
-
         <p>
-
-            Experiment with voltage, current and resistance.
-            Watch electrical concepts respond in real time.
-
+            Learn electricity by seeing it.
         </p>
 
 
-        <div class="hero-stats">
+        <!-- LEARNING PROGRESS -->
 
+        <div class="header-progress">
 
-            <div class="stat-card">
+            <div class="header-progress-top">
 
-                <span class="stat-icon">
-                    ⚡
+                <span>
+                    🎯 Learning Progress
                 </span>
 
-                <div>
-
-                    <strong>
-                        Interactive
-                    </strong>
-
-                    <small>
-                        Live calculations
-                    </small>
-
-                </div>
+                <span id="headerMissionProgress">
+                    0 / 4 Missions
+                </span>
 
             </div>
 
 
+            <div class="header-progress-track">
 
-            <div class="stat-card">
-
-                <span class="stat-icon">
-                    🔗
-                </span>
-
-                <div>
-
-                    <strong>
-                        Circuits
-                    </strong>
-
-                    <small>
-                        Series & Parallel
-                    </small>
+                <div
+                    class="header-progress-fill"
+                    id="headerMissionFill">
 
                 </div>
 
             </div>
-
-
-
-            <div class="stat-card">
-
-                <span class="stat-icon">
-                    🧠
-                </span>
-
-                <div>
-
-                    <strong>
-                        Learn
-                    </strong>
-
-                    <small>
-                        Test your knowledge
-                    </small>
-
-                </div>
-
-            </div>
-
 
         </div>
-
 
     </header>
 
@@ -225,126 +140,60 @@
     <main>
 
 
+        <!-- HERO -->
 
-        <!-- =========================
-             INTRO
-        ========================== -->
-
-        <section class="intro-section">
-
-
-            <div class="section-label">
-
-                VOLTLAB EXPERIENCE
-
-            </div>
-
+        <section class="hero">
 
             <h2>
-
                 Interactive Electricity Lab
-
             </h2>
 
-
             <p>
-
-                Change values, observe results and build an
-                intuitive understanding of how electricity behaves.
-
+                Experiment with electrical values and discover
+                how electricity behaves in real time.
             </p>
-
 
         </section>
 
 
 
-        <!-- =========================
-             OHM'S LAW
-        ========================== -->
+        <!-- OHM'S LAW -->
 
         <section
-            class="lab-section"
+            class="ohms-section"
             id="ohms">
 
-
-            <div class="section-heading">
-
-
-                <div>
-
-                    <div class="section-label">
-
-                        FUNDAMENTALS
-
-                    </div>
-
-
-                    <h2>
-
-                        ⚡ Ohm's Law Visualizer
-
-                    </h2>
-
-
-                    <p>
-
-                        Change voltage and resistance to see how
-                        current responds instantly.
-
-                    </p>
-
-                </div>
-
-
-                <div class="section-icon">
-
-                    Ω
-
-                </div>
-
-
+            <div class="section-label">
+                LAB 01
             </div>
 
+            <h2>
+                ⚡ Ohm's Law Visualizer
+            </h2>
+
+            <p class="section-description">
+                Change voltage and resistance to see how
+                current changes.
+            </p>
 
 
             <div class="lab-container">
 
 
-                <!-- CONTROLS -->
-
-                <div class="soft-card controls">
-
-
-                    <h3>
-
-                        Controls
-
-                    </h3>
-
+                <div class="controls">
 
 
                     <div class="control">
 
-
                         <label>
 
-                            <span>
-                                Voltage
+                            Voltage:
+
+                            <span id="voltageValue">
+                                12
                             </span>
 
-
-                            <strong>
-
-                                <span id="voltageValue">
-
-                                    12
-
-                                </span>
-
-                                V
-
-                            </strong>
+                            V
 
                         </label>
 
@@ -362,25 +211,15 @@
 
                     <div class="control">
 
-
                         <label>
 
-                            <span>
-                                Resistance
+                            Resistance:
+
+                            <span id="resistanceValue">
+                                6
                             </span>
 
-
-                            <strong>
-
-                                <span id="resistanceValue">
-
-                                    6
-
-                                </span>
-
-                                Ω
-
-                            </strong>
+                            Ω
 
                         </label>
 
@@ -399,16 +238,15 @@
 
 
 
-                <!-- RESULT -->
+                <div class="result">
 
-                <div class="soft-card result-card">
+                    <div class="result-label">
+                        LIVE RESULT
+                    </div>
 
-
-                    <span class="result-label">
-
-                        CALCULATED CURRENT
-
-                    </span>
+                    <h3>
+                        Current
+                    </h3>
 
 
                     <div class="current-value">
@@ -416,24 +254,17 @@
                         ⚡
 
                         <span id="currentValue">
-
                             2.00
-
                         </span>
 
-                        <small>
-                            A
-                        </small>
+                        A
 
                     </div>
 
 
-                    <div class="mini-formula">
-
-                        I = V ÷ R
-
-                    </div>
-
+                    <p>
+                        Formula: I = V ÷ R
+                    </p>
 
                 </div>
 
@@ -444,48 +275,18 @@
 
             <!-- LIVE CIRCUIT -->
 
-            <div class="circuit-panel">
+            <div class="live-circuit">
 
-
-                <div class="panel-title">
-
-                    <div>
-
-                        <span class="section-label">
-
-                            LIVE SIMULATION
-
-                        </span>
-
-
-                        <h3>
-
-                            Circuit Activity
-
-                        </h3>
-
-                    </div>
-
-
-                    <span
-                        id="circuitStatus"
-                        class="status-pill">
-
-                        Circuit running normally ⚡
-
-                    </span>
-
-                </div>
-
+                <h3>
+                    Live Circuit
+                </h3>
 
 
                 <div class="circuit">
 
 
-                    <div class="circuit-component battery">
-
+                    <div class="battery">
                         🔋
-
                     </div>
 
 
@@ -501,9 +302,7 @@
 
 
                     <div class="resistor">
-
                         R
-
                     </div>
 
 
@@ -517,7 +316,7 @@
 
 
                     <div
-                        class="circuit-component bulb"
+                        class="bulb"
                         id="bulb">
 
                         💡
@@ -532,128 +331,79 @@
                 <div class="circuit-info">
 
 
-                    <div class="info-chip">
+                    <p>
 
-                        <span>
-                            Voltage
+                        Voltage:
+
+                        <span id="circuitVoltage">
+                            12
                         </span>
 
-                        <strong>
+                        V
 
-                            <span id="circuitVoltage">
-
-                                12
-
-                            </span>
-
-                            V
-
-                        </strong>
-
-                    </div>
+                    </p>
 
 
+                    <p>
 
-                    <div class="info-chip">
+                        Resistance:
 
-                        <span>
-                            Resistance
+                        <span id="circuitResistance">
+                            6
                         </span>
 
-                        <strong>
+                        Ω
 
-                            <span id="circuitResistance">
-
-                                6
-
-                            </span>
-
-                            Ω
-
-                        </strong>
-
-                    </div>
+                    </p>
 
 
+                    <p>
 
-                    <div class="info-chip">
+                        Current:
 
-                        <span>
-                            Current
+                        <span id="circuitCurrent">
+                            2.00
                         </span>
 
-                        <strong>
+                        A
 
-                            <span id="circuitCurrent">
-
-                                2.00
-
-                            </span>
-
-                            A
-
-                        </strong>
-
-                    </div>
+                    </p>
 
 
                 </div>
+
+
+                <h3 id="circuitStatus">
+
+                    Circuit running normally ⚡
+
+                </h3>
 
 
             </div>
 
 
 
-            <!-- CONCEPT -->
-
             <div class="concept-box">
 
+                <h3>
+                    What is Ohm's Law?
+                </h3>
 
-                <div class="concept-icon">
+                <p>
+                    Ohm's Law describes the relationship between
+                    voltage, current and resistance.
+                </p>
 
-                    💡
 
+                <div class="formula-box">
+                    V = I × R
                 </div>
 
 
-                <div>
-
-                    <h3>
-
-                        What is Ohm's Law?
-
-                    </h3>
-
-
-                    <p>
-
-                        Ohm's Law describes the relationship
-                        between voltage, current and resistance.
-
-                    </p>
-
-
-                    <div class="formula-grid">
-
-
-                        <div class="formula-box">
-
-                            V = I × R
-
-                        </div>
-
-
-                        <div class="formula-box">
-
-                            I = V ÷ R
-
-                        </div>
-
-
-                    </div>
-
+                <div class="formula-box">
+                    I = V ÷ R
                 </div>
-
 
             </div>
 
@@ -662,73 +412,46 @@
 
 
 
-        <!-- =========================
-             SERIES CIRCUIT
-        ========================== -->
+        <!-- SERIES CIRCUIT -->
 
         <section
-            class="lab-section"
+            class="series-section"
             id="series">
 
 
-            <div class="section-heading">
-
-
-                <div>
-
-                    <div class="section-label">
-
-                        CIRCUIT EXPLORER
-
-                    </div>
-
-
-                    <h2>
-
-                        🔗 Series Circuit
-
-                    </h2>
-
-
-                    <p>
-
-                        Explore how voltage divides across
-                        resistors connected in series.
-
-                    </p>
-
-                </div>
-
-
-                <div class="section-icon">
-
-                    🔗
-
-                </div>
-
-
+            <div class="section-label">
+                LAB 02
             </div>
 
 
+            <h2>
+                🔗 Series Circuit Explorer
+            </h2>
 
-            <div class="control-grid">
+
+            <p class="section-description">
+
+                Explore how voltage divides across resistors
+                connected in series.
+
+            </p>
 
 
-                <div class="soft-card series-control">
+
+            <div class="series-controls">
+
+
+                <div class="series-control">
 
                     <label>
 
-                        Supply Voltage
+                        Supply Voltage:
 
-                        <strong>
+                        <span id="seriesVoltageValue">
+                            12
+                        </span>
 
-                            <span id="seriesVoltageValue">
-                                12
-                            </span>
-
-                            V
-
-                        </strong>
+                        V
 
                     </label>
 
@@ -744,21 +467,17 @@
 
 
 
-                <div class="soft-card series-control">
+                <div class="series-control">
 
                     <label>
 
-                        Resistor R1
+                        Resistor R1:
 
-                        <strong>
+                        <span id="r1Value">
+                            10
+                        </span>
 
-                            <span id="r1Value">
-                                10
-                            </span>
-
-                            Ω
-
-                        </strong>
+                        Ω
 
                     </label>
 
@@ -774,21 +493,17 @@
 
 
 
-                <div class="soft-card series-control">
+                <div class="series-control">
 
                     <label>
 
-                        Resistor R2
+                        Resistor R2:
 
-                        <strong>
+                        <span id="r2Value">
+                            20
+                        </span>
 
-                            <span id="r2Value">
-                                20
-                            </span>
-
-                            Ω
-
-                        </strong>
+                        Ω
 
                     </label>
 
@@ -804,21 +519,17 @@
 
 
 
-                <div class="soft-card series-control">
+                <div class="series-control">
 
                     <label>
 
-                        Resistor R3
+                        Resistor R3:
 
-                        <strong>
+                        <span id="r3Value">
+                            30
+                        </span>
 
-                            <span id="r3Value">
-                                30
-                            </span>
-
-                            Ω
-
-                        </strong>
+                        Ω
 
                     </label>
 
@@ -839,7 +550,9 @@
 
             <div class="series-diagram">
 
-                🔋
+                <div class="series-battery">
+                    🔋
+                </div>
 
                 <div class="series-line"></div>
 
@@ -863,50 +576,44 @@
 
 
 
-            <div class="result-grid">
+            <div class="series-results">
 
 
-                <div class="metric-card">
+                <div class="series-result-card">
 
-                    <span>
+                    <h3>
                         Total Resistance
-                    </span>
+                    </h3>
 
-
-                    <strong>
+                    <p>
 
                         <span id="totalResistance">
-
                             60
-
                         </span>
 
                         Ω
 
-                    </strong>
+                    </p>
 
                 </div>
 
 
 
-                <div class="metric-card">
+                <div class="series-result-card">
 
-                    <span>
+                    <h3>
                         Circuit Current
-                    </span>
+                    </h3>
 
-
-                    <strong>
+                    <p>
 
                         <span id="seriesCurrent">
-
                             0.20
-
                         </span>
 
                         A
 
-                    </strong>
+                    </p>
 
                 </div>
 
@@ -915,71 +622,74 @@
 
 
 
-            <h3 class="subheading">
+            <div class="voltage-drops">
 
-                Voltage Drop Across Each Resistor
-
-            </h3>
-
-
-            <div class="drop-container">
+                <h3>
+                    Voltage Drop Across Each Resistor
+                </h3>
 
 
-                <div class="drop-card">
-
-                    <span>
-                        R1
-                    </span>
-
-                    <strong>
-
-                        <span id="voltageDrop1">
-                            2.00
-                        </span>
-
-                        V
-
-                    </strong>
-
-                </div>
+                <div class="drop-container">
 
 
+                    <div class="drop-card">
 
-                <div class="drop-card">
+                        <h4>
+                            R1
+                        </h4>
 
-                    <span>
-                        R2
-                    </span>
+                        <p>
 
-                    <strong>
+                            <span id="voltageDrop1">
+                                2.00
+                            </span>
 
-                        <span id="voltageDrop2">
-                            4.00
-                        </span>
+                            V
 
-                        V
+                        </p>
 
-                    </strong>
-
-                </div>
+                    </div>
 
 
 
-                <div class="drop-card">
+                    <div class="drop-card">
 
-                    <span>
-                        R3
-                    </span>
+                        <h4>
+                            R2
+                        </h4>
 
-                    <strong>
+                        <p>
 
-                        <span id="voltageDrop3">
-                            6.00
-                        </span>
+                            <span id="voltageDrop2">
+                                4.00
+                            </span>
 
-                        V
+                            V
 
-                    </strong>
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="drop-card">
+
+                        <h4>
+                            R3
+                        </h4>
+
+                        <p>
+
+                            <span id="voltageDrop3">
+                                6.00
+                            </span>
+
+                            V
+
+                        </p>
+
+                    </div>
+
 
                 </div>
 
@@ -988,9 +698,21 @@
 
 
 
-            <div class="formula-box large-formula">
+            <div class="concept-box">
 
-                R Total = R1 + R2 + R3
+                <h3>
+                    Series Circuit Rule
+                </h3>
+
+                <p>
+                    The same current flows through every resistor.
+                    Voltage is divided between the resistors.
+                </p>
+
+
+                <div class="formula-box">
+                    R Total = R1 + R2 + R3
+                </div>
 
             </div>
 
@@ -999,73 +721,46 @@
 
 
 
-        <!-- =========================
-             PARALLEL CIRCUIT
-        ========================== -->
+        <!-- PARALLEL CIRCUIT -->
 
         <section
-            class="lab-section"
+            class="parallel-section"
             id="parallel">
 
 
-            <div class="section-heading">
-
-
-                <div>
-
-                    <div class="section-label">
-
-                        CIRCUIT EXPLORER
-
-                    </div>
-
-
-                    <h2>
-
-                        ⚡ Parallel Circuit
-
-                    </h2>
-
-
-                    <p>
-
-                        Explore how current divides between
-                        multiple branches.
-
-                    </p>
-
-                </div>
-
-
-                <div class="section-icon">
-
-                    ⫶
-
-                </div>
-
-
+            <div class="section-label">
+                LAB 03
             </div>
 
 
+            <h2>
+                ⚡ Parallel Circuit Explorer
+            </h2>
 
-            <div class="control-grid">
+
+            <p class="section-description">
+
+                Explore how current divides between multiple
+                branches while voltage remains the same.
+
+            </p>
 
 
-                <div class="soft-card parallel-control">
+
+            <div class="parallel-controls">
+
+
+                <div class="parallel-control">
 
                     <label>
 
-                        Supply Voltage
+                        Supply Voltage:
 
-                        <strong>
+                        <span id="parallelVoltageValue">
+                            12
+                        </span>
 
-                            <span id="parallelVoltageValue">
-                                12
-                            </span>
-
-                            V
-
-                        </strong>
+                        V
 
                     </label>
 
@@ -1081,21 +776,17 @@
 
 
 
-                <div class="soft-card parallel-control">
+                <div class="parallel-control">
 
                     <label>
 
-                        Resistor R1
+                        Resistor R1:
 
-                        <strong>
+                        <span id="parallelR1Value">
+                            10
+                        </span>
 
-                            <span id="parallelR1Value">
-                                10
-                            </span>
-
-                            Ω
-
-                        </strong>
+                        Ω
 
                     </label>
 
@@ -1111,21 +802,17 @@
 
 
 
-                <div class="soft-card parallel-control">
+                <div class="parallel-control">
 
                     <label>
 
-                        Resistor R2
+                        Resistor R2:
 
-                        <strong>
+                        <span id="parallelR2Value">
+                            20
+                        </span>
 
-                            <span id="parallelR2Value">
-                                20
-                            </span>
-
-                            Ω
-
-                        </strong>
+                        Ω
 
                     </label>
 
@@ -1141,21 +828,17 @@
 
 
 
-                <div class="soft-card parallel-control">
+                <div class="parallel-control">
 
                     <label>
 
-                        Resistor R3
+                        Resistor R3:
 
-                        <strong>
+                        <span id="parallelR3Value">
+                            30
+                        </span>
 
-                            <span id="parallelR3Value">
-                                30
-                            </span>
-
-                            Ω
-
-                        </strong>
+                        Ω
 
                     </label>
 
@@ -1178,9 +861,7 @@
 
 
                 <div class="parallel-battery">
-
                     🔋
-
                 </div>
 
 
@@ -1205,50 +886,44 @@
 
 
 
-            <div class="result-grid">
+            <div class="parallel-results">
 
 
-                <div class="metric-card">
+                <div class="parallel-result-card">
 
-                    <span>
+                    <h3>
                         Equivalent Resistance
-                    </span>
+                    </h3>
 
-
-                    <strong>
+                    <p>
 
                         <span id="parallelTotalResistance">
-
                             5.45
-
                         </span>
 
                         Ω
 
-                    </strong>
+                    </p>
 
                 </div>
 
 
 
-                <div class="metric-card">
+                <div class="parallel-result-card">
 
-                    <span>
+                    <h3>
                         Total Current
-                    </span>
+                    </h3>
 
-
-                    <strong>
+                    <p>
 
                         <span id="parallelTotalCurrent">
-
                             2.20
-
                         </span>
 
                         A
 
-                    </strong>
+                    </p>
 
                 </div>
 
@@ -1257,71 +932,74 @@
 
 
 
-            <h3 class="subheading">
+            <div class="branch-currents">
 
-                Current Through Each Branch
-
-            </h3>
-
-
-            <div class="branch-container">
+                <h3>
+                    Current Through Each Branch
+                </h3>
 
 
-                <div class="branch-card">
-
-                    <span>
-                        Branch R1
-                    </span>
-
-                    <strong>
-
-                        <span id="branchCurrent1">
-                            1.20
-                        </span>
-
-                        A
-
-                    </strong>
-
-                </div>
+                <div class="branch-container">
 
 
+                    <div class="branch-card">
 
-                <div class="branch-card">
+                        <h4>
+                            Branch R1
+                        </h4>
 
-                    <span>
-                        Branch R2
-                    </span>
+                        <p>
 
-                    <strong>
+                            <span id="branchCurrent1">
+                                1.20
+                            </span>
 
-                        <span id="branchCurrent2">
-                            0.60
-                        </span>
+                            A
 
-                        A
+                        </p>
 
-                    </strong>
-
-                </div>
+                    </div>
 
 
 
-                <div class="branch-card">
+                    <div class="branch-card">
 
-                    <span>
-                        Branch R3
-                    </span>
+                        <h4>
+                            Branch R2
+                        </h4>
 
-                    <strong>
+                        <p>
 
-                        <span id="branchCurrent3">
-                            0.40
-                        </span>
+                            <span id="branchCurrent2">
+                                0.60
+                            </span>
 
-                        A
+                            A
 
-                    </strong>
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="branch-card">
+
+                        <h4>
+                            Branch R3
+                        </h4>
+
+                        <p>
+
+                            <span id="branchCurrent3">
+                                0.40
+                            </span>
+
+                            A
+
+                        </p>
+
+                    </div>
+
 
                 </div>
 
@@ -1330,10 +1008,24 @@
 
 
 
-            <div class="formula-box large-formula">
+            <div class="concept-box">
 
-                1 / R Total =
-                1 / R1 + 1 / R2 + 1 / R3
+                <h3>
+                    Parallel Circuit Rule
+                </h3>
+
+                <p>
+                    Every branch receives the same voltage.
+                    Current divides between branches.
+                </p>
+
+
+                <div class="formula-box">
+
+                    1 / R Total =
+                    1 / R1 + 1 / R2 + 1 / R3
+
+                </div>
 
             </div>
 
@@ -1342,73 +1034,46 @@
 
 
 
-        <!-- =========================
-             POWER LAB
-        ========================== -->
+        <!-- POWER LAB -->
 
         <section
-            class="lab-section"
+            class="power-section"
             id="power">
 
 
-            <div class="section-heading">
-
-
-                <div>
-
-                    <div class="section-label">
-
-                        ENERGY LAB
-
-                    </div>
-
-
-                    <h2>
-
-                        ⚡ Power & Energy
-
-                    </h2>
-
-
-                    <p>
-
-                        Discover how voltage, current and time
-                        determine electrical energy consumption.
-
-                    </p>
-
-                </div>
-
-
-                <div class="section-icon">
-
-                    ⚙
-
-                </div>
-
-
+            <div class="section-label">
+                LAB 04
             </div>
+
+
+            <h2>
+                ⚡ Power & Energy Lab
+            </h2>
+
+
+            <p class="section-description">
+
+                Discover how voltage, current and time determine
+                electrical power and energy consumption.
+
+            </p>
 
 
 
             <div class="power-controls">
 
 
-                <div class="soft-card power-control">
+                <div class="power-control">
 
                     <label>
 
-                        Voltage
+                        Voltage:
 
-                        <strong>
+                        <span id="powerVoltageValue">
+                            230
+                        </span>
 
-                            <span id="powerVoltageValue">
-                                230
-                            </span>
-
-                            V
-
-                        </strong>
+                        V
 
                     </label>
 
@@ -1424,21 +1089,17 @@
 
 
 
-                <div class="soft-card power-control">
+                <div class="power-control">
 
                     <label>
 
-                        Current
+                        Current:
 
-                        <strong>
+                        <span id="powerCurrentValue">
+                            2
+                        </span>
 
-                            <span id="powerCurrentValue">
-                                2
-                            </span>
-
-                            A
-
-                        </strong>
+                        A
 
                     </label>
 
@@ -1455,21 +1116,17 @@
 
 
 
-                <div class="soft-card power-control">
+                <div class="power-control">
 
                     <label>
 
-                        Usage Time
+                        Usage Time:
 
-                        <strong>
+                        <span id="usageTimeValue">
+                            5
+                        </span>
 
-                            <span id="usageTimeValue">
-                                5
-                            </span>
-
-                            Hours
-
-                        </strong>
+                        Hours
 
                     </label>
 
@@ -1490,26 +1147,9 @@
 
             <div class="power-meter-container">
 
-
-                <div class="panel-title">
-
-                    <h3>
-
-                        Live Power Meter
-
-                    </h3>
-
-
-                    <span
-                        class="status-pill"
-                        id="powerStatus">
-
-                        Medium Power ⚡
-
-                    </span>
-
-                </div>
-
+                <h3>
+                    Live Power Meter
+                </h3>
 
 
                 <div class="power-meter">
@@ -1523,6 +1163,14 @@
                 </div>
 
 
+                <p
+                    class="power-status"
+                    id="powerStatus">
+
+                    Medium Power ⚡
+
+                </p>
+
             </div>
 
 
@@ -1530,13 +1178,13 @@
             <div class="power-results">
 
 
-                <div class="metric-card">
+                <div class="power-result-card">
 
-                    <span>
+                    <h3>
                         Electrical Power
-                    </span>
+                    </h3>
 
-                    <strong>
+                    <p>
 
                         <span id="powerResult">
                             460
@@ -1544,19 +1192,19 @@
 
                         W
 
-                    </strong>
+                    </p>
 
                 </div>
 
 
 
-                <div class="metric-card">
+                <div class="power-result-card">
 
-                    <span>
+                    <h3>
                         Energy Used
-                    </span>
+                    </h3>
 
-                    <strong>
+                    <p>
 
                         <span id="energyWh">
                             2300
@@ -1564,19 +1212,19 @@
 
                         Wh
 
-                    </strong>
+                    </p>
 
                 </div>
 
 
 
-                <div class="metric-card">
+                <div class="power-result-card">
 
-                    <span>
+                    <h3>
                         Energy in kWh
-                    </span>
+                    </h3>
 
-                    <strong>
+                    <p>
 
                         <span id="energyKwh">
                             2.30
@@ -1584,7 +1232,7 @@
 
                         kWh
 
-                    </strong>
+                    </p>
 
                 </div>
 
@@ -1595,52 +1243,47 @@
 
             <div class="energy-insight">
 
-                <span>
+                <h3>
+                    🔍 What does this mean?
+                </h3>
 
-                    🔍
+                <p id="energyInsight">
 
-                </span>
+                    Your circuit is consuming energy at a moderate
+                    rate.
 
-
-                <div>
-
-                    <h3>
-
-                        What does this mean?
-
-                    </h3>
-
-
-                    <p id="energyInsight">
-
-                        Your circuit is consuming energy
-                        at a moderate rate.
-
-                    </p>
-
-                </div>
-
+                </p>
 
             </div>
 
 
 
-            <div class="formula-grid">
+            <div class="concept-box">
+
+                <h3>
+                    Electrical Power Formula
+                </h3>
 
 
                 <div class="formula-box">
-
                     P = V × I
+                </div>
 
+
+                <p>
+                    Power tells us how quickly electrical energy
+                    is being used.
+                </p>
+
+
+                <div class="formula-box">
+                    Energy = Power × Time
                 </div>
 
 
                 <div class="formula-box">
-
-                    Energy = Power × Time
-
+                    kWh = Watts × Hours ÷ 1000
                 </div>
-
 
             </div>
 
@@ -1649,39 +1292,21 @@
 
 
 
-        <!-- =========================
-             COMPARISON
-        ========================== -->
+        <!-- COMPARISON -->
 
         <section
-            class="lab-section"
+            class="comparison-section"
             id="compare">
 
 
-            <div class="section-heading">
-
-
-                <div>
-
-                    <div class="section-label">
-
-                        COMPARE
-
-                    </div>
-
-
-                    <h2>
-
-                        🔬 Series vs Parallel
-
-                    </h2>
-
-
-                </div>
-
-
+            <div class="section-label">
+                CONCEPT
             </div>
 
+
+            <h2>
+                🔬 Series vs Parallel
+            </h2>
 
 
             <div class="comparison-grid">
@@ -1689,41 +1314,21 @@
 
                 <div class="comparison-card">
 
-                    <div class="comparison-icon">
-
-                        🔗
-
-                    </div>
-
-
                     <h3>
-
-                        Series
-
+                        🔗 Series
                     </h3>
 
-
                     <p>
-
-                        Same current flows through every
-                        component.
-
+                        Same current through every component.
                     </p>
 
-
                     <p>
-
                         Voltage divides across resistors.
-
                     </p>
-
 
                     <p>
-
                         One path for current.
-
                     </p>
-
 
                 </div>
 
@@ -1731,40 +1336,21 @@
 
                 <div class="comparison-card">
 
-                    <div class="comparison-icon">
-
-                        ⚡
-
-                    </div>
-
-
                     <h3>
-
-                        Parallel
-
+                        ⚡ Parallel
                     </h3>
 
-
                     <p>
-
                         Same voltage across every branch.
-
                     </p>
 
-
                     <p>
-
                         Current divides between branches.
-
                     </p>
-
 
                     <p>
-
                         Multiple paths for current.
-
                     </p>
-
 
                 </div>
 
@@ -1776,45 +1362,404 @@
 
 
 
-        <!-- =========================
-             QUIZ
-        ========================== -->
+        <!-- DAY 9 MISSIONS -->
 
         <section
-            class="lab-section"
-            id="quiz">
+            class="missions-section"
+            id="missions">
 
 
-            <div class="section-heading">
+            <div class="section-label">
+                DAY 09
+            </div>
 
 
-                <div>
+            <h2>
+                🎯 Engineering Missions
+            </h2>
 
-                    <div class="section-label">
 
-                        KNOWLEDGE CHECK
+            <p class="section-description">
+
+                Stop just watching the numbers change.
+                Complete challenges by configuring the labs
+                correctly.
+
+            </p>
+
+
+
+            <div class="mission-progress-card">
+
+
+                <div class="mission-progress-header">
+
+                    <div>
+
+                        <h3>
+                            Your Mission Progress
+                        </h3>
+
+                        <p>
+                            Complete all four engineering challenges.
+                        </p>
 
                     </div>
 
 
-                    <h2>
+                    <div
+                        class="mission-count"
+                        id="missionCount">
 
-                        🧠 VoltLab Challenge
+                        0 / 4
 
-                    </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="mission-progress-track">
+
+                    <div
+                        class="mission-progress-fill"
+                        id="missionProgressFill">
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    class="mission-progress-message"
+                    id="missionProgressMessage">
+
+                    Your engineering journey starts now ⚡
+
+                </p>
+
+            </div>
+
+
+
+            <div class="mission-grid">
+
+
+                <!-- MISSION 1 -->
+
+                <div
+                    class="mission-card"
+                    id="missionCardOhm">
+
+
+                    <div class="mission-card-top">
+
+                        <span class="mission-number">
+                            01
+                        </span>
+
+                        <span
+                            class="mission-status"
+                            id="missionStatusOhm">
+
+                            🔒 In Progress
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="mission-icon">
+                        ⚡
+                    </div>
+
+
+                    <h3>
+                        Current Controller
+                    </h3>
 
 
                     <p>
-
-                        Test your understanding of electricity.
-
+                        Adjust the Ohm's Law controls until
+                        the circuit current reaches:
                     </p>
+
+
+                    <div class="mission-target">
+                        🎯 Target: 3.00 A
+                    </div>
+
+
+                    <p class="mission-hint">
+                        Hint: Try finding a voltage and resistance
+                        combination where V ÷ R = 3.
+                    </p>
+
+
+                    <div
+                        class="mission-complete-message"
+                        id="missionCompleteOhm">
+
+                        ✅ Mission Complete!
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- MISSION 2 -->
+
+                <div
+                    class="mission-card"
+                    id="missionCardSeries">
+
+
+                    <div class="mission-card-top">
+
+                        <span class="mission-number">
+                            02
+                        </span>
+
+                        <span
+                            class="mission-status"
+                            id="missionStatusSeries">
+
+                            🔒 In Progress
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="mission-icon">
+                        🔗
+                    </div>
+
+
+                    <h3>
+                        Resistance Builder
+                    </h3>
+
+
+                    <p>
+                        Configure the three resistors in the
+                        series circuit so their total becomes:
+                    </p>
+
+
+                    <div class="mission-target">
+                        🎯 Target: 75 Ω
+                    </div>
+
+
+                    <p class="mission-hint">
+                        Hint: In series, resistance adds together.
+                    </p>
+
+
+                    <div
+                        class="mission-complete-message"
+                        id="missionCompleteSeries">
+
+                        ✅ Mission Complete!
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- MISSION 3 -->
+
+                <div
+                    class="mission-card"
+                    id="missionCardParallel">
+
+
+                    <div class="mission-card-top">
+
+                        <span class="mission-number">
+                            03
+                        </span>
+
+                        <span
+                            class="mission-status"
+                            id="missionStatusParallel">
+
+                            🔒 In Progress
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="mission-icon">
+                        🌐
+                    </div>
+
+
+                    <h3>
+                        Branch Manager
+                    </h3>
+
+
+                    <p>
+                        Adjust the parallel circuit until the
+                        equivalent resistance reaches:
+                    </p>
+
+
+                    <div class="mission-target">
+                        🎯 Target: 5.00 Ω ± 0.05
+                    </div>
+
+
+                    <p class="mission-hint">
+                        Hint: Parallel resistance is always lower
+                        than the smallest branch resistance.
+                    </p>
+
+
+                    <div
+                        class="mission-complete-message"
+                        id="missionCompleteParallel">
+
+                        ✅ Mission Complete!
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- MISSION 4 -->
+
+                <div
+                    class="mission-card"
+                    id="missionCardPower">
+
+
+                    <div class="mission-card-top">
+
+                        <span class="mission-number">
+                            04
+                        </span>
+
+                        <span
+                            class="mission-status"
+                            id="missionStatusPower">
+
+                            🔒 In Progress
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="mission-icon">
+                        🔋
+                    </div>
+
+
+                    <h3>
+                        Power Engineer
+                    </h3>
+
+
+                    <p>
+                        Configure voltage and current to generate:
+                    </p>
+
+
+                    <div class="mission-target">
+                        🎯 Target: 1000 W
+                    </div>
+
+
+                    <p class="mission-hint">
+                        Hint: Use the formula P = V × I.
+                    </p>
+
+
+                    <div
+                        class="mission-complete-message"
+                        id="missionCompletePower">
+
+                        ✅ Mission Complete!
+
+                    </div>
+
 
                 </div>
 
 
             </div>
 
+
+
+            <!-- FINAL ACHIEVEMENT -->
+
+            <div
+                class="all-missions-complete"
+                id="allMissionsComplete">
+
+
+                <div class="achievement-icon">
+                    🏆
+                </div>
+
+
+                <h3>
+                    All Missions Complete!
+                </h3>
+
+
+                <p>
+                    You've successfully completed every VoltLab
+                    engineering challenge.
+                </p>
+
+
+                <button
+                    id="resetMissions"
+                    class="reset-missions-btn">
+
+                    🔄 Reset Missions
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- QUIZ -->
+
+        <section
+            class="quiz-section"
+            id="quiz">
+
+
+            <div class="section-label">
+                CHALLENGE
+            </div>
+
+
+            <h2>
+                🧠 VoltLab Challenge
+            </h2>
+
+
+            <p class="section-description">
+                Test what you learned and see how strong your
+                electricity fundamentals are.
+            </p>
 
 
             <div class="quiz-container">
@@ -1829,7 +1774,6 @@
                 </div>
 
 
-
                 <div class="quiz-progress-track">
 
                     <div
@@ -1839,7 +1783,6 @@
                     </div>
 
                 </div>
-
 
 
                 <div
@@ -1854,7 +1797,6 @@
                     </div>
 
 
-
                     <div
                         class="quiz-options"
                         id="quizOptions">
@@ -1862,13 +1804,11 @@
                     </div>
 
 
-
                     <div
                         class="quiz-feedback"
                         id="quizFeedback">
 
                     </div>
-
 
 
                     <button
@@ -1884,23 +1824,18 @@
                 </div>
 
 
-
                 <div
                     class="quiz-result"
                     id="quizResult">
 
 
                     <div class="result-icon">
-
                         ⚡
-
                     </div>
 
 
                     <h3>
-
                         Challenge Complete!
-
                     </h3>
 
 
@@ -1953,27 +1888,19 @@
 
 
 
-    <!-- FOOTER -->
-
     <footer>
 
         <p>
+            Built by Shantanu ⚡ | VoltLab v0.9
+        </p>
 
-            Built by Shantanu ⚡
-
-            <span>
-
-                VoltLab v0.8
-
-            </span>
-
+        <p class="footer-small">
+            Learn • Experiment • Build
         </p>
 
     </footer>
 
 
-
-    <!-- BACK TO TOP -->
 
     <button
         id="backToTop"
