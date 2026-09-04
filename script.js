@@ -1,12 +1,42 @@
 /* =====================================================
-   VOLTLAB v0.8
-   INTERACTIVE ELECTRICITY ENGINE
+   VOLTLAB v0.9
+   INTERACTIVE ELECTRICITY LEARNING
 ===================================================== */
 
 
-/* =========================
+/* =====================================================
+   MISSION STORAGE
+===================================================== */
+
+let completedMissions =
+    JSON.parse(
+        localStorage.getItem(
+            "voltLabMissions"
+        )
+    ) || {
+
+        ohm: false,
+        series: false,
+        parallel: false,
+        power: false
+
+    };
+
+
+function saveMissionProgress() {
+
+    localStorage.setItem(
+        "voltLabMissions",
+        JSON.stringify(completedMissions)
+    );
+
+}
+
+
+
+/* =====================================================
    OHM'S LAW
-========================= */
+===================================================== */
 
 const voltageSlider =
     document.getElementById("voltage");
@@ -100,12 +130,14 @@ function calculateCurrent() {
     }
 
 
-    electrons.forEach(function (electron) {
+    electrons.forEach(
+        function (electron) {
 
-        electron.style.animationDuration =
-            `${speed}s`;
+            electron.style.animationDuration =
+                `${speed}s`;
 
-    });
+        }
+    );
 
 
     if (current < 0.5) {
@@ -136,6 +168,9 @@ function calculateCurrent() {
 
     }
 
+
+    checkOhmMission(current);
+
 }
 
 
@@ -144,19 +179,17 @@ voltageSlider.addEventListener(
     calculateCurrent
 );
 
+
 resistanceSlider.addEventListener(
     "input",
     calculateCurrent
 );
 
 
-calculateCurrent();
 
-
-
-/* =========================
+/* =====================================================
    SERIES CIRCUIT
-========================= */
+===================================================== */
 
 const seriesVoltage =
     document.getElementById("seriesVoltage");
@@ -258,16 +291,16 @@ function calculateSeriesCircuit() {
 
 
     voltageDrop1.textContent =
-        (current * resistor1)
-            .toFixed(2);
+        (current * resistor1).toFixed(2);
 
     voltageDrop2.textContent =
-        (current * resistor2)
-            .toFixed(2);
+        (current * resistor2).toFixed(2);
 
     voltageDrop3.textContent =
-        (current * resistor3)
-            .toFixed(2);
+        (current * resistor3).toFixed(2);
+
+
+    checkSeriesMission(total);
 
 }
 
@@ -293,13 +326,10 @@ r3.addEventListener(
 );
 
 
-calculateSeriesCircuit();
 
-
-
-/* =========================
+/* =====================================================
    PARALLEL CIRCUIT
-========================= */
+===================================================== */
 
 const parallelVoltage =
     document.getElementById(
@@ -439,6 +469,11 @@ function calculateParallelCircuit() {
     branchCurrent3.textContent =
         current3.toFixed(2);
 
+
+    checkParallelMission(
+        equivalentResistance
+    );
+
 }
 
 
@@ -463,13 +498,10 @@ parallelR3.addEventListener(
 );
 
 
-calculateParallelCircuit();
 
-
-
-/* =========================
-   POWER & ENERGY
-========================= */
+/* =====================================================
+   POWER & ENERGY LAB
+===================================================== */
 
 const powerVoltage =
     document.getElementById(
@@ -632,6 +664,9 @@ function calculatePower() {
 
     }
 
+
+    checkPowerMission(power);
+
 }
 
 
@@ -651,13 +686,403 @@ usageTime.addEventListener(
 );
 
 
-calculatePower();
+
+/* =====================================================
+   DAY 9 MISSION SYSTEM
+===================================================== */
+
+const missionCount =
+    document.getElementById(
+        "missionCount"
+    );
+
+const missionProgressFill =
+    document.getElementById(
+        "missionProgressFill"
+    );
+
+const missionProgressMessage =
+    document.getElementById(
+        "missionProgressMessage"
+    );
+
+const headerMissionProgress =
+    document.getElementById(
+        "headerMissionProgress"
+    );
+
+const headerMissionFill =
+    document.getElementById(
+        "headerMissionFill"
+    );
+
+const allMissionsComplete =
+    document.getElementById(
+        "allMissionsComplete"
+    );
+
+
+function completeMission(
+    missionName
+) {
+
+    if (
+        completedMissions[
+            missionName
+        ]
+    ) {
+
+        return;
+
+    }
+
+
+    completedMissions[
+        missionName
+    ] = true;
+
+
+    saveMissionProgress();
+
+    updateMissionUI();
+
+}
+
+
+function checkOhmMission(
+    current
+) {
+
+    if (
+        Math.abs(
+            current - 3
+        ) < 0.01
+    ) {
+
+        completeMission(
+            "ohm"
+        );
+
+    }
+
+}
+
+
+function checkSeriesMission(
+    total
+) {
+
+    if (total === 75) {
+
+        completeMission(
+            "series"
+        );
+
+    }
+
+}
+
+
+function checkParallelMission(
+    equivalentResistance
+) {
+
+    if (
+        Math.abs(
+            equivalentResistance - 5
+        ) <= 0.05
+    ) {
+
+        completeMission(
+            "parallel"
+        );
+
+    }
+
+}
+
+
+function checkPowerMission(
+    power
+) {
+
+    if (
+        Math.abs(
+            power - 1000
+        ) < 0.01
+    ) {
+
+        completeMission(
+            "power"
+        );
+
+    }
+
+}
+
+
+function updateMissionUI() {
+
+    const missionNames = [
+
+        "ohm",
+        "series",
+        "parallel",
+        "power"
+
+    ];
+
+
+    const missionElements = {
+
+        ohm: {
+
+            card:
+                document.getElementById(
+                    "missionCardOhm"
+                ),
+
+            status:
+                document.getElementById(
+                    "missionStatusOhm"
+                ),
+
+            complete:
+                document.getElementById(
+                    "missionCompleteOhm"
+                )
+
+        },
+
+
+        series: {
+
+            card:
+                document.getElementById(
+                    "missionCardSeries"
+                ),
+
+            status:
+                document.getElementById(
+                    "missionStatusSeries"
+                ),
+
+            complete:
+                document.getElementById(
+                    "missionCompleteSeries"
+                )
+
+        },
+
+
+        parallel: {
+
+            card:
+                document.getElementById(
+                    "missionCardParallel"
+                ),
+
+            status:
+                document.getElementById(
+                    "missionStatusParallel"
+                ),
+
+            complete:
+                document.getElementById(
+                    "missionCompleteParallel"
+                )
+
+        },
+
+
+        power: {
+
+            card:
+                document.getElementById(
+                    "missionCardPower"
+                ),
+
+            status:
+                document.getElementById(
+                    "missionStatusPower"
+                ),
+
+            complete:
+                document.getElementById(
+                    "missionCompletePower"
+                )
+
+        }
+
+    };
+
+
+    let completedCount =
+        0;
+
+
+    missionNames.forEach(
+        function (mission) {
+
+            if (
+                completedMissions[
+                    mission
+                ]
+            ) {
+
+                completedCount++;
+
+
+                missionElements[
+                    mission
+                ].card.classList.add(
+                    "completed"
+                );
+
+
+                missionElements[
+                    mission
+                ].status.textContent =
+                    "✅ Complete";
+
+
+                missionElements[
+                    mission
+                ].complete.classList.add(
+                    "show"
+                );
+
+            }
+
+            else {
+
+                missionElements[
+                    mission
+                ].card.classList.remove(
+                    "completed"
+                );
+
+
+                missionElements[
+                    mission
+                ].status.textContent =
+                    "🔒 In Progress";
+
+
+                missionElements[
+                    mission
+                ].complete.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+
+    const percentage =
+        (completedCount /
+            missionNames.length) * 100;
+
+
+    missionCount.textContent =
+        `${completedCount} / ${missionNames.length}`;
+
+
+    missionProgressFill.style.width =
+        percentage + "%";
+
+
+    headerMissionProgress.textContent =
+        `${completedCount} / ${missionNames.length} Missions`;
+
+
+    headerMissionFill.style.width =
+        percentage + "%";
+
+
+    if (completedCount === 0) {
+
+        missionProgressMessage.textContent =
+            "Your engineering journey starts now ⚡";
+
+    }
+
+    else if (
+        completedCount <
+        missionNames.length
+    ) {
+
+        missionProgressMessage.textContent =
+            `${completedCount} mission${completedCount > 1 ? "s" : ""} complete. Keep experimenting ⚡`;
+
+    }
+
+    else {
+
+        missionProgressMessage.textContent =
+            "Every engineering mission completed. VoltLab Master unlocked 🏆";
+
+
+        allMissionsComplete.classList.add(
+            "show"
+        );
+
+    }
+
+
+    if (
+        completedCount <
+        missionNames.length
+    ) {
+
+        allMissionsComplete.classList.remove(
+            "show"
+        );
+
+    }
+
+}
 
 
 
-/* =========================
+/* RESET MISSIONS */
+
+const resetMissions =
+    document.getElementById(
+        "resetMissions"
+    );
+
+
+resetMissions.addEventListener(
+    "click",
+
+    function () {
+
+        completedMissions = {
+
+            ohm: false,
+            series: false,
+            parallel: false,
+            power: false
+
+        };
+
+
+        saveMissionProgress();
+
+        updateMissionUI();
+
+    }
+
+);
+
+
+
+/* =====================================================
    QUIZ SYSTEM
-========================= */
+===================================================== */
 
 const quizQuestions = [
 
@@ -667,12 +1092,10 @@ const quizQuestions = [
             "According to Ohm's Law, what is the current when voltage is 12 V and resistance is 6 Ω?",
 
         options: [
-
             "0.5 A",
             "2 A",
             "6 A",
             "72 A"
-
         ],
 
         answer: 1,
@@ -689,18 +1112,16 @@ const quizQuestions = [
             "What remains the same through every component in a series circuit?",
 
         options: [
-
             "Voltage",
             "Resistance",
             "Current",
             "Power"
-
         ],
 
         answer: 2,
 
         explanation:
-            "A series circuit has one path, so the same current flows through every component."
+            "A series circuit has only one path, so the same current flows through every component."
 
     },
 
@@ -711,18 +1132,16 @@ const quizQuestions = [
             "What remains the same across every branch in a parallel circuit?",
 
         options: [
-
             "Current",
             "Voltage",
             "Resistance",
             "Power"
-
         ],
 
         answer: 1,
 
         explanation:
-            "Each branch is connected across the same supply, so every branch receives the same voltage."
+            "Each branch is connected across the same supply voltage."
 
     },
 
@@ -733,12 +1152,10 @@ const quizQuestions = [
             "What is the electrical power when voltage is 10 V and current is 2 A?",
 
         options: [
-
             "5 W",
             "8 W",
             "12 W",
             "20 W"
-
         ],
 
         answer: 3,
@@ -755,18 +1172,16 @@ const quizQuestions = [
             "Which statement about a parallel circuit is correct?",
 
         options: [
-
             "It has only one path for current.",
             "The same current flows through every branch.",
             "Current divides between branches.",
             "Voltage divides equally across all branches."
-
         ],
 
         answer: 2,
 
         explanation:
-            "A parallel circuit has multiple paths, so current divides between branches."
+            "A parallel circuit has multiple paths, so current divides between the branches."
 
     }
 
@@ -849,18 +1264,23 @@ function loadQuestion() {
     questionAnswered =
         false;
 
+
     quizNextButton.disabled =
         true;
 
+
     quizFeedback.className =
         "quiz-feedback";
+
 
     quizFeedback.textContent =
         "";
 
 
     const currentQuestion =
-        quizQuestions[currentQuestionIndex];
+        quizQuestions[
+            currentQuestionIndex
+        ];
 
 
     quizQuestion.textContent =
@@ -908,7 +1328,6 @@ function loadQuestion() {
             );
 
         }
-
     );
 
 
@@ -962,7 +1381,9 @@ function checkAnswer(
 
 
     const currentQuestion =
-        quizQuestions[currentQuestionIndex];
+        quizQuestions[
+            currentQuestionIndex
+        ];
 
 
     const optionButtons =
@@ -973,6 +1394,11 @@ function checkAnswer(
 
     optionButtons.forEach(
         function (button, index) {
+
+            button.classList.add(
+                "disabled"
+            );
+
 
             button.disabled =
                 true;
@@ -990,7 +1416,6 @@ function checkAnswer(
             }
 
         }
-
     );
 
 
@@ -1063,8 +1488,9 @@ function showQuizResult() {
         performanceTitle.textContent =
             "⚡ Electrical Master";
 
+
         performanceMessage.textContent =
-            "Perfect score. Your understanding of VoltLab concepts is strong.";
+            "Perfect score. Your understanding of VoltLab's concepts is strong.";
 
     }
 
@@ -1073,8 +1499,9 @@ function showQuizResult() {
         performanceTitle.textContent =
             "🔋 Circuit Explorer";
 
+
         performanceMessage.textContent =
-            "Strong performance. You understand most of the core electricity concepts.";
+            "Strong performance. You understand most core concepts.";
 
     }
 
@@ -1083,8 +1510,9 @@ function showQuizResult() {
         performanceTitle.textContent =
             "⚙️ Voltage Learner";
 
+
         performanceMessage.textContent =
-            "You have a solid foundation, but revisiting a few concepts will make it stronger.";
+            "You have a foundation. Revisiting a few concepts will strengthen it.";
 
     }
 
@@ -1093,8 +1521,9 @@ function showQuizResult() {
         performanceTitle.textContent =
             "🧠 Future Engineer";
 
+
         performanceMessage.textContent =
-            "The foundation is still being built. Explore the labs again and take the challenge once more.";
+            "Explore the interactive labs again and try the challenge once more.";
 
     }
 
@@ -1160,13 +1589,10 @@ restartQuiz.addEventListener(
 );
 
 
-loadQuestion();
 
-
-
-/* =========================
-   NAVIGATION
-========================= */
+/* =====================================================
+   NAVIGATION + SCROLL
+===================================================== */
 
 const progressBar =
     document.getElementById(
@@ -1185,7 +1611,7 @@ const navigationLinks =
 
 const sections =
     document.querySelectorAll(
-        "#home, #ohms, #series, #parallel, #power, #compare, #quiz"
+        "#home, #ohms, #series, #parallel, #power, #compare, #missions, #quiz"
     );
 
 
@@ -1205,8 +1631,7 @@ window.addEventListener(
 
         const progress =
             documentHeight > 0
-                ? (scrollTop /
-                    documentHeight) * 100
+                ? (scrollTop / documentHeight) * 100
                 : 0;
 
 
@@ -1239,8 +1664,7 @@ window.addEventListener(
             function (section) {
 
                 const sectionTop =
-                    section.offsetTop -
-                    150;
+                    section.offsetTop - 150;
 
 
                 if (
@@ -1256,7 +1680,6 @@ window.addEventListener(
                 }
 
             }
-
         );
 
 
@@ -1269,7 +1692,9 @@ window.addEventListener(
 
 
                 if (
-                    link.getAttribute("href") ===
+                    link.getAttribute(
+                        "href"
+                    ) ===
                     "#" + currentSection
                 ) {
 
@@ -1280,7 +1705,6 @@ window.addEventListener(
                 }
 
             }
-
         );
 
     }
@@ -1304,3 +1728,21 @@ backToTop.addEventListener(
     }
 
 );
+
+
+
+/* =====================================================
+   INITIALIZE VOLTLAB
+===================================================== */
+
+calculateCurrent();
+
+calculateSeriesCircuit();
+
+calculateParallelCircuit();
+
+calculatePower();
+
+updateMissionUI();
+
+loadQuestion();
