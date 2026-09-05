@@ -1,1095 +1,646 @@
 /* =====================================================
-   VOLTLAB v0.9
-   INTERACTIVE ELECTRICITY LEARNING
+   VOLTLAB DAY 10
+   Complete JavaScript
 ===================================================== */
 
 
 /* =====================================================
-   MISSION STORAGE
+   HELPER FUNCTIONS
 ===================================================== */
 
-let completedMissions =
-    JSON.parse(
-        localStorage.getItem(
-            "voltLabMissions"
-        )
-    ) || {
-
-        ohm: false,
-        series: false,
-        parallel: false,
-        power: false
-
-    };
-
-
-function saveMissionProgress() {
-
-    localStorage.setItem(
-        "voltLabMissions",
-        JSON.stringify(completedMissions)
-    );
-
+function get(id) {
+    return document.getElementById(id);
 }
 
+function setText(id, value) {
+    const element = get(id);
+
+    if (element) {
+        element.textContent = value;
+    }
+}
+
+function number(value) {
+    return Number(value);
+}
 
 
 /* =====================================================
    OHM'S LAW
 ===================================================== */
 
-const voltageSlider =
-    document.getElementById("voltage");
+const voltageSlider = get("voltageSlider");
+const resistanceSlider = get("resistanceSlider");
 
-const resistanceSlider =
-    document.getElementById("resistance");
+function updateOhmsLaw() {
 
-const voltageValue =
-    document.getElementById("voltageValue");
+    if (!voltageSlider || !resistanceSlider) return;
 
-const resistanceValue =
-    document.getElementById("resistanceValue");
+    const voltage = number(voltageSlider.value);
+    const resistance = number(resistanceSlider.value);
 
-const currentValue =
-    document.getElementById("currentValue");
+    const current = voltage / resistance;
 
-const circuitVoltage =
-    document.getElementById("circuitVoltage");
+    setText("voltageValue", voltage);
+    setText("resistanceValue", resistance);
+    setText("currentResult", current.toFixed(2));
 
-const circuitResistance =
-    document.getElementById("circuitResistance");
+    const bulb = document.querySelector(".bulb-glass");
 
-const circuitCurrent =
-    document.getElementById("circuitCurrent");
+    if (bulb) {
 
-const bulb =
-    document.getElementById("bulb");
+        const brightness = Math.min(
+            0.8,
+            Math.max(0.1, current / 4)
+        );
 
-const circuitStatus =
-    document.getElementById("circuitStatus");
+        bulb.style.background =
+            `rgba(246,207,112,${brightness})`;
 
-const electrons =
-    document.querySelectorAll(".electron");
-
-
-function calculateCurrent() {
-
-    const voltage =
-        Number(voltageSlider.value);
-
-    const resistance =
-        Number(resistanceSlider.value);
-
-    const current =
-        voltage / resistance;
-
-
-    voltageValue.textContent =
-        voltage;
-
-    resistanceValue.textContent =
-        resistance;
-
-    currentValue.textContent =
-        current.toFixed(2);
-
-
-    circuitVoltage.textContent =
-        voltage;
-
-    circuitResistance.textContent =
-        resistance;
-
-    circuitCurrent.textContent =
-        current.toFixed(2);
-
-
-    let brightness =
-        1 + current / 2;
-
-
-    if (brightness > 3) {
-
-        brightness = 3;
-
+        bulb.style.boxShadow =
+            `0 0 ${10 + current * 8}px rgba(246,207,112,${brightness})`;
     }
 
-
-    bulb.style.filter =
-        `brightness(${brightness})`;
-
-
-    let speed =
-        3 - current / 5;
-
-
-    if (speed < 0.4) {
-
-        speed = 0.4;
-
-    }
-
-
-    electrons.forEach(
-        function (electron) {
-
-            electron.style.animationDuration =
-                `${speed}s`;
-
-        }
-    );
-
+    const statusDot = get("circuitStatusDot");
+    const status = get("circuitStatus");
+    const info = get("circuitInfo");
 
     if (current < 0.5) {
 
-        circuitStatus.textContent =
-            "Very low current 💤";
+        if (status) status.textContent = "Low Current";
 
+        if (info) {
+            info.textContent =
+                "A small amount of current is flowing.";
+        }
+
+    } else if (current < 2.5) {
+
+        if (status) status.textContent = "Circuit Active";
+
+        if (info) {
+            info.textContent =
+                "Current is flowing normally.";
+        }
+
+    } else {
+
+        if (status) status.textContent = "High Current";
+
+        if (info) {
+            info.textContent =
+                "The circuit is carrying a relatively high current.";
+        }
     }
 
-    else if (current < 2) {
+    if (statusDot) {
 
-        circuitStatus.textContent =
-            "Low current ⚡";
-
+        if (current >= 2.5) {
+            statusDot.style.background = "var(--yellow)";
+        } else {
+            statusDot.style.background = "var(--green)";
+        }
     }
-
-    else if (current < 5) {
-
-        circuitStatus.textContent =
-            "Circuit running normally ⚡";
-
-    }
-
-    else {
-
-        circuitStatus.textContent =
-            "High current ⚠️";
-
-    }
-
-
-    checkOhmMission(current);
-
 }
 
+if (voltageSlider) {
+    voltageSlider.addEventListener("input", updateOhmsLaw);
+}
 
-voltageSlider.addEventListener(
-    "input",
-    calculateCurrent
-);
-
-
-resistanceSlider.addEventListener(
-    "input",
-    calculateCurrent
-);
-
+if (resistanceSlider) {
+    resistanceSlider.addEventListener("input", updateOhmsLaw);
+}
 
 
 /* =====================================================
    SERIES CIRCUIT
 ===================================================== */
 
-const seriesVoltage =
-    document.getElementById("seriesVoltage");
+const seriesVoltage = get("seriesVoltage");
+const r1 = get("r1");
+const r2 = get("r2");
+const r3 = get("r3");
 
-const r1 =
-    document.getElementById("r1");
+function updateSeries() {
 
-const r2 =
-    document.getElementById("r2");
+    if (!seriesVoltage || !r1 || !r2 || !r3) return;
 
-const r3 =
-    document.getElementById("r3");
+    const voltage = number(seriesVoltage.value);
 
+    const R1 = number(r1.value);
+    const R2 = number(r2.value);
+    const R3 = number(r3.value);
 
-const seriesVoltageValue =
-    document.getElementById(
-        "seriesVoltageValue"
-    );
+    const totalResistance = R1 + R2 + R3;
 
-const r1Value =
-    document.getElementById("r1Value");
+    const current = voltage / totalResistance;
 
-const r2Value =
-    document.getElementById("r2Value");
+    const drop1 = current * R1;
+    const drop2 = current * R2;
+    const drop3 = current * R3;
 
-const r3Value =
-    document.getElementById("r3Value");
+    setText("seriesVoltageValue", voltage);
 
+    setText("r1Value", R1);
+    setText("r2Value", R2);
+    setText("r3Value", R3);
 
-const totalResistance =
-    document.getElementById(
-        "totalResistance"
-    );
+    setText("seriesTotal", totalResistance);
+    setText("seriesCurrent", current.toFixed(2));
 
-const seriesCurrent =
-    document.getElementById(
-        "seriesCurrent"
-    );
+    setText("drop1", drop1.toFixed(2));
+    setText("drop2", drop2.toFixed(2));
+    setText("drop3", drop3.toFixed(2));
 
-const voltageDrop1 =
-    document.getElementById(
-        "voltageDrop1"
-    );
-
-const voltageDrop2 =
-    document.getElementById(
-        "voltageDrop2"
-    );
-
-const voltageDrop3 =
-    document.getElementById(
-        "voltageDrop3"
-    );
-
-
-function calculateSeriesCircuit() {
-
-    const voltage =
-        Number(seriesVoltage.value);
-
-    const resistor1 =
-        Number(r1.value);
-
-    const resistor2 =
-        Number(r2.value);
-
-    const resistor3 =
-        Number(r3.value);
-
-
-    const total =
-        resistor1 +
-        resistor2 +
-        resistor3;
-
-
-    const current =
-        voltage / total;
-
-
-    seriesVoltageValue.textContent =
-        voltage;
-
-    r1Value.textContent =
-        resistor1;
-
-    r2Value.textContent =
-        resistor2;
-
-    r3Value.textContent =
-        resistor3;
-
-
-    totalResistance.textContent =
-        total;
-
-    seriesCurrent.textContent =
-        current.toFixed(2);
-
-
-    voltageDrop1.textContent =
-        (current * resistor1).toFixed(2);
-
-    voltageDrop2.textContent =
-        (current * resistor2).toFixed(2);
-
-    voltageDrop3.textContent =
-        (current * resistor3).toFixed(2);
-
-
-    checkSeriesMission(total);
-
+    setText("seriesR1Diagram", `${R1}Ω`);
+    setText("seriesR2Diagram", `${R2}Ω`);
+    setText("seriesR3Diagram", `${R3}Ω`);
 }
 
+[
+    seriesVoltage,
+    r1,
+    r2,
+    r3
+].forEach(element => {
 
-seriesVoltage.addEventListener(
-    "input",
-    calculateSeriesCircuit
-);
+    if (element) {
+        element.addEventListener("input", updateSeries);
+    }
 
-r1.addEventListener(
-    "input",
-    calculateSeriesCircuit
-);
-
-r2.addEventListener(
-    "input",
-    calculateSeriesCircuit
-);
-
-r3.addEventListener(
-    "input",
-    calculateSeriesCircuit
-);
-
+});
 
 
 /* =====================================================
    PARALLEL CIRCUIT
 ===================================================== */
 
-const parallelVoltage =
-    document.getElementById(
-        "parallelVoltage"
-    );
+const parallelVoltage = get("parallelVoltage");
+const p1 = get("p1");
+const p2 = get("p2");
+const p3 = get("p3");
 
-const parallelR1 =
-    document.getElementById(
-        "parallelR1"
-    );
+function updateParallel() {
 
-const parallelR2 =
-    document.getElementById(
-        "parallelR2"
-    );
+    if (!parallelVoltage || !p1 || !p2 || !p3) return;
 
-const parallelR3 =
-    document.getElementById(
-        "parallelR3"
-    );
+    const voltage = number(parallelVoltage.value);
 
+    const R1 = number(p1.value);
+    const R2 = number(p2.value);
+    const R3 = number(p3.value);
 
-const parallelVoltageValue =
-    document.getElementById(
-        "parallelVoltageValue"
-    );
+    const equivalent =
+        1 /
+        (
+            (1 / R1) +
+            (1 / R2) +
+            (1 / R3)
+        );
 
-const parallelR1Value =
-    document.getElementById(
-        "parallelR1Value"
-    );
-
-const parallelR2Value =
-    document.getElementById(
-        "parallelR2Value"
-    );
-
-const parallelR3Value =
-    document.getElementById(
-        "parallelR3Value"
-    );
-
-
-const parallelTotalResistance =
-    document.getElementById(
-        "parallelTotalResistance"
-    );
-
-const parallelTotalCurrent =
-    document.getElementById(
-        "parallelTotalCurrent"
-    );
-
-const branchCurrent1 =
-    document.getElementById(
-        "branchCurrent1"
-    );
-
-const branchCurrent2 =
-    document.getElementById(
-        "branchCurrent2"
-    );
-
-const branchCurrent3 =
-    document.getElementById(
-        "branchCurrent3"
-    );
-
-
-function calculateParallelCircuit() {
-
-    const voltage =
-        Number(parallelVoltage.value);
-
-    const resistor1 =
-        Number(parallelR1.value);
-
-    const resistor2 =
-        Number(parallelR2.value);
-
-    const resistor3 =
-        Number(parallelR3.value);
-
-
-    const inverseResistance =
-        (1 / resistor1) +
-        (1 / resistor2) +
-        (1 / resistor3);
-
-
-    const equivalentResistance =
-        1 / inverseResistance;
-
-
-    const current1 =
-        voltage / resistor1;
-
-    const current2 =
-        voltage / resistor2;
-
-    const current3 =
-        voltage / resistor3;
-
+    const branch1 = voltage / R1;
+    const branch2 = voltage / R2;
+    const branch3 = voltage / R3;
 
     const totalCurrent =
-        current1 +
-        current2 +
-        current3;
+        branch1 +
+        branch2 +
+        branch3;
 
+    setText("parallelVoltageValue", voltage);
 
-    parallelVoltageValue.textContent =
-        voltage;
+    setText("p1Value", R1);
+    setText("p2Value", R2);
+    setText("p3Value", R3);
 
-    parallelR1Value.textContent =
-        resistor1;
-
-    parallelR2Value.textContent =
-        resistor2;
-
-    parallelR3Value.textContent =
-        resistor3;
-
-
-    parallelTotalResistance.textContent =
-        equivalentResistance.toFixed(2);
-
-    parallelTotalCurrent.textContent =
-        totalCurrent.toFixed(2);
-
-
-    branchCurrent1.textContent =
-        current1.toFixed(2);
-
-    branchCurrent2.textContent =
-        current2.toFixed(2);
-
-    branchCurrent3.textContent =
-        current3.toFixed(2);
-
-
-    checkParallelMission(
-        equivalentResistance
+    setText(
+        "parallelEquivalent",
+        equivalent.toFixed(2)
     );
 
+    setText(
+        "parallelTotalCurrent",
+        totalCurrent.toFixed(2)
+    );
+
+    setText(
+        "branch1",
+        branch1.toFixed(2)
+    );
+
+    setText(
+        "branch2",
+        branch2.toFixed(2)
+    );
+
+    setText(
+        "branch3",
+        branch3.toFixed(2)
+    );
 }
 
+[
+    parallelVoltage,
+    p1,
+    p2,
+    p3
+].forEach(element => {
 
-parallelVoltage.addEventListener(
-    "input",
-    calculateParallelCircuit
-);
+    if (element) {
+        element.addEventListener("input", updateParallel);
+    }
 
-parallelR1.addEventListener(
-    "input",
-    calculateParallelCircuit
-);
-
-parallelR2.addEventListener(
-    "input",
-    calculateParallelCircuit
-);
-
-parallelR3.addEventListener(
-    "input",
-    calculateParallelCircuit
-);
-
+});
 
 
 /* =====================================================
    POWER & ENERGY LAB
 ===================================================== */
 
-const powerVoltage =
-    document.getElementById(
-        "powerVoltage"
+const powerVoltage = get("powerVoltage");
+const powerCurrent = get("powerCurrent");
+const usageTime = get("usageTime");
+
+function updatePower() {
+
+    if (!powerVoltage || !powerCurrent || !usageTime) return;
+
+    const voltage = number(powerVoltage.value);
+    const current = number(powerCurrent.value);
+    const time = number(usageTime.value);
+
+    const power = voltage * current;
+
+    const energyWh = power * time;
+
+    const energyKwh = energyWh / 1000;
+
+    setText("powerVoltageValue", voltage);
+    setText("powerCurrentValue", current);
+    setText("usageTimeValue", time);
+
+    setText("powerResult", power.toFixed(0));
+    setText("powerResult2", power.toFixed(0));
+
+    setText(
+        "energyResult",
+        energyWh.toFixed(0)
     );
 
-const powerCurrent =
-    document.getElementById(
-        "powerCurrent"
+    setText(
+        "kwhResult",
+        energyKwh.toFixed(2)
     );
 
-const usageTime =
-    document.getElementById(
-        "usageTime"
-    );
+    const meterFill = get("powerMeterFill");
 
+    if (meterFill) {
 
-const powerVoltageValue =
-    document.getElementById(
-        "powerVoltageValue"
-    );
+        const percentage =
+            Math.min(
+                100,
+                (power / 4800) * 100
+            );
 
-const powerCurrentValue =
-    document.getElementById(
-        "powerCurrentValue"
-    );
-
-const usageTimeValue =
-    document.getElementById(
-        "usageTimeValue"
-    );
-
-
-const powerResult =
-    document.getElementById(
-        "powerResult"
-    );
-
-const energyWh =
-    document.getElementById(
-        "energyWh"
-    );
-
-const energyKwh =
-    document.getElementById(
-        "energyKwh"
-    );
-
-
-const powerMeterFill =
-    document.getElementById(
-        "powerMeterFill"
-    );
-
-const powerStatus =
-    document.getElementById(
-        "powerStatus"
-    );
-
-const energyInsight =
-    document.getElementById(
-        "energyInsight"
-    );
-
-
-function calculatePower() {
-
-    const voltage =
-        Number(powerVoltage.value);
-
-    const current =
-        Number(powerCurrent.value);
-
-    const time =
-        Number(usageTime.value);
-
-
-    const power =
-        voltage * current;
-
-    const energy =
-        power * time;
-
-    const kwh =
-        energy / 1000;
-
-
-    powerVoltageValue.textContent =
-        voltage;
-
-    powerCurrentValue.textContent =
-        current;
-
-    usageTimeValue.textContent =
-        time;
-
-
-    powerResult.textContent =
-        power.toFixed(1);
-
-    energyWh.textContent =
-        energy.toFixed(1);
-
-    energyKwh.textContent =
-        kwh.toFixed(2);
-
-
-    let meterPercentage =
-        (power / 4800) * 100;
-
-
-    if (meterPercentage > 100) {
-
-        meterPercentage = 100;
-
+        meterFill.style.width =
+            `${Math.max(2, percentage)}%`;
     }
 
-
-    powerMeterFill.style.width =
-        meterPercentage + "%";
-
+    let statusText = "";
 
     if (power < 100) {
 
-        powerStatus.textContent =
-            "Low Power 🟢";
+        statusText = "Low power load";
 
-        energyInsight.textContent =
-            "This represents a low-power electrical load.";
+    } else if (power < 1000) {
 
+        statusText = "Moderate power load";
+
+    } else {
+
+        statusText = "High power load";
     }
 
-    else if (power < 500) {
+    setText("powerStatus", statusText);
 
-        powerStatus.textContent =
-            "Medium Power 🟡";
+    let insight = "";
 
-        energyInsight.textContent =
-            "This circuit is consuming a moderate amount of electrical power.";
+    if (power < 100) {
 
+        insight =
+            "This load uses relatively little power. Longer operation may still add up over time.";
+
+    } else if (power < 1000) {
+
+        insight =
+            "This is a moderate electrical load. Both power rating and operating time affect energy consumption.";
+
+    } else {
+
+        insight =
+            "This is a high-power load. Reducing operating time can significantly reduce energy consumption.";
     }
 
-    else if (power < 1500) {
-
-        powerStatus.textContent =
-            "High Power 🟠";
-
-        energyInsight.textContent =
-            "This circuit is consuming a significant amount of electrical power.";
-
-    }
-
-    else {
-
-        powerStatus.textContent =
-            "Very High Power 🔴";
-
-        energyInsight.textContent =
-            "This represents a high-power electrical load. In real systems, components and wiring must be appropriately rated.";
-
-    }
-
-
-    checkPowerMission(power);
-
+    setText("powerInsight", insight);
 }
 
+[
+    powerVoltage,
+    powerCurrent,
+    usageTime
+].forEach(element => {
 
-powerVoltage.addEventListener(
-    "input",
-    calculatePower
-);
+    if (element) {
+        element.addEventListener("input", updatePower);
+    }
 
-powerCurrent.addEventListener(
-    "input",
-    calculatePower
-);
-
-usageTime.addEventListener(
-    "input",
-    calculatePower
-);
-
+});
 
 
 /* =====================================================
-   DAY 9 MISSION SYSTEM
+   DAY 10
+   ELECTRICITY COST SIMULATOR
 ===================================================== */
 
-const missionCount =
-    document.getElementById(
-        "missionCount"
-    );
+const appliancePreset = get("appliancePreset");
+const appliancePower = get("appliancePower");
+const dailyHours = get("dailyHours");
+const billingDays = get("billingDays");
+const tariff = get("tariff");
 
-const missionProgressFill =
-    document.getElementById(
-        "missionProgressFill"
-    );
-
-const missionProgressMessage =
-    document.getElementById(
-        "missionProgressMessage"
-    );
-
-const headerMissionProgress =
-    document.getElementById(
-        "headerMissionProgress"
-    );
-
-const headerMissionFill =
-    document.getElementById(
-        "headerMissionFill"
-    );
-
-const allMissionsComplete =
-    document.getElementById(
-        "allMissionsComplete"
-    );
+const reducedHours = get("reducedHours");
 
 
-function completeMission(
-    missionName
-) {
+function calculateCost() {
 
     if (
-        completedMissions[
-            missionName
-        ]
+        !appliancePower ||
+        !dailyHours ||
+        !billingDays ||
+        !tariff
     ) {
-
         return;
-
     }
 
-
-    completedMissions[
-        missionName
-    ] = true;
-
-
-    saveMissionProgress();
-
-    updateMissionUI();
-
-}
-
-
-function checkOhmMission(
-    current
-) {
-
-    if (
-        Math.abs(
-            current - 3
-        ) < 0.01
-    ) {
-
-        completeMission(
-            "ohm"
+    const powerWatts =
+        Math.max(
+            0,
+            number(appliancePower.value)
         );
 
-    }
-
-}
-
-
-function checkSeriesMission(
-    total
-) {
-
-    if (total === 75) {
-
-        completeMission(
-            "series"
+    const hoursPerDay =
+        Math.max(
+            0,
+            number(dailyHours.value)
         );
 
-    }
-
-}
-
-
-function checkParallelMission(
-    equivalentResistance
-) {
-
-    if (
-        Math.abs(
-            equivalentResistance - 5
-        ) <= 0.05
-    ) {
-
-        completeMission(
-            "parallel"
+    const days =
+        Math.max(
+            0,
+            number(billingDays.value)
         );
 
-    }
-
-}
-
-
-function checkPowerMission(
-    power
-) {
-
-    if (
-        Math.abs(
-            power - 1000
-        ) < 0.01
-    ) {
-
-        completeMission(
-            "power"
+    const price =
+        Math.max(
+            0,
+            number(tariff.value)
         );
 
-    }
 
-}
+    /*
+        Convert W → kW
+        Energy = Power × Time
+    */
 
+    const powerKW =
+        powerWatts / 1000;
 
-function updateMissionUI() {
+    const dailyKWh =
+        powerKW * hoursPerDay;
 
-    const missionNames = [
+    const monthlyKWh =
+        dailyKWh * days;
 
-        "ohm",
-        "series",
-        "parallel",
-        "power"
+    const dailyCost =
+        dailyKWh * price;
 
-    ];
-
-
-    const missionElements = {
-
-        ohm: {
-
-            card:
-                document.getElementById(
-                    "missionCardOhm"
-                ),
-
-            status:
-                document.getElementById(
-                    "missionStatusOhm"
-                ),
-
-            complete:
-                document.getElementById(
-                    "missionCompleteOhm"
-                )
-
-        },
+    const monthlyCost =
+        monthlyKWh * price;
 
 
-        series: {
+    setText(
+        "dailyHoursValue",
+        hoursPerDay
+    );
 
-            card:
-                document.getElementById(
-                    "missionCardSeries"
-                ),
-
-            status:
-                document.getElementById(
-                    "missionStatusSeries"
-                ),
-
-            complete:
-                document.getElementById(
-                    "missionCompleteSeries"
-                )
-
-        },
-
-
-        parallel: {
-
-            card:
-                document.getElementById(
-                    "missionCardParallel"
-                ),
-
-            status:
-                document.getElementById(
-                    "missionStatusParallel"
-                ),
-
-            complete:
-                document.getElementById(
-                    "missionCompleteParallel"
-                )
-
-        },
-
-
-        power: {
-
-            card:
-                document.getElementById(
-                    "missionCardPower"
-                ),
-
-            status:
-                document.getElementById(
-                    "missionStatusPower"
-                ),
-
-            complete:
-                document.getElementById(
-                    "missionCompletePower"
-                )
-
-        }
-
-    };
-
-
-    let completedCount =
-        0;
-
-
-    missionNames.forEach(
-        function (mission) {
-
-            if (
-                completedMissions[
-                    mission
-                ]
-            ) {
-
-                completedCount++;
-
-
-                missionElements[
-                    mission
-                ].card.classList.add(
-                    "completed"
-                );
-
-
-                missionElements[
-                    mission
-                ].status.textContent =
-                    "✅ Complete";
-
-
-                missionElements[
-                    mission
-                ].complete.classList.add(
-                    "show"
-                );
-
-            }
-
-            else {
-
-                missionElements[
-                    mission
-                ].card.classList.remove(
-                    "completed"
-                );
-
-
-                missionElements[
-                    mission
-                ].status.textContent =
-                    "🔒 In Progress";
-
-
-                missionElements[
-                    mission
-                ].complete.classList.remove(
-                    "show"
-                );
-
-            }
-
-        }
+    setText(
+        "billingDaysValue",
+        days
     );
 
 
-    const percentage =
-        (completedCount /
-            missionNames.length) * 100;
+    setText(
+        "dailyEnergy",
+        dailyKWh.toFixed(2)
+    );
 
+    setText(
+        "monthlyEnergy",
+        monthlyKWh.toFixed(2)
+    );
 
-    missionCount.textContent =
-        `${completedCount} / ${missionNames.length}`;
+    setText(
+        "dailyCost",
+        dailyCost.toFixed(2)
+    );
 
-
-    missionProgressFill.style.width =
-        percentage + "%";
-
-
-    headerMissionProgress.textContent =
-        `${completedCount} / ${missionNames.length} Missions`;
-
-
-    headerMissionFill.style.width =
-        percentage + "%";
-
-
-    if (completedCount === 0) {
-
-        missionProgressMessage.textContent =
-            "Your engineering journey starts now ⚡";
-
-    }
-
-    else if (
-        completedCount <
-        missionNames.length
-    ) {
-
-        missionProgressMessage.textContent =
-            `${completedCount} mission${completedCount > 1 ? "s" : ""} complete. Keep experimenting ⚡`;
-
-    }
-
-    else {
-
-        missionProgressMessage.textContent =
-            "Every engineering mission completed. VoltLab Master unlocked 🏆";
-
-
-        allMissionsComplete.classList.add(
-            "show"
-        );
-
-    }
-
-
-    if (
-        completedCount <
-        missionNames.length
-    ) {
-
-        allMissionsComplete.classList.remove(
-            "show"
-        );
-
-    }
-
-}
-
-
-
-/* RESET MISSIONS */
-
-const resetMissions =
-    document.getElementById(
-        "resetMissions"
+    setText(
+        "monthlyCost",
+        monthlyCost.toFixed(2)
     );
 
 
-resetMissions.addEventListener(
-    "click",
+    /* -----------------------------------------
+       Consumption Meter
+    ----------------------------------------- */
 
-    function () {
+    const consumptionPercent =
+        Math.min(
+            100,
+            (monthlyKWh / 500) * 100
+        );
 
-        completedMissions = {
+    setText(
+        "consumptionPercent",
+        Math.round(consumptionPercent)
+    );
 
-            ohm: false,
-            series: false,
-            parallel: false,
-            power: false
+    const meter =
+        get("costMeterFill");
 
-        };
+    if (meter) {
 
-
-        saveMissionProgress();
-
-        updateMissionUI();
-
+        meter.style.width =
+            `${Math.max(2, consumptionPercent)}%`;
     }
 
-);
 
+    /* -----------------------------------------
+       Message
+    ----------------------------------------- */
+
+    let message = "";
+
+    if (monthlyKWh < 20) {
+
+        message =
+            "This appliance has a relatively low monthly energy demand.";
+
+    } else if (monthlyKWh < 100) {
+
+        message =
+            "This appliance has a moderate monthly energy demand. Usage time makes a noticeable difference.";
+
+    } else if (monthlyKWh < 250) {
+
+        message =
+            "This appliance can contribute significantly to monthly electricity consumption.";
+
+    } else {
+
+        message =
+            "This is a high monthly energy demand. Reducing operating time could make a noticeable difference.";
+    }
+
+    setText(
+        "costMessage",
+        message
+    );
+
+
+    /* -----------------------------------------
+       What-if Saving
+    ----------------------------------------- */
+
+    calculateSavings(
+        powerWatts,
+        hoursPerDay,
+        days,
+        price
+    );
+}
 
 
 /* =====================================================
-   QUIZ SYSTEM
+   SAVINGS CALCULATOR
 ===================================================== */
 
-const quizQuestions = [
+function calculateSavings(
+    powerWatts,
+    originalHours,
+    days,
+    price
+) {
+
+    if (!reducedHours) return;
+
+    const reduced =
+        Math.min(
+            originalHours,
+            Math.max(
+                0,
+                number(reducedHours.value)
+            )
+        );
+
+    const originalMonthly =
+        (powerWatts / 1000) *
+        originalHours *
+        days *
+        price;
+
+    const reducedMonthly =
+        (powerWatts / 1000) *
+        reduced *
+        days *
+        price;
+
+    const saving =
+        Math.max(
+            0,
+            originalMonthly - reducedMonthly
+        );
+
+    setText(
+        "reducedHoursValue",
+        reduced
+    );
+
+    setText(
+        "monthlySaving",
+        saving.toFixed(2)
+    );
+}
+
+
+/* =====================================================
+   APPLIANCE PRESETS
+===================================================== */
+
+if (appliancePreset) {
+
+    appliancePreset.addEventListener(
+        "change",
+        function () {
+
+            const selected =
+                appliancePreset.value;
+
+            if (selected !== "custom") {
+
+                appliancePower.value =
+                    selected;
+
+                appliancePower.dispatchEvent(
+                    new Event("input")
+                );
+            }
+        }
+    );
+}
+
+
+/* =====================================================
+   COST EVENT LISTENERS
+===================================================== */
+
+[
+    appliancePower,
+    dailyHours,
+    billingDays,
+    tariff,
+    reducedHours
+].forEach(element => {
+
+    if (element) {
+
+        element.addEventListener(
+            "input",
+            calculateCost
+        );
+    }
+});
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+const quizData = [
 
     {
-
         question:
-            "According to Ohm's Law, what is the current when voltage is 12 V and resistance is 6 Ω?",
+            "A 12 V source is connected to a 6 Ω resistor. What current flows?",
 
         options: [
             "0.5 A",
@@ -1101,15 +652,13 @@ const quizQuestions = [
         answer: 1,
 
         explanation:
-            "Using I = V ÷ R, the current is 12 ÷ 6 = 2 A."
-
+            "Using I = V / R, 12 / 6 = 2 A."
     },
 
 
     {
-
         question:
-            "What remains the same through every component in a series circuit?",
+            "What stays the same through components in a series circuit?",
 
         options: [
             "Voltage",
@@ -1121,15 +670,13 @@ const quizQuestions = [
         answer: 2,
 
         explanation:
-            "A series circuit has only one path, so the same current flows through every component."
-
+            "A series circuit has one path, so the same current flows through every component."
     },
 
 
     {
-
         question:
-            "What remains the same across every branch in a parallel circuit?",
+            "What is the same across branches of a parallel circuit?",
 
         options: [
             "Current",
@@ -1141,608 +688,518 @@ const quizQuestions = [
         answer: 1,
 
         explanation:
-            "Each branch is connected across the same supply voltage."
-
+            "Every parallel branch is connected across the same two points, so each branch receives the same voltage."
     },
 
 
     {
-
         question:
-            "What is the electrical power when voltage is 10 V and current is 2 A?",
+            "A device uses 10 V and draws 2 A. What is its power?",
 
         options: [
             "5 W",
-            "8 W",
             "12 W",
-            "20 W"
-        ],
-
-        answer: 3,
-
-        explanation:
-            "Using P = V × I, the power is 10 × 2 = 20 W."
-
-    },
-
-
-    {
-
-        question:
-            "Which statement about a parallel circuit is correct?",
-
-        options: [
-            "It has only one path for current.",
-            "The same current flows through every branch.",
-            "Current divides between branches.",
-            "Voltage divides equally across all branches."
+            "20 W",
+            "100 W"
         ],
 
         answer: 2,
 
         explanation:
-            "A parallel circuit has multiple paths, so current divides between the branches."
+            "Power is P = V × I, so 10 × 2 = 20 W."
+    },
 
+
+    {
+        question:
+            "What happens to current in a parallel circuit?",
+
+        options: [
+            "It cannot flow",
+            "It becomes zero",
+            "It divides between branches",
+            "It becomes identical everywhere"
+        ],
+
+        answer: 2,
+
+        explanation:
+            "The total current divides among the available parallel paths."
     }
 
 ];
 
 
-let currentQuestionIndex =
-    0;
-
-let quizScore =
-    0;
-
-let questionAnswered =
-    false;
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
 
 
-const quizQuestion =
-    document.getElementById(
-        "quizQuestion"
+function loadQuiz() {
+
+    const question =
+        quizData[quizIndex];
+
+    if (!question) return;
+
+    setText(
+        "quizCurrent",
+        quizIndex + 1
     );
 
-const quizOptions =
-    document.getElementById(
-        "quizOptions"
+    setText(
+        "quizTotal",
+        quizData.length
     );
 
-const quizFeedback =
-    document.getElementById(
-        "quizFeedback"
+    setText(
+        "quizScore",
+        quizScore
     );
 
-const quizNextButton =
-    document.getElementById(
-        "quizNextButton"
+    setText(
+        "quizQuestion",
+        question.question
     );
-
-const quizProgressText =
-    document.getElementById(
-        "quizProgressText"
-    );
-
-const quizProgressFill =
-    document.getElementById(
-        "quizProgressFill"
-    );
-
-const quizCard =
-    document.getElementById(
-        "quizCard"
-    );
-
-const quizResult =
-    document.getElementById(
-        "quizResult"
-    );
-
-const finalScore =
-    document.getElementById(
-        "finalScore"
-    );
-
-const performanceTitle =
-    document.getElementById(
-        "performanceTitle"
-    );
-
-const performanceMessage =
-    document.getElementById(
-        "performanceMessage"
-    );
-
-const restartQuiz =
-    document.getElementById(
-        "restartQuiz"
-    );
-
-
-function loadQuestion() {
-
-    questionAnswered =
-        false;
-
-
-    quizNextButton.disabled =
-        true;
-
-
-    quizFeedback.className =
-        "quiz-feedback";
-
-
-    quizFeedback.textContent =
-        "";
-
-
-    const currentQuestion =
-        quizQuestions[
-            currentQuestionIndex
-        ];
-
-
-    quizQuestion.textContent =
-        currentQuestion.question;
-
-
-    quizOptions.innerHTML =
-        "";
-
-
-    currentQuestion.options.forEach(
-        function (option, index) {
-
-            const optionButton =
-                document.createElement(
-                    "button"
-                );
-
-
-            optionButton.className =
-                "quiz-option";
-
-
-            optionButton.textContent =
-                option;
-
-
-            optionButton.addEventListener(
-                "click",
-
-                function () {
-
-                    checkAnswer(
-                        index,
-                        optionButton
-                    );
-
-                }
-
-            );
-
-
-            quizOptions.appendChild(
-                optionButton
-            );
-
-        }
-    );
-
-
-    quizProgressText.textContent =
-        `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
 
 
     const progress =
-        ((currentQuestionIndex + 1) /
-            quizQuestions.length) * 100;
+        ((quizIndex + 1) /
+            quizData.length) *
+        100;
 
+    const quizProgress =
+        get("quizProgress");
 
-    quizProgressFill.style.width =
-        progress + "%";
+    if (quizProgress) {
 
-
-    if (
-        currentQuestionIndex ===
-        quizQuestions.length - 1
-    ) {
-
-        quizNextButton.textContent =
-            "See Results 🏆";
-
+        quizProgress.style.width =
+            `${progress}%`;
     }
 
-    else {
 
-        quizNextButton.textContent =
-            "Next Question →";
+    const optionsContainer =
+        get("quizOptions");
 
+    const feedback =
+        get("quizFeedback");
+
+    if (!optionsContainer) return;
+
+
+    optionsContainer.innerHTML = "";
+
+    if (feedback) {
+        feedback.innerHTML = "";
     }
 
+
+    quizAnswered = false;
+
+
+    question.options.forEach(
+        (option, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "quiz-option";
+
+            button.textContent =
+                option;
+
+            button.addEventListener(
+                "click",
+                () => checkAnswer(index)
+            );
+
+            optionsContainer.appendChild(
+                button
+            );
+        }
+    );
 }
 
 
-function checkAnswer(
-    selectedIndex,
-    selectedButton
-) {
+/* =====================================================
+   CHECK ANSWER
+===================================================== */
 
-    if (questionAnswered) {
+function checkAnswer(selectedIndex) {
 
-        return;
+    if (quizAnswered) return;
 
-    }
+    quizAnswered = true;
 
+    const question =
+        quizData[quizIndex];
 
-    questionAnswered =
-        true;
-
-
-    const currentQuestion =
-        quizQuestions[
-            currentQuestionIndex
-        ];
-
-
-    const optionButtons =
+    const buttons =
         document.querySelectorAll(
             ".quiz-option"
         );
 
-
-    optionButtons.forEach(
-        function (button, index) {
-
-            button.classList.add(
-                "disabled"
-            );
-
-
-            button.disabled =
-                true;
-
-
-            if (
-                index ===
-                currentQuestion.answer
-            ) {
-
-                button.classList.add(
-                    "correct"
-                );
-
-            }
-
-        }
-    );
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
 
 
     if (
         selectedIndex ===
-        currentQuestion.answer
+        question.answer
     ) {
 
         quizScore++;
 
+        if (buttons[selectedIndex]) {
 
-        quizFeedback.classList.add(
-            "show",
-            "correct-feedback"
+            buttons[selectedIndex]
+                .classList.add("correct");
+        }
+
+        setText(
+            "quizFeedback",
+            `✓ Correct! ${question.explanation}`
         );
 
+    } else {
 
-        quizFeedback.innerHTML =
-            `✅ Correct! <br><br>${currentQuestion.explanation}`;
+        if (buttons[selectedIndex]) {
 
+            buttons[selectedIndex]
+                .classList.add("wrong");
+        }
+
+        if (buttons[question.answer]) {
+
+            buttons[question.answer]
+                .classList.add("correct");
+        }
+
+        setText(
+            "quizFeedback",
+            `✗ Not quite. ${question.explanation}`
+        );
     }
 
-    else {
 
-        selectedButton.classList.add(
-            "wrong"
-        );
-
-
-        quizFeedback.classList.add(
-            "show",
-            "wrong-feedback"
-        );
-
-
-        quizFeedback.innerHTML =
-            `❌ Not quite. <br><br>${currentQuestion.explanation}`;
-
-    }
-
-
-    quizNextButton.disabled =
-        false;
-
-}
-
-
-function showQuizResult() {
-
-    quizCard.style.display =
-        "none";
-
-
-    quizResult.classList.add(
-        "show"
+    setText(
+        "quizScore",
+        quizScore
     );
 
 
-    finalScore.textContent =
-        quizScore;
+    setTimeout(() => {
 
-
-    const percentage =
-        (quizScore /
-            quizQuestions.length) * 100;
-
-
-    if (percentage === 100) {
-
-        performanceTitle.textContent =
-            "⚡ Electrical Master";
-
-
-        performanceMessage.textContent =
-            "Perfect score. Your understanding of VoltLab's concepts is strong.";
-
-    }
-
-    else if (percentage >= 80) {
-
-        performanceTitle.textContent =
-            "🔋 Circuit Explorer";
-
-
-        performanceMessage.textContent =
-            "Strong performance. You understand most core concepts.";
-
-    }
-
-    else if (percentage >= 60) {
-
-        performanceTitle.textContent =
-            "⚙️ Voltage Learner";
-
-
-        performanceMessage.textContent =
-            "You have a foundation. Revisiting a few concepts will strengthen it.";
-
-    }
-
-    else {
-
-        performanceTitle.textContent =
-            "🧠 Future Engineer";
-
-
-        performanceMessage.textContent =
-            "Explore the interactive labs again and try the challenge once more.";
-
-    }
-
-}
-
-
-quizNextButton.addEventListener(
-    "click",
-
-    function () {
-
-        currentQuestionIndex++;
-
+        quizIndex++;
 
         if (
-            currentQuestionIndex <
-            quizQuestions.length
+            quizIndex >=
+            quizData.length
         ) {
-
-            loadQuestion();
-
-        }
-
-        else {
 
             showQuizResult();
 
+        } else {
+
+            loadQuiz();
         }
 
-    }
-
-);
-
-
-restartQuiz.addEventListener(
-    "click",
-
-    function () {
-
-        currentQuestionIndex =
-            0;
-
-        quizScore =
-            0;
-
-        questionAnswered =
-            false;
-
-
-        quizResult.classList.remove(
-            "show"
-        );
-
-
-        quizCard.style.display =
-            "block";
-
-
-        loadQuestion();
-
-    }
-
-);
-
+    }, 1400);
+}
 
 
 /* =====================================================
-   NAVIGATION + SCROLL
+   QUIZ RESULT
 ===================================================== */
 
-const progressBar =
-    document.getElementById(
-        "progressBar"
+function showQuizResult() {
+
+    const questionArea =
+        document.querySelector(
+            ".question-area"
+        );
+
+    const result =
+        get("quizResult");
+
+    const finalScore =
+        get("finalScore");
+
+    const resultTitle =
+        get("resultTitle");
+
+    const resultMessage =
+        get("resultMessage");
+
+
+    if (questionArea) {
+
+        questionArea.classList.add(
+            "hidden"
+        );
+    }
+
+    if (result) {
+
+        result.classList.remove(
+            "hidden"
+        );
+    }
+
+    if (finalScore) {
+
+        finalScore.textContent =
+            quizScore;
+    }
+
+
+    let title = "";
+    let message = "";
+
+    if (quizScore === 5) {
+
+        title = "⚡ Perfect Run!";
+
+        message =
+            "You nailed every concept. VoltLab has nothing left to hide from you.";
+
+    } else if (quizScore >= 4) {
+
+        title = "🔥 Excellent Work!";
+
+        message =
+            "Your fundamentals are looking strong. One more pass and you're golden.";
+
+    } else if (quizScore >= 3) {
+
+        title = "💪 Solid Understanding!";
+
+        message =
+            "You've got the important ideas. Review the concepts you missed and try again.";
+
+    } else {
+
+        title = "🧠 Keep Experimenting!";
+
+        message =
+            "Electricity takes practice. Go back through the labs, change the values and run the challenge again.";
+    }
+
+
+    setText(
+        "resultTitle",
+        title
     );
+
+    setText(
+        "resultMessage",
+        message
+    );
+}
+
+
+/* =====================================================
+   RESTART QUIZ
+===================================================== */
+
+const restartQuiz =
+    get("restartQuiz");
+
+if (restartQuiz) {
+
+    restartQuiz.addEventListener(
+        "click",
+        () => {
+
+            quizIndex = 0;
+            quizScore = 0;
+
+            const questionArea =
+                document.querySelector(
+                    ".question-area"
+                );
+
+            const result =
+                get("quizResult");
+
+            if (questionArea) {
+
+                questionArea.classList.remove(
+                    "hidden"
+                );
+            }
+
+            if (result) {
+
+                result.classList.add(
+                    "hidden"
+                );
+            }
+
+            loadQuiz();
+        }
+    );
+}
+
+
+/* =====================================================
+   PAGE SCROLL PROGRESS
+===================================================== */
+
+const pageProgress =
+    get("pageProgress");
 
 const backToTop =
-    document.getElementById(
-        "backToTop"
-    );
-
-const navigationLinks =
-    document.querySelectorAll(
-        ".nav-links a"
-    );
-
-const sections =
-    document.querySelectorAll(
-        "#home, #ohms, #series, #parallel, #power, #compare, #missions, #quiz"
-    );
+    get("backToTop");
 
 
-window.addEventListener(
-    "scroll",
+function updateScrollUI() {
 
-    function () {
+    const scrollTop =
+        window.scrollY;
 
-        const scrollTop =
-            window.scrollY;
+    const documentHeight =
+        document.documentElement
+            .scrollHeight -
+        window.innerHeight;
+
+    const progress =
+        documentHeight > 0
+            ? (scrollTop / documentHeight) * 100
+            : 0;
+
+    if (pageProgress) {
+
+        pageProgress.style.width =
+            `${progress}%`;
+    }
 
 
-        const documentHeight =
-            document.documentElement.scrollHeight -
-            window.innerHeight;
-
-
-        const progress =
-            documentHeight > 0
-                ? (scrollTop / documentHeight) * 100
-                : 0;
-
-
-        progressBar.style.width =
-            progress + "%";
-
+    if (backToTop) {
 
         if (scrollTop > 500) {
 
             backToTop.classList.add(
-                "show"
+                "visible"
             );
 
-        }
-
-        else {
+        } else {
 
             backToTop.classList.remove(
-                "show"
+                "visible"
             );
-
         }
-
-
-        let currentSection =
-            "home";
-
-
-        sections.forEach(
-            function (section) {
-
-                const sectionTop =
-                    section.offsetTop - 150;
-
-
-                if (
-                    window.scrollY >=
-                    sectionTop
-                ) {
-
-                    currentSection =
-                        section.getAttribute(
-                            "id"
-                        );
-
-                }
-
-            }
-        );
-
-
-        navigationLinks.forEach(
-            function (link) {
-
-                link.classList.remove(
-                    "active"
-                );
-
-
-                if (
-                    link.getAttribute(
-                        "href"
-                    ) ===
-                    "#" + currentSection
-                ) {
-
-                    link.classList.add(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
-
     }
+}
 
+window.addEventListener(
+    "scroll",
+    updateScrollUI,
+    { passive: true }
 );
-
-
-backToTop.addEventListener(
-    "click",
-
-    function () {
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
-    }
-
-);
-
 
 
 /* =====================================================
-   INITIALIZE VOLTLAB
+   BACK TO TOP
 ===================================================== */
 
-calculateCurrent();
+if (backToTop) {
 
-calculateSeriesCircuit();
+    backToTop.addEventListener(
+        "click",
+        () => {
 
-calculateParallelCircuit();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    );
+}
 
-calculatePower();
 
-updateMissionUI();
+/* =====================================================
+   ACTIVE NAVIGATION
+===================================================== */
 
-loadQuestion();
+const sections =
+    document.querySelectorAll(
+        "main section"
+    );
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav-links a"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting)
+                    return;
+
+                const id =
+                    entry.target.id;
+
+                navLinks.forEach(link => {
+
+                    link.classList.remove(
+                        "active"
+                    );
+
+                    if (
+                        link.getAttribute(
+                            "href"
+                        ) === `#${id}`
+                    ) {
+
+                        link.classList.add(
+                            "active"
+                        );
+                    }
+                });
+
+            });
+
+        },
+        {
+            rootMargin:
+                "-30% 0px -60% 0px"
+        }
+    );
+
+
+sections.forEach(section => {
+
+    observer.observe(section);
+});
+
+
+/* =====================================================
+   INITIALIZE EVERYTHING
+===================================================== */
+
+updateOhmsLaw();
+
+updateSeries();
+
+updateParallel();
+
+updatePower();
+
+calculateCost();
+
+loadQuiz();
+
+updateScrollUI();
+
+
+console.log(
+    "⚡ VoltLab Day 10 loaded successfully."
+);
