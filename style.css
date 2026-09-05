@@ -1,120 +1,222 @@
 /* =====================================================
-   VOLTLAB v0.9
-   DARK SOFT UI DESIGN SYSTEM
+   DAY 10 - REAL-WORLD ENERGY SIMULATOR
 ===================================================== */
 
 
 /* =========================
-   GLOBAL
+   ENERGY SECTION
 ========================= */
 
-* {
+.energy-section {
 
-    box-sizing: border-box;
-
-}
-
-
-html {
-
-    scroll-behavior: smooth;
-
-}
-
-
-:root {
-
-    --bg-main:
-        #111318;
-
-    --bg-secondary:
-        #191d24;
-
-    --bg-card:
-        #20252e;
-
-    --bg-card-light:
-        #282e38;
-
-    --text-main:
-        #f4f6fa;
-
-    --text-secondary:
-        #9ca6b5;
-
-    --accent:
-        #74c69d;
-
-    --accent-bright:
-        #a8e6c3;
-
-    --accent-soft:
-        rgba(116, 198, 157, 0.15);
-
-    --blue-accent:
-        #73c7f4;
-
-    --border:
-        rgba(255, 255, 255, 0.07);
-
-    --radius-large:
-        24px;
-
-    --radius-medium:
-        16px;
-
-    --radius-small:
-        12px;
-
-}
-
-
-body {
-
-    margin: 0;
-
-    font-family:
-
-        Inter,
-        Arial,
-        sans-serif;
-
-    color:
-        var(--text-main);
+    position: relative;
 
     background:
+        linear-gradient(
+            145deg,
+            rgba(34, 48, 71, 0.94),
+            rgba(17, 26, 42, 0.98)
+        );
 
-        radial-gradient(
-            circle at top left,
-            rgba(116, 198, 157, 0.07),
-            transparent 30%
-        ),
+    padding: 50px;
 
-        radial-gradient(
-            circle at bottom right,
-            rgba(115, 199, 244, 0.05),
-            transparent 35%
-        ),
+    border-radius: var(--radius-large);
 
-        var(--bg-main);
+    margin-bottom: 55px;
 
-    line-height: 1.6;
+    border: 1px solid var(--border);
+
+    box-shadow:
+        var(--shadow-dark),
+        var(--shadow-light);
+
+    scroll-margin-top: 110px;
+
+    overflow: hidden;
 
 }
 
+
+.energy-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+
+    height: 320px;
+
+    border-radius: 50%;
+
+    top: -150px;
+
+    right: -130px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(103, 183, 255, 0.10),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+}
+
+
+.energy-header {
+
+    position: relative;
+
+    text-align: center;
+
+    z-index: 1;
+
+}
+
+
+.energy-header h2 {
+
+    margin-top: 18px;
+
+}
 
 
 /* =========================
-   NAVBAR
+   FEATURE BADGE
 ========================= */
 
-.navbar {
+.feature-badge {
 
-    position: sticky;
+    display: inline-block;
 
-    top: 0;
+    padding: 7px 14px;
 
-    z-index: 1000;
+    border-radius: 999px;
+
+    background:
+        rgba(103, 183, 255, 0.10);
+
+    border:
+        1px solid
+        rgba(103, 183, 255, 0.22);
+
+    color: var(--accent);
+
+    font-size: 0.75rem;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================
+   APPLIANCE SELECTOR
+========================= */
+
+.appliance-selector {
+
+    max-width: 650px;
+
+    margin: 10px auto 30px;
+
+    padding: 25px;
+
+    background: var(--bg-secondary);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius-medium);
+
+    box-shadow: var(--shadow-dark);
+
+}
+
+
+.appliance-selector label {
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.appliance-selector select {
+
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    background: #101a2a;
+
+    color: var(--text-main);
+
+    font-size: 1rem;
+
+    outline: none;
+
+    cursor: pointer;
+
+}
+
+
+.appliance-selector select:focus {
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(103, 183, 255, 0.08);
+
+}
+
+
+/* =========================
+   ENERGY CONTROLS
+========================= */
+
+.energy-controls {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.energy-control {
+
+    padding: 24px;
+
+    background: var(--bg-secondary);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius-medium);
+
+    box-shadow: var(--shadow-dark);
+
+}
+
+
+.energy-control label {
 
     display: flex;
 
@@ -122,2349 +224,389 @@ body {
 
     align-items: center;
 
-    padding:
+    gap: 10px;
 
-        16px 6%;
+    margin-bottom: 15px;
 
-    background:
-
-        rgba(17, 19, 24, 0.88);
-
-    backdrop-filter:
-
-        blur(18px);
-
-    border-bottom:
-
-        1px solid var(--border);
+    font-weight: 600;
 
 }
 
 
-.nav-logo {
+.energy-control label span {
 
-    font-size:
-        1.4rem;
+    color: var(--accent);
 
-    font-weight:
-        800;
+    font-weight: 800;
 
 }
 
 
-.nav-links {
+/* =========================
+   ENERGY FLOW
+========================= */
+
+.energy-flow {
 
     display: flex;
 
-    gap: 5px;
+    align-items: center;
 
-    flex-wrap: wrap;
+    justify-content: center;
 
-}
+    gap: 15px;
 
+    margin: 35px 0;
 
-.nav-links a {
+    padding: 25px;
 
-    text-decoration: none;
+    background: #101a2a;
 
-    color:
-        var(--text-secondary);
+    border:
+        1px solid var(--border);
 
-    padding:
+    border-radius: var(--radius-large);
 
-        8px 11px;
-
-    border-radius:
-        10px;
-
-    font-size:
-        0.82rem;
-
-    transition:
-        0.25s ease;
+    overflow-x: auto;
 
 }
 
 
-.nav-links a:hover {
+.energy-flow-item {
 
-    color:
-        white;
+    min-width: 145px;
 
-    background:
-        rgba(255, 255, 255, 0.05);
-
-}
-
-
-.nav-links a.active {
-
-    color:
-        var(--accent);
-
-    background:
-        var(--accent-soft);
-
-}
-
-
-
-/* =========================
-   PAGE PROGRESS
-========================= */
-
-.progress-container {
-
-    position: fixed;
-
-    top: 0;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 3px;
-
-    z-index: 2000;
-
-}
-
-
-.progress-bar {
-
-    width: 0%;
-
-    height: 100%;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            var(--accent),
-            var(--blue-accent)
-        );
-
-    transition:
-        width 0.1s linear;
-
-}
-
-
-
-/* =========================
-   HEADER
-========================= */
-
-header {
+    padding: 20px 15px;
 
     text-align: center;
 
-    padding:
-
-        100px 20px
-        75px;
-
-    border-bottom:
-
-        1px solid var(--border);
-
-}
-
-
-.hero-badge {
-
-    display: inline-block;
-
-    padding:
-
-        7px 14px;
-
-    border:
-
-        1px solid
-        rgba(116, 198, 157, 0.25);
-
-    border-radius:
-        100px;
-
-    color:
-        var(--accent);
-
-    font-size:
-        0.72rem;
-
-    letter-spacing:
-        1px;
-
-}
-
-
-header h1 {
-
-    font-size:
-
-        clamp(
-            3rem,
-            8vw,
-            6rem
-        );
-
-    margin:
-
-        15px 0 0;
-
-    letter-spacing:
-        -4px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            white,
-            var(--accent-bright)
-        );
-
-    -webkit-background-clip:
-        text;
-
-    -webkit-text-fill-color:
-        transparent;
-
-}
-
-
-header p {
-
-    color:
-        var(--text-secondary);
-
-    font-size:
-        1.1rem;
-
-}
-
-
-.header-progress {
-
-    max-width:
-        500px;
-
-    margin:
-
-        35px auto 0;
-
-    padding:
-
-        18px 20px;
-
-    border-radius:
-        var(--radius-medium);
-
-    background:
-        rgba(255, 255, 255, 0.025);
+    background: var(--bg-secondary);
 
     border:
         1px solid var(--border);
 
+    border-radius: 16px;
+
+    box-shadow: var(--shadow-dark);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+
 }
 
 
-.header-progress-top {
+.energy-flow-item:hover {
 
-    display: flex;
+    transform: translateY(-5px);
 
-    justify-content: space-between;
+    border-color:
+        rgba(103, 183, 255, 0.30);
+
+}
+
+
+.flow-icon {
+
+    display: block;
+
+    font-size: 2rem;
+
+    margin-bottom: 8px;
+
+}
+
+
+.energy-flow-item strong {
+
+    display: block;
+
+    color: var(--accent);
+
+    font-size: 1rem;
+
+}
+
+
+.energy-flow-item small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+
+}
+
+
+.flow-arrow {
+
+    color: var(--accent);
+
+    font-size: 1.7rem;
+
+    font-weight: 800;
+
+}
+
+
+/* =========================
+   ENERGY RESULTS
+========================= */
+
+.energy-results {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 20px;
 
-    font-size:
-        0.85rem;
-
 }
 
 
-.header-progress-track {
+.energy-result-card {
 
-    height:
-        8px;
+    padding: 28px;
 
-    margin-top:
-        12px;
+    text-align: center;
 
-    background:
-        #0d1015;
+    background: var(--bg-secondary);
 
-    border-radius:
-        20px;
+    border:
+        1px solid var(--border);
 
-    overflow:
-        hidden;
+    border-radius: var(--radius-medium);
 
-}
-
-
-.header-progress-fill {
-
-    width:
-        0%;
-
-    height:
-        100%;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            var(--accent),
-            var(--blue-accent)
-        );
+    box-shadow: var(--shadow-dark);
 
     transition:
-        width 0.5s ease;
+        transform 0.25s ease,
+        border-color 0.25s ease;
 
 }
 
 
+.energy-result-card:hover {
 
-/* =========================
-   MAIN
-========================= */
-
-main {
-
-    max-width:
-        1150px;
-
-    margin:
-        auto;
-
-    padding:
-
-        60px 20px;
-
-}
-
-
-.hero {
-
-    text-align:
-        center;
-
-    max-width:
-        720px;
-
-    margin:
-
-        0 auto
-        70px;
-
-}
-
-
-.hero h2 {
-
-    font-size:
-        2.4rem;
-
-}
-
-
-.hero p {
-
-    color:
-        var(--text-secondary);
-
-}
-
-
-
-/* =========================
-   SECTIONS
-========================= */
-
-.ohms-section,
-.series-section,
-.parallel-section,
-.power-section,
-.comparison-section,
-.missions-section,
-.quiz-section {
-
-    position: relative;
-
-    padding:
-        50px;
-
-    margin-bottom:
-        55px;
-
-    overflow: hidden;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #20252e,
-            #181c23
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius-large);
-
-    box-shadow:
-
-        12px 12px 28px
-        rgba(0, 0, 0, 0.28),
-
-        -6px -6px 18px
-        rgba(255, 255, 255, 0.015);
-
-    scroll-margin-top:
-        110px;
-
-}
-
-
-.section-label {
-
-    display: inline-block;
-
-    padding:
-
-        5px 10px;
-
-    margin-bottom:
-        10px;
-
-    border-radius:
-        8px;
-
-    background:
-        var(--accent-soft);
-
-    color:
-        var(--accent);
-
-    font-size:
-        0.7rem;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        1px;
-
-}
-
-
-.ohms-section h2,
-.series-section h2,
-.parallel-section h2,
-.power-section h2,
-.comparison-section h2,
-.missions-section h2,
-.quiz-section h2 {
-
-    margin-top:
-        0;
-
-    font-size:
-        2rem;
-
-}
-
-
-.section-description {
-
-    color:
-        var(--text-secondary);
-
-    text-align:
-        center;
-
-    max-width:
-        700px;
-
-    margin:
-
-        15px auto
-        40px;
-
-}
-
-
-
-/* =========================
-   COMMON CARDS
-========================= */
-
-.controls,
-.result,
-.series-control,
-.parallel-control,
-.power-control,
-.concept-box,
-.comparison-card,
-.quiz-container,
-.mission-card,
-.mission-progress-card {
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #242a33,
-            #1a1f27
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius-medium);
-
-    box-shadow:
-
-        8px 8px 20px
-        rgba(0, 0, 0, 0.2);
-
-}
-
-
-
-/* =========================
-   OHM'S LAW
-========================= */
-
-.lab-container {
-
-    display: grid;
-
-    grid-template-columns:
-
-        1fr
-        1fr;
-
-    gap:
-        25px;
-
-}
-
-
-.controls,
-.result {
-
-    padding:
-        30px;
-
-}
-
-
-.control {
-
-    margin-bottom:
-        30px;
-
-}
-
-
-.control:last-child {
-
-    margin-bottom:
-        0;
-
-}
-
-
-.control label,
-.series-control label,
-.parallel-control label,
-.power-control label {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 10px;
-
-    font-weight:
-        700;
-
-    margin-bottom:
-        14px;
-
-}
-
-
-.control span,
-.series-control span,
-.parallel-control span,
-.power-control span {
-
-    color:
-        var(--accent);
-
-}
-
-
-.result {
-
-    display: flex;
-
-    flex-direction:
-        column;
-
-    justify-content:
-        center;
-
-    text-align:
-        center;
-
-}
-
-
-.result-label {
-
-    color:
-        var(--accent);
-
-    font-size:
-        0.7rem;
-
-    letter-spacing:
-        1px;
-
-    font-weight:
-        800;
-
-}
-
-
-.current-value {
-
-    font-size:
-
-        clamp(
-            2.8rem,
-            6vw,
-            4rem
-        );
-
-    font-weight:
-        800;
-
-    margin:
-        20px 0;
-
-    color:
-        var(--accent);
-
-}
-
-
-
-/* =========================
-   RANGE
-========================= */
-
-input[type="range"] {
-
-    appearance:
-        none;
-
-    width:
-        100%;
-
-    height:
-        8px;
-
-    border-radius:
-        20px;
-
-    background:
-        #101319;
-
-    cursor:
-        pointer;
-
-}
-
-
-input[type="range"]::-webkit-slider-thumb {
-
-    appearance:
-        none;
-
-    width:
-        20px;
-
-    height:
-        20px;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--accent);
-
-    border:
-        3px solid #d9f7e5;
-
-    cursor:
-        pointer;
-
-    box-shadow:
-
-        0 0 12px
-        rgba(116, 198, 157, 0.5);
-
-}
-
-
-
-/* =========================
-   LIVE CIRCUIT
-========================= */
-
-.live-circuit {
-
-    margin-top:
-        45px;
-
-    text-align:
-        center;
-
-}
-
-
-.circuit {
-
-    display: flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    padding:
-
-        45px 20px;
-
-    background:
-        #14181f;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius-large);
-
-}
-
-
-.battery,
-.bulb {
-
-    font-size:
-        3rem;
-
-}
-
-
-.resistor {
-
-    width:
-        90px;
-
-    height:
-        42px;
-
-    display: flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border:
-
-        2px solid
-        var(--accent);
-
-    border-radius:
-        8px;
-
-    color:
-        var(--accent);
-
-}
-
-
-.wire {
-
-    width:
-        100px;
-
-    height:
-        4px;
-
-    position: relative;
-
-    overflow:
-        hidden;
-
-    background:
-        rgba(116, 198, 157, 0.55);
-
-}
-
-
-.electron {
-
-    position: absolute;
-
-    width:
-        10px;
-
-    height:
-        10px;
-
-    top:
-        -3px;
-
-    border-radius:
-        50%;
-
-    background:
-        white;
-
-    animation:
-
-        flow
-        2s
-        linear
-        infinite;
-
-}
-
-
-.electron-2 {
-
-    animation-delay:
-        0.6s;
-
-}
-
-
-.electron-3 {
-
-    animation-delay:
-        1.2s;
-
-}
-
-
-.electron-4 {
-
-    animation-delay:
-        0.3s;
-
-}
-
-
-.electron-5 {
-
-    animation-delay:
-        0.9s;
-
-}
-
-
-@keyframes flow {
-
-    0% {
-
-        left:
-            -20px;
-
-    }
-
-
-    100% {
-
-        left:
-            110%;
-
-    }
-
-}
-
-
-.circuit-info {
-
-    display: flex;
-
-    justify-content:
-        center;
-
-    flex-wrap:
-        wrap;
-
-    gap:
-        12px;
-
-    margin-top:
-        20px;
-
-}
-
-
-.circuit-info p {
-
-    padding:
-
-        10px 15px;
-
-    border-radius:
-        10px;
-
-    background:
-        #1a2028;
-
-    border:
-        1px solid var(--border);
-
-}
-
-
-
-/* =========================
-   CONCEPT BOX
-========================= */
-
-.concept-box {
-
-    margin-top:
-        40px;
-
-    padding:
-        30px;
-
-    text-align:
-        center;
-
-}
-
-
-.formula-box {
-
-    max-width:
-        550px;
-
-    margin:
-
-        18px auto;
-
-    padding:
-        16px;
-
-    border-radius:
-        12px;
-
-    background:
-        #12161c;
-
-    border:
-
-        1px solid
-        rgba(116, 198, 157, 0.18);
-
-    color:
-        var(--accent);
-
-    font-weight:
-        800;
-
-}
-
-
-
-/* =========================
-   SERIES + PARALLEL CONTROLS
-========================= */
-
-.series-controls,
-.parallel-controls {
-
-    display: grid;
-
-    grid-template-columns:
-
-        1fr
-        1fr;
-
-    gap:
-        18px;
-
-}
-
-
-.series-control,
-.parallel-control {
-
-    padding:
-        22px;
-
-}
-
-
-.series-diagram {
-
-    display: flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    flex-wrap:
-        wrap;
-
-    margin:
-
-        45px 0;
-
-}
-
-
-.series-battery {
-
-    font-size:
-        3rem;
-
-}
-
-
-.series-line {
-
-    width:
-        60px;
-
-    height:
-        4px;
-
-    background:
-        var(--accent);
-
-}
-
-
-.series-resistor {
-
-    width:
-        75px;
-
-    height:
-        42px;
-
-    display: flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border:
-
-        2px solid
-        var(--accent);
-
-    border-radius:
-        8px;
-
-}
-
-
-.series-results,
-.parallel-results {
-
-    display: grid;
-
-    grid-template-columns:
-
-        1fr
-        1fr;
-
-    gap:
-        18px;
-
-}
-
-
-.series-result-card,
-.parallel-result-card,
-.power-result-card,
-.drop-card,
-.branch-card {
-
-    padding:
-        24px;
-
-    text-align:
-        center;
-
-    border-radius:
-        var(--radius-medium);
-
-    background:
-        #1b2028;
-
-    border:
-        1px solid var(--border);
-
-}
-
-
-.series-result-card p,
-.parallel-result-card p,
-.power-result-card p,
-.drop-card p,
-.branch-card p {
-
-    font-size:
-        1.7rem;
-
-    font-weight:
-        800;
-
-    color:
-        var(--accent);
-
-}
-
-
-.drop-container,
-.branch-container {
-
-    display: grid;
-
-    grid-template-columns:
-
-        repeat(
-            3,
-            1fr
-        );
-
-    gap:
-        15px;
-
-}
-
-
-.parallel-diagram {
-
-    display: flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    gap:
-        50px;
-
-    margin:
-
-        40px 0;
-
-    padding:
-        35px;
-
-    background:
-        #14181f;
-
-    border-radius:
-        var(--radius-large);
-
-    border:
-        1px solid var(--border);
-
-}
-
-
-.parallel-battery {
-
-    font-size:
-        3rem;
-
-}
-
-
-.parallel-branches {
-
-    display: flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        14px;
-
-}
-
-
-.parallel-branch {
-
-    width:
-        200px;
-
-    height:
-        45px;
-
-    display: flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border:
-
-        2px solid
-        rgba(116, 198, 157, 0.6);
-
-    border-radius:
-        10px;
-
-}
-
-
-
-/* =========================
-   POWER
-========================= */
-
-.power-controls {
-
-    display: grid;
-
-    grid-template-columns:
-
-        repeat(
-            3,
-            1fr
-        );
-
-    gap:
-        18px;
-
-}
-
-
-.power-control {
-
-    padding:
-        22px;
-
-}
-
-
-.power-meter-container {
-
-    margin-top:
-        30px;
-
-    padding:
-        28px;
-
-    border-radius:
-        var(--radius-medium);
-
-    background:
-        #1a2028;
-
-    border:
-        1px solid var(--border);
-
-}
-
-
-.power-meter {
-
-    width:
-        100%;
-
-    height:
-        12px;
-
-    margin:
-        20px 0;
-
-    overflow:
-        hidden;
-
-    border-radius:
-        30px;
-
-    background:
-        #101319;
-
-}
-
-
-.power-meter-fill {
-
-    width:
-        0%;
-
-    height:
-        100%;
-
-    border-radius:
-        inherit;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            var(--accent),
-            var(--blue-accent)
-        );
-
-    transition:
-        width 0.35s ease;
-
-}
-
-
-.power-status {
-
-    color:
-        var(--accent);
-
-    font-weight:
-        800;
-
-}
-
-
-.power-results {
-
-    display: grid;
-
-    grid-template-columns:
-
-        repeat(
-            3,
-            1fr
-        );
-
-    gap:
-        18px;
-
-    margin-top:
-        20px;
-
-}
-
-
-.energy-insight {
-
-    margin-top:
-        20px;
-
-    padding:
-        25px;
-
-    border-radius:
-        var(--radius-medium);
-
-    background:
-        #1a2028;
-
-    border:
-        1px solid var(--border);
-
-}
-
-
-
-/* =========================
-   COMPARISON
-========================= */
-
-.comparison-grid {
-
-    display: grid;
-
-    grid-template-columns:
-
-        1fr
-        1fr;
-
-    gap:
-        20px;
-
-}
-
-
-.comparison-card {
-
-    padding:
-        30px;
-
-}
-
-
-.comparison-card h3 {
-
-    color:
-        var(--accent);
-
-}
-
-
-
-/* =====================================================
-   DAY 9 MISSIONS
-===================================================== */
-
-.mission-progress-card {
-
-    padding:
-        28px;
-
-    margin-bottom:
-        30px;
-
-}
-
-
-.mission-progress-header {
-
-    display: flex;
-
-    justify-content:
-        space-between;
-
-    align-items:
-        center;
-
-    gap:
-        20px;
-
-}
-
-
-.mission-progress-header h3 {
-
-    margin:
-        0;
-
-}
-
-
-.mission-progress-header p {
-
-    margin:
-        5px 0 0;
-
-    color:
-        var(--text-secondary);
-
-}
-
-
-.mission-count {
-
-    font-size:
-        1.5rem;
-
-    font-weight:
-        800;
-
-    color:
-        var(--accent);
-
-}
-
-
-.mission-progress-track {
-
-    height:
-        10px;
-
-    overflow:
-        hidden;
-
-    margin:
-        25px 0 12px;
-
-    border-radius:
-        30px;
-
-    background:
-        #101319;
-
-}
-
-
-.mission-progress-fill {
-
-    width:
-        0%;
-
-    height:
-        100%;
-
-    border-radius:
-        inherit;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            var(--accent),
-            var(--blue-accent)
-        );
-
-    transition:
-        width 0.5s ease;
-
-}
-
-
-.mission-progress-message {
-
-    margin:
-        0;
-
-    color:
-        var(--accent);
-
-    font-weight:
-        700;
-
-}
-
-
-.mission-grid {
-
-    display: grid;
-
-    grid-template-columns:
-
-        repeat(
-            2,
-            1fr
-        );
-
-    gap:
-        20px;
-
-}
-
-
-.mission-card {
-
-    position: relative;
-
-    padding:
-        28px;
-
-    transition:
-
-        transform 0.3s ease,
-        border 0.3s ease,
-        box-shadow 0.3s ease;
-
-}
-
-
-.mission-card:hover {
-
-    transform:
-        translateY(-5px);
-
-}
-
-
-.mission-card.completed {
+    transform: translateY(-5px);
 
     border-color:
-
-        rgba(116, 198, 157, 0.65);
-
-    box-shadow:
-
-        0 0 0 1px
-        rgba(116, 198, 157, 0.1),
-
-        0 15px 30px
-        rgba(0, 0, 0, 0.2);
+        rgba(103, 183, 255, 0.30);
 
 }
 
 
-.mission-card-top {
+.result-card-icon {
+
+    display: block;
+
+    font-size: 2.2rem;
+
+    margin-bottom: 8px;
+
+}
+
+
+.energy-result-card h3 {
+
+    font-size: 1rem;
+
+    color: var(--text-secondary);
+
+}
+
+
+.energy-result-card p {
+
+    margin: 10px 0 0;
+
+    font-size: 2rem;
+
+    font-weight: 800;
+
+    color: var(--accent);
+
+}
+
+
+.featured-cost {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(103, 183, 255, 0.10),
+            rgba(24, 34, 53, 0.90)
+        );
+
+    border-color:
+        rgba(103, 183, 255, 0.20);
+
+}
+
+
+/* =========================
+   COST INSIGHT
+========================= */
+
+.energy-cost-insight {
 
     display: flex;
 
-    justify-content:
-        space-between;
+    align-items: center;
 
-    align-items:
-        center;
+    gap: 20px;
 
-}
+    margin-top: 25px;
 
+    padding: 25px;
 
-.mission-number {
-
-    color:
-        var(--text-secondary);
-
-    font-weight:
-        800;
-
-    font-size:
-        0.8rem;
-
-}
-
-
-.mission-status {
-
-    padding:
-
-        5px 10px;
-
-    border-radius:
-        100px;
-
-    font-size:
-        0.72rem;
-
-    background:
-        rgba(255, 255, 255, 0.05);
-
-}
-
-
-.mission-icon {
-
-    font-size:
-        2.4rem;
-
-    margin:
-        20px 0 10px;
-
-}
-
-
-.mission-card h3 {
-
-    margin:
-        0 0 10px;
-
-}
-
-
-.mission-target {
-
-    margin:
-        20px 0;
-
-    padding:
-        14px;
-
-    border-radius:
-        10px;
-
-    text-align:
-        center;
-
-    background:
-        var(--accent-soft);
-
-    color:
-        var(--accent);
-
-    font-weight:
-        800;
-
-}
-
-
-.mission-hint {
-
-    color:
-        var(--text-secondary);
-
-    font-size:
-        0.85rem;
-
-}
-
-
-.mission-complete-message {
-
-    display:
-        none;
-
-    margin-top:
-        18px;
-
-    padding:
-        12px;
-
-    text-align:
-        center;
-
-    border-radius:
-        10px;
-
-    background:
-
-        rgba(116, 198, 157, 0.12);
-
-    color:
-        var(--accent);
-
-    font-weight:
-        800;
-
-}
-
-
-.mission-complete-message.show {
-
-    display:
-        block;
-
-}
-
-
-.all-missions-complete {
-
-    display:
-        none;
-
-    text-align:
-        center;
-
-    margin-top:
-        35px;
-
-    padding:
-        45px;
-
-    border-radius:
-        var(--radius-large);
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(116, 198, 157, 0.14),
-            rgba(115, 199, 244, 0.08)
-        );
-
-    border:
-
-        1px solid
-        rgba(116, 198, 157, 0.3);
-
-}
-
-
-.all-missions-complete.show {
-
-    display:
-        block;
-
-}
-
-
-.achievement-icon {
-
-    font-size:
-        4rem;
-
-}
-
-
-.reset-missions-btn {
-
-    padding:
-
-        12px 20px;
-
-    border:
-        none;
-
-    border-radius:
-        10px;
-
-    cursor:
-        pointer;
-
-    background:
-        var(--accent);
-
-    color:
-        #102016;
-
-    font-weight:
-        800;
-
-}
-
-
-
-/* =========================
-   QUIZ
-========================= */
-
-.quiz-container {
-
-    max-width:
-        800px;
-
-    margin:
-        auto;
-
-    padding:
-        30px;
-
-}
-
-
-.quiz-progress-text {
-
-    text-align:
-        center;
-
-    color:
-        var(--text-secondary);
-
-}
-
-
-.quiz-progress-track {
-
-    height:
-        8px;
-
-    overflow:
-        hidden;
-
-    margin:
-
-        12px 0
-        25px;
-
-    border-radius:
-        20px;
-
-    background:
-        #101319;
-
-}
-
-
-.quiz-progress-fill {
-
-    width:
-        20%;
-
-    height:
-        100%;
-
-    background:
-        var(--accent);
-
-    transition:
-        width 0.4s ease;
-
-}
-
-
-.quiz-card {
-
-    padding:
-        30px;
-
-    border-radius:
-        var(--radius-medium);
-
-    background:
-        #171c23;
-
-}
-
-
-.quiz-question {
-
-    font-size:
-        1.2rem;
-
-    font-weight:
-        700;
-
-    margin-bottom:
-        25px;
-
-}
-
-
-.quiz-options {
-
-    display: grid;
-
-    gap:
-        12px;
-
-}
-
-
-.quiz-option {
-
-    width:
-        100%;
-
-    padding:
-        16px;
+    background: var(--bg-secondary);
 
     border:
         1px solid var(--border);
 
-    border-radius:
-        10px;
+    border-radius: var(--radius-medium);
 
-    cursor:
-        pointer;
+    box-shadow: var(--shadow-dark);
 
-    text-align:
-        left;
+}
 
-    color:
-        white;
+
+.insight-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
 
     background:
-        #202630;
+        rgba(103, 183, 255, 0.10);
 
-    transition:
-        0.2s ease;
-
-}
-
-
-.quiz-option:hover {
-
-    border-color:
-        var(--accent);
-
-    transform:
-        translateX(4px);
+    font-size: 1.7rem;
 
 }
 
 
-.quiz-option.correct {
+.energy-cost-insight h3 {
 
-    background:
+    margin:
+        0 0 5px;
 
-        rgba(116, 198, 157, 0.18);
-
-    border-color:
-        var(--accent);
+    color: var(--accent);
 
 }
 
 
-.quiz-option.wrong {
+.energy-cost-insight p {
 
-    background:
+    margin: 0;
 
-        rgba(255, 100, 100, 0.15);
-
-}
-
-
-.quiz-feedback {
-
-    display:
-        none;
-
-    margin-top:
-        20px;
-
-    padding:
-        18px;
-
-    border-radius:
-        12px;
+    color: var(--text-secondary);
 
 }
-
-
-.quiz-feedback.show {
-
-    display:
-        block;
-
-}
-
-
-.correct-feedback {
-
-    background:
-
-        rgba(116, 198, 157, 0.12);
-
-}
-
-
-.wrong-feedback {
-
-    background:
-
-        rgba(255, 120, 120, 0.1);
-
-}
-
-
-.quiz-next-btn,
-.restart-btn,
-.back-to-top {
-
-    border:
-        none;
-
-    cursor:
-        pointer;
-
-    background:
-        var(--accent);
-
-    color:
-        #102016;
-
-    font-weight:
-        800;
-
-}
-
-
-.quiz-next-btn {
-
-    margin-top:
-        20px;
-
-    padding:
-
-        13px 20px;
-
-    border-radius:
-        10px;
-
-}
-
-
-.quiz-next-btn:disabled {
-
-    opacity:
-        0.4;
-
-    cursor:
-        not-allowed;
-
-}
-
-
-.quiz-result {
-
-    display:
-        none;
-
-    text-align:
-        center;
-
-    padding:
-        35px;
-
-}
-
-
-.quiz-result.show {
-
-    display:
-        block;
-
-}
-
-
-.result-icon {
-
-    font-size:
-        4rem;
-
-}
-
-
-.final-score {
-
-    font-size:
-        1.8rem;
-
-    font-weight:
-        800;
-
-    color:
-        var(--accent);
-
-}
-
-
-.restart-btn {
-
-    padding:
-
-        13px 22px;
-
-    border-radius:
-        10px;
-
-}
-
 
 
 /* =========================
-   FOOTER
+   FORMULA NOTE
 ========================= */
 
-footer {
+.formula-note {
 
-    text-align:
-        center;
+    max-width: 700px;
 
-    padding:
+    margin: 20px auto 0;
 
-        45px 20px;
+    color: var(--text-secondary);
 
-    border-top:
-        1px solid var(--border);
-
-    color:
-        var(--text-secondary);
+    font-size: 0.9rem;
 
 }
-
-
-.footer-small {
-
-    font-size:
-        0.8rem;
-
-    opacity:
-        0.7;
-
-}
-
 
 
 /* =========================
-   BACK TO TOP
+   DAY 10 MOBILE
 ========================= */
 
-.back-to-top {
+@media (max-width: 800px) {
 
-    position:
-        fixed;
+    .energy-section {
 
-    right:
-        25px;
+        padding: 30px 18px;
 
-    bottom:
-        25px;
+    }
 
-    width:
-        50px;
 
-    height:
-        50px;
+    .energy-controls {
 
-    border-radius:
-        50%;
+        grid-template-columns: 1fr;
 
-    font-size:
-        1.4rem;
+    }
 
-    opacity:
-        0;
 
-    pointer-events:
-        none;
+    .energy-results {
 
-    transform:
-        translateY(20px);
+        grid-template-columns: 1fr;
 
-    transition:
-        0.25s ease;
+    }
+
+
+    .energy-flow {
+
+        justify-content: flex-start;
+
+    }
+
+
+    .energy-cost-insight {
+
+        align-items: flex-start;
+
+    }
 
 }
 
 
-.back-to-top.show {
+@media (max-width: 550px) {
 
-    opacity:
-        1;
+    .energy-flow {
 
-    pointer-events:
-        auto;
+        flex-direction: column;
 
-    transform:
-        translateY(0);
-
-}
-
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 850px) {
-
-    .navbar {
-
-        flex-direction:
-            column;
-
-        gap:
-            12px;
-
-        padding:
-            14px;
+        overflow-x: visible;
 
     }
 
 
-    .nav-links {
+    .flow-arrow {
 
-        justify-content:
-            center;
-
-    }
-
-
-    .nav-links a {
-
-        font-size:
-            0.72rem;
-
-        padding:
-
-            6px 8px;
+        transform: rotate(90deg);
 
     }
 
 
-    .ohms-section,
-    .series-section,
-    .parallel-section,
-    .power-section,
-    .comparison-section,
-    .missions-section,
-    .quiz-section {
+    .energy-flow-item {
 
-        padding:
-
-            30px 18px;
+        width: 100%;
 
     }
 
 
-    .lab-container,
-    .series-controls,
-    .parallel-controls,
-    .series-results,
-    .parallel-results,
-    .drop-container,
-    .branch-container,
-    .power-controls,
-    .power-results,
-    .comparison-grid,
-    .mission-grid {
+    .energy-cost-insight {
 
-        grid-template-columns:
-            1fr;
+        flex-direction: column;
 
-    }
-
-
-    .parallel-diagram {
-
-        flex-direction:
-            column;
-
-        gap:
-            25px;
-
-    }
-
-
-    .circuit {
-
-        flex-wrap:
-            wrap;
-
-    }
-
-
-    .wire {
-
-        width:
-            40px;
-
-    }
-
-
-    .series-line {
-
-        width:
-            25px;
-
-    }
-
-
-    .mission-progress-header {
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-
-    }
-
-
-    header {
-
-        padding:
-
-            80px 20px
-            55px;
+        text-align: center;
 
     }
 
