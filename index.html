@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -9,6 +8,10 @@
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="VoltLab - Interactive electricity learning laboratory">
 
     <title>
         VoltLab ⚡ | Interactive Electricity Learning
@@ -24,7 +27,9 @@
 <body>
 
 
-    <!-- NAVIGATION -->
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
 
     <nav class="navbar">
 
@@ -55,12 +60,12 @@
                 Power
             </a>
 
-            <a href="#compare">
-                Compare
+            <a href="#energy">
+                Energy Cost
             </a>
 
-            <a href="#missions">
-                Missions
+            <a href="#compare">
+                Compare
             </a>
 
             <a href="#quiz">
@@ -72,28 +77,23 @@
     </nav>
 
 
-
-    <!-- PAGE PROGRESS -->
+    <!-- PROGRESS BAR -->
 
     <div class="progress-container">
 
         <div
             class="progress-bar"
             id="progressBar">
-
         </div>
 
     </div>
 
 
-
-    <!-- HEADER -->
+    <!-- =========================
+         HEADER
+    ========================== -->
 
     <header id="home">
-
-        <div class="hero-badge">
-            INTERACTIVE ELECTRICITY LAB
-        </div>
 
         <h1>
             ⚡ VoltLab
@@ -103,44 +103,15 @@
             Learn electricity by seeing it.
         </p>
 
-
-        <!-- LEARNING PROGRESS -->
-
-        <div class="header-progress">
-
-            <div class="header-progress-top">
-
-                <span>
-                    🎯 Learning Progress
-                </span>
-
-                <span id="headerMissionProgress">
-                    0 / 4 Missions
-                </span>
-
-            </div>
-
-
-            <div class="header-progress-track">
-
-                <div
-                    class="header-progress-fill"
-                    id="headerMissionFill">
-
-                </div>
-
-            </div>
-
-        </div>
-
     </header>
-
 
 
     <main>
 
 
-        <!-- HERO -->
+        <!-- =========================
+             HERO
+        ========================== -->
 
         <section class="hero">
 
@@ -156,16 +127,13 @@
         </section>
 
 
-
-        <!-- OHM'S LAW -->
+        <!-- =========================
+             OHM'S LAW
+        ========================== -->
 
         <section
             class="ohms-section"
             id="ohms">
-
-            <div class="section-label">
-                LAB 01
-            </div>
 
             <h2>
                 ⚡ Ohm's Law Visualizer
@@ -181,7 +149,6 @@
 
 
                 <div class="controls">
-
 
                     <div class="control">
 
@@ -208,7 +175,6 @@
                     </div>
 
 
-
                     <div class="control">
 
                         <label>
@@ -233,16 +199,10 @@
 
                     </div>
 
-
                 </div>
 
 
-
                 <div class="result">
-
-                    <div class="result-label">
-                        LIVE RESULT
-                    </div>
 
                     <h3>
                         Current
@@ -268,9 +228,7 @@
 
                 </div>
 
-
             </div>
-
 
 
             <!-- LIVE CIRCUIT -->
@@ -284,7 +242,6 @@
 
                 <div class="circuit">
 
-
                     <div class="battery">
                         🔋
                     </div>
@@ -293,9 +250,7 @@
                     <div class="wire">
 
                         <div class="electron electron-1"></div>
-
                         <div class="electron electron-2"></div>
-
                         <div class="electron electron-3"></div>
 
                     </div>
@@ -309,7 +264,6 @@
                     <div class="wire">
 
                         <div class="electron electron-4"></div>
-
                         <div class="electron electron-5"></div>
 
                     </div>
@@ -323,65 +277,39 @@
 
                     </div>
 
-
                 </div>
-
 
 
                 <div class="circuit-info">
 
-
                     <p>
-
                         Voltage:
-
-                        <span id="circuitVoltage">
-                            12
-                        </span>
-
+                        <span id="circuitVoltage">12</span>
                         V
-
                     </p>
 
 
                     <p>
-
                         Resistance:
-
-                        <span id="circuitResistance">
-                            6
-                        </span>
-
+                        <span id="circuitResistance">6</span>
                         Ω
-
                     </p>
 
 
                     <p>
-
                         Current:
-
-                        <span id="circuitCurrent">
-                            2.00
-                        </span>
-
+                        <span id="circuitCurrent">2.00</span>
                         A
-
                     </p>
-
 
                 </div>
 
 
                 <h3 id="circuitStatus">
-
                     Circuit running normally ⚡
-
                 </h3>
 
-
             </div>
-
 
 
             <div class="concept-box">
@@ -407,22 +335,16 @@
 
             </div>
 
-
         </section>
 
 
-
-        <!-- SERIES CIRCUIT -->
+        <!-- =========================
+             SERIES CIRCUIT
+        ========================== -->
 
         <section
             class="series-section"
             id="series">
-
-
-            <div class="section-label">
-                LAB 02
-            </div>
-
 
             <h2>
                 🔗 Series Circuit Explorer
@@ -430,21 +352,16 @@
 
 
             <p class="section-description">
-
                 Explore how voltage divides across resistors
                 connected in series.
-
             </p>
-
 
 
             <div class="series-controls">
 
-
                 <div class="series-control">
 
                     <label>
-
                         Supply Voltage:
 
                         <span id="seriesVoltageValue">
@@ -452,7 +369,6 @@
                         </span>
 
                         V
-
                     </label>
 
 
@@ -466,11 +382,9 @@
                 </div>
 
 
-
                 <div class="series-control">
 
                     <label>
-
                         Resistor R1:
 
                         <span id="r1Value">
@@ -478,7 +392,6 @@
                         </span>
 
                         Ω
-
                     </label>
 
 
@@ -492,11 +405,9 @@
                 </div>
 
 
-
                 <div class="series-control">
 
                     <label>
-
                         Resistor R2:
 
                         <span id="r2Value">
@@ -504,7 +415,6 @@
                         </span>
 
                         Ω
-
                     </label>
 
 
@@ -518,11 +428,9 @@
                 </div>
 
 
-
                 <div class="series-control">
 
                     <label>
-
                         Resistor R3:
 
                         <span id="r3Value">
@@ -530,7 +438,6 @@
                         </span>
 
                         Ω
-
                     </label>
 
 
@@ -543,9 +450,7 @@
 
                 </div>
 
-
             </div>
-
 
 
             <div class="series-diagram">
@@ -575,9 +480,7 @@
             </div>
 
 
-
             <div class="series-results">
-
 
                 <div class="series-result-card">
 
@@ -586,17 +489,13 @@
                     </h3>
 
                     <p>
-
                         <span id="totalResistance">
                             60
                         </span>
-
                         Ω
-
                     </p>
 
                 </div>
-
 
 
                 <div class="series-result-card">
@@ -606,20 +505,15 @@
                     </h3>
 
                     <p>
-
                         <span id="seriesCurrent">
                             0.20
                         </span>
-
                         A
-
                     </p>
 
                 </div>
 
-
             </div>
-
 
 
             <div class="voltage-drops">
@@ -631,71 +525,50 @@
 
                 <div class="drop-container">
 
-
                     <div class="drop-card">
 
-                        <h4>
-                            R1
-                        </h4>
+                        <h4>R1</h4>
 
                         <p>
-
                             <span id="voltageDrop1">
                                 2.00
                             </span>
-
                             V
-
                         </p>
 
                     </div>
 
 
-
                     <div class="drop-card">
 
-                        <h4>
-                            R2
-                        </h4>
+                        <h4>R2</h4>
 
                         <p>
-
                             <span id="voltageDrop2">
                                 4.00
                             </span>
-
                             V
-
                         </p>
 
                     </div>
-
 
 
                     <div class="drop-card">
 
-                        <h4>
-                            R3
-                        </h4>
+                        <h4>R3</h4>
 
                         <p>
-
                             <span id="voltageDrop3">
                                 6.00
                             </span>
-
                             V
-
                         </p>
 
                     </div>
 
-
                 </div>
 
-
             </div>
-
 
 
             <div class="concept-box">
@@ -716,22 +589,16 @@
 
             </div>
 
-
         </section>
 
 
-
-        <!-- PARALLEL CIRCUIT -->
+        <!-- =========================
+             PARALLEL CIRCUIT
+        ========================== -->
 
         <section
             class="parallel-section"
             id="parallel">
-
-
-            <div class="section-label">
-                LAB 03
-            </div>
-
 
             <h2>
                 ⚡ Parallel Circuit Explorer
@@ -739,21 +606,16 @@
 
 
             <p class="section-description">
-
                 Explore how current divides between multiple
                 branches while voltage remains the same.
-
             </p>
-
 
 
             <div class="parallel-controls">
 
-
                 <div class="parallel-control">
 
                     <label>
-
                         Supply Voltage:
 
                         <span id="parallelVoltageValue">
@@ -761,7 +623,6 @@
                         </span>
 
                         V
-
                     </label>
 
 
@@ -775,11 +636,9 @@
                 </div>
 
 
-
                 <div class="parallel-control">
 
                     <label>
-
                         Resistor R1:
 
                         <span id="parallelR1Value">
@@ -787,7 +646,6 @@
                         </span>
 
                         Ω
-
                     </label>
 
 
@@ -801,11 +659,9 @@
                 </div>
 
 
-
                 <div class="parallel-control">
 
                     <label>
-
                         Resistor R2:
 
                         <span id="parallelR2Value">
@@ -813,7 +669,6 @@
                         </span>
 
                         Ω
-
                     </label>
 
 
@@ -827,11 +682,9 @@
                 </div>
 
 
-
                 <div class="parallel-control">
 
                     <label>
-
                         Resistor R3:
 
                         <span id="parallelR3Value">
@@ -839,7 +692,6 @@
                         </span>
 
                         Ω
-
                     </label>
 
 
@@ -852,13 +704,10 @@
 
                 </div>
 
-
             </div>
 
 
-
             <div class="parallel-diagram">
-
 
                 <div class="parallel-battery">
                     🔋
@@ -881,13 +730,10 @@
 
                 </div>
 
-
             </div>
 
 
-
             <div class="parallel-results">
-
 
                 <div class="parallel-result-card">
 
@@ -896,17 +742,13 @@
                     </h3>
 
                     <p>
-
                         <span id="parallelTotalResistance">
                             5.45
                         </span>
-
                         Ω
-
                     </p>
 
                 </div>
-
 
 
                 <div class="parallel-result-card">
@@ -916,20 +758,15 @@
                     </h3>
 
                     <p>
-
                         <span id="parallelTotalCurrent">
                             2.20
                         </span>
-
                         A
-
                     </p>
 
                 </div>
 
-
             </div>
-
 
 
             <div class="branch-currents">
@@ -941,7 +778,6 @@
 
                 <div class="branch-container">
 
-
                     <div class="branch-card">
 
                         <h4>
@@ -949,17 +785,13 @@
                         </h4>
 
                         <p>
-
                             <span id="branchCurrent1">
                                 1.20
                             </span>
-
                             A
-
                         </p>
 
                     </div>
-
 
 
                     <div class="branch-card">
@@ -969,17 +801,13 @@
                         </h4>
 
                         <p>
-
                             <span id="branchCurrent2">
                                 0.60
                             </span>
-
                             A
-
                         </p>
 
                     </div>
-
 
 
                     <div class="branch-card">
@@ -989,23 +817,17 @@
                         </h4>
 
                         <p>
-
                             <span id="branchCurrent3">
                                 0.40
                             </span>
-
                             A
-
                         </p>
 
                     </div>
 
-
                 </div>
 
-
             </div>
-
 
 
             <div class="concept-box">
@@ -1021,30 +843,21 @@
 
 
                 <div class="formula-box">
-
-                    1 / R Total =
-                    1 / R1 + 1 / R2 + 1 / R3
-
+                    1 / R Total = 1 / R1 + 1 / R2 + 1 / R3
                 </div>
 
             </div>
 
-
         </section>
 
 
-
-        <!-- POWER LAB -->
+        <!-- =========================
+             POWER LAB
+        ========================== -->
 
         <section
             class="power-section"
             id="power">
-
-
-            <div class="section-label">
-                LAB 04
-            </div>
-
 
             <h2>
                 ⚡ Power & Energy Lab
@@ -1052,21 +865,16 @@
 
 
             <p class="section-description">
-
                 Discover how voltage, current and time determine
                 electrical power and energy consumption.
-
             </p>
-
 
 
             <div class="power-controls">
 
-
                 <div class="power-control">
 
                     <label>
-
                         Voltage:
 
                         <span id="powerVoltageValue">
@@ -1074,7 +882,6 @@
                         </span>
 
                         V
-
                     </label>
 
 
@@ -1088,11 +895,9 @@
                 </div>
 
 
-
                 <div class="power-control">
 
                     <label>
-
                         Current:
 
                         <span id="powerCurrentValue">
@@ -1100,7 +905,6 @@
                         </span>
 
                         A
-
                     </label>
 
 
@@ -1115,11 +919,9 @@
                 </div>
 
 
-
                 <div class="power-control">
 
                     <label>
-
                         Usage Time:
 
                         <span id="usageTimeValue">
@@ -1127,7 +929,6 @@
                         </span>
 
                         Hours
-
                     </label>
 
 
@@ -1140,9 +941,7 @@
 
                 </div>
 
-
             </div>
-
 
 
             <div class="power-meter-container">
@@ -1157,7 +956,6 @@
                     <div
                         class="power-meter-fill"
                         id="powerMeterFill">
-
                     </div>
 
                 </div>
@@ -1174,9 +972,7 @@
             </div>
 
 
-
             <div class="power-results">
-
 
                 <div class="power-result-card">
 
@@ -1185,17 +981,13 @@
                     </h3>
 
                     <p>
-
                         <span id="powerResult">
                             460
                         </span>
-
                         W
-
                     </p>
 
                 </div>
-
 
 
                 <div class="power-result-card">
@@ -1205,17 +997,13 @@
                     </h3>
 
                     <p>
-
                         <span id="energyWh">
                             2300
                         </span>
-
                         Wh
-
                     </p>
 
                 </div>
-
 
 
                 <div class="power-result-card">
@@ -1225,20 +1013,15 @@
                     </h3>
 
                     <p>
-
                         <span id="energyKwh">
                             2.30
                         </span>
-
                         kWh
-
                     </p>
 
                 </div>
 
-
             </div>
-
 
 
             <div class="energy-insight">
@@ -1248,14 +1031,11 @@
                 </h3>
 
                 <p id="energyInsight">
-
                     Your circuit is consuming energy at a moderate
                     rate.
-
                 </p>
 
             </div>
-
 
 
             <div class="concept-box">
@@ -1287,22 +1067,427 @@
 
             </div>
 
+        </section>
+
+
+        <!-- =================================================
+             DAY 10 - ENERGY COST SIMULATOR
+        ================================================== -->
+
+        <section
+            class="energy-section"
+            id="energy">
+
+            <div class="energy-header">
+
+                <span class="feature-badge">
+                    DAY 10 • NEW FEATURE
+                </span>
+
+                <h2>
+                    💸 Real-World Energy Simulator
+                </h2>
+
+                <p class="section-description">
+
+                    See how appliance power and usage time
+                    translate into electricity consumption
+                    and estimated cost.
+
+                </p>
+
+            </div>
+
+
+            <!-- APPLIANCE SELECTOR -->
+
+            <div class="appliance-selector">
+
+                <label for="applianceSelect">
+                    Choose an appliance
+                </label>
+
+
+                <select id="applianceSelect">
+
+                    <option value="led">
+                        💡 LED Bulb
+                    </option>
+
+                    <option value="fan">
+                        🌀 Ceiling Fan
+                    </option>
+
+                    <option value="laptop">
+                        💻 Laptop
+                    </option>
+
+                    <option value="tv">
+                        📺 Television
+                    </option>
+
+                    <option value="ac">
+                        ❄️ Air Conditioner
+                    </option>
+
+                    <option value="heater">
+                        🔥 Room Heater
+                    </option>
+
+                    <option value="custom">
+                        ⚙️ Custom Appliance
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="energy-controls">
+
+
+                <div class="energy-control">
+
+                    <label>
+
+                        Power Rating:
+
+                        <span id="appliancePowerValue">
+                            10
+                        </span>
+
+                        W
+
+                    </label>
+
+
+                    <input
+                        type="range"
+                        id="appliancePower"
+                        min="1"
+                        max="5000"
+                        value="10">
+
+                </div>
+
+
+                <div class="energy-control">
+
+                    <label>
+
+                        Hours Per Day:
+
+                        <span id="applianceHoursValue">
+                            5
+                        </span>
+
+                        h
+
+                    </label>
+
+
+                    <input
+                        type="range"
+                        id="applianceHours"
+                        min="0.5"
+                        max="24"
+                        step="0.5"
+                        value="5">
+
+                </div>
+
+
+                <div class="energy-control">
+
+                    <label>
+
+                        Days Per Month:
+
+                        <span id="applianceDaysValue">
+                            30
+                        </span>
+
+                        days
+
+                    </label>
+
+
+                    <input
+                        type="range"
+                        id="applianceDays"
+                        min="1"
+                        max="31"
+                        value="30">
+
+                </div>
+
+
+                <div class="energy-control">
+
+                    <label>
+
+                        Electricity Tariff:
+
+                        ₹<span id="tariffValue">
+                            8
+                        </span>
+
+                        / kWh
+
+                    </label>
+
+
+                    <input
+                        type="range"
+                        id="tariff"
+                        min="1"
+                        max="30"
+                        step="0.5"
+                        value="8">
+
+                </div>
+
+            </div>
+
+
+            <!-- ENERGY VISUAL -->
+
+            <div class="energy-flow">
+
+                <div class="energy-flow-item">
+
+                    <span class="flow-icon">
+                        ⚡
+                    </span>
+
+                    <strong id="flowPower">
+                        10 W
+                    </strong>
+
+                    <small>
+                        Power
+                    </small>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="energy-flow-item">
+
+                    <span class="flow-icon">
+                        🕐
+                    </span>
+
+                    <strong id="flowTime">
+                        5 h/day
+                    </strong>
+
+                    <small>
+                        Usage
+                    </small>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="energy-flow-item">
+
+                    <span class="flow-icon">
+                        🔋
+                    </span>
+
+                    <strong id="flowEnergy">
+                        1.50 kWh
+                    </strong>
+
+                    <small>
+                        Monthly Energy
+                    </small>
+
+                </div>
+
+
+                <div class="flow-arrow">
+                    →
+                </div>
+
+
+                <div class="energy-flow-item">
+
+                    <span class="flow-icon">
+                        💸
+                    </span>
+
+                    <strong id="flowCost">
+                        ₹12.00
+                    </strong>
+
+                    <small>
+                        Monthly Cost
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULTS -->
+
+            <div class="energy-results">
+
+
+                <div class="energy-result-card">
+
+                    <span class="result-card-icon">
+                        ⚡
+                    </span>
+
+                    <h3>
+                        Daily Energy
+                    </h3>
+
+                    <p>
+
+                        <span id="dailyEnergy">
+                            0.05
+                        </span>
+
+                        kWh
+
+                    </p>
+
+                </div>
+
+
+                <div class="energy-result-card">
+
+                    <span class="result-card-icon">
+                        🔋
+                    </span>
+
+                    <h3>
+                        Monthly Energy
+                    </h3>
+
+                    <p>
+
+                        <span id="monthlyEnergy">
+                            1.50
+                        </span>
+
+                        kWh
+
+                    </p>
+
+                </div>
+
+
+                <div class="energy-result-card featured-cost">
+
+                    <span class="result-card-icon">
+                        💸
+                    </span>
+
+                    <h3>
+                        Estimated Monthly Cost
+                    </h3>
+
+                    <p>
+
+                        ₹<span id="monthlyCost">
+                            12.00
+                        </span>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- INSIGHT -->
+
+            <div class="energy-cost-insight">
+
+                <div class="insight-icon">
+                    🧠
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        VoltLab Insight
+                    </h3>
+
+                    <p id="energyCostInsight">
+
+                        This appliance has relatively low
+                        electricity consumption at the current
+                        usage level.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORMULA -->
+
+            <div class="concept-box">
+
+                <h3>
+                    How is the cost calculated?
+                </h3>
+
+
+                <div class="formula-box">
+                    Energy = Power × Time
+                </div>
+
+
+                <div class="formula-box">
+                    kWh = Watts × Hours ÷ 1000
+                </div>
+
+
+                <div class="formula-box">
+                    Cost = kWh × Tariff
+                </div>
+
+
+                <p class="formula-note">
+
+                    This is an educational estimate. Actual
+                    electricity bills can vary because tariffs,
+                    taxes, fixed charges and billing structures
+                    differ by location and provider.
+
+                </p>
+
+            </div>
 
         </section>
 
 
-
-        <!-- COMPARISON -->
+        <!-- =========================
+             COMPARISON
+        ========================== -->
 
         <section
             class="comparison-section"
             id="compare">
-
-
-            <div class="section-label">
-                CONCEPT
-            </div>
-
 
             <h2>
                 🔬 Series vs Parallel
@@ -1311,11 +1496,10 @@
 
             <div class="comparison-grid">
 
-
                 <div class="comparison-card">
 
                     <h3>
-                        🔗 Series
+                        Series
                     </h3>
 
                     <p>
@@ -1333,11 +1517,10 @@
                 </div>
 
 
-
                 <div class="comparison-card">
 
                     <h3>
-                        ⚡ Parallel
+                        Parallel
                     </h3>
 
                     <p>
@@ -1354,416 +1537,30 @@
 
                 </div>
 
-
             </div>
-
 
         </section>
 
 
-
-        <!-- DAY 9 MISSIONS -->
-
-        <section
-            class="missions-section"
-            id="missions">
-
-
-            <div class="section-label">
-                DAY 09
-            </div>
-
-
-            <h2>
-                🎯 Engineering Missions
-            </h2>
-
-
-            <p class="section-description">
-
-                Stop just watching the numbers change.
-                Complete challenges by configuring the labs
-                correctly.
-
-            </p>
-
-
-
-            <div class="mission-progress-card">
-
-
-                <div class="mission-progress-header">
-
-                    <div>
-
-                        <h3>
-                            Your Mission Progress
-                        </h3>
-
-                        <p>
-                            Complete all four engineering challenges.
-                        </p>
-
-                    </div>
-
-
-                    <div
-                        class="mission-count"
-                        id="missionCount">
-
-                        0 / 4
-
-                    </div>
-
-                </div>
-
-
-                <div class="mission-progress-track">
-
-                    <div
-                        class="mission-progress-fill"
-                        id="missionProgressFill">
-
-                    </div>
-
-                </div>
-
-
-                <p
-                    class="mission-progress-message"
-                    id="missionProgressMessage">
-
-                    Your engineering journey starts now ⚡
-
-                </p>
-
-            </div>
-
-
-
-            <div class="mission-grid">
-
-
-                <!-- MISSION 1 -->
-
-                <div
-                    class="mission-card"
-                    id="missionCardOhm">
-
-
-                    <div class="mission-card-top">
-
-                        <span class="mission-number">
-                            01
-                        </span>
-
-                        <span
-                            class="mission-status"
-                            id="missionStatusOhm">
-
-                            🔒 In Progress
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="mission-icon">
-                        ⚡
-                    </div>
-
-
-                    <h3>
-                        Current Controller
-                    </h3>
-
-
-                    <p>
-                        Adjust the Ohm's Law controls until
-                        the circuit current reaches:
-                    </p>
-
-
-                    <div class="mission-target">
-                        🎯 Target: 3.00 A
-                    </div>
-
-
-                    <p class="mission-hint">
-                        Hint: Try finding a voltage and resistance
-                        combination where V ÷ R = 3.
-                    </p>
-
-
-                    <div
-                        class="mission-complete-message"
-                        id="missionCompleteOhm">
-
-                        ✅ Mission Complete!
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- MISSION 2 -->
-
-                <div
-                    class="mission-card"
-                    id="missionCardSeries">
-
-
-                    <div class="mission-card-top">
-
-                        <span class="mission-number">
-                            02
-                        </span>
-
-                        <span
-                            class="mission-status"
-                            id="missionStatusSeries">
-
-                            🔒 In Progress
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="mission-icon">
-                        🔗
-                    </div>
-
-
-                    <h3>
-                        Resistance Builder
-                    </h3>
-
-
-                    <p>
-                        Configure the three resistors in the
-                        series circuit so their total becomes:
-                    </p>
-
-
-                    <div class="mission-target">
-                        🎯 Target: 75 Ω
-                    </div>
-
-
-                    <p class="mission-hint">
-                        Hint: In series, resistance adds together.
-                    </p>
-
-
-                    <div
-                        class="mission-complete-message"
-                        id="missionCompleteSeries">
-
-                        ✅ Mission Complete!
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- MISSION 3 -->
-
-                <div
-                    class="mission-card"
-                    id="missionCardParallel">
-
-
-                    <div class="mission-card-top">
-
-                        <span class="mission-number">
-                            03
-                        </span>
-
-                        <span
-                            class="mission-status"
-                            id="missionStatusParallel">
-
-                            🔒 In Progress
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="mission-icon">
-                        🌐
-                    </div>
-
-
-                    <h3>
-                        Branch Manager
-                    </h3>
-
-
-                    <p>
-                        Adjust the parallel circuit until the
-                        equivalent resistance reaches:
-                    </p>
-
-
-                    <div class="mission-target">
-                        🎯 Target: 5.00 Ω ± 0.05
-                    </div>
-
-
-                    <p class="mission-hint">
-                        Hint: Parallel resistance is always lower
-                        than the smallest branch resistance.
-                    </p>
-
-
-                    <div
-                        class="mission-complete-message"
-                        id="missionCompleteParallel">
-
-                        ✅ Mission Complete!
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- MISSION 4 -->
-
-                <div
-                    class="mission-card"
-                    id="missionCardPower">
-
-
-                    <div class="mission-card-top">
-
-                        <span class="mission-number">
-                            04
-                        </span>
-
-                        <span
-                            class="mission-status"
-                            id="missionStatusPower">
-
-                            🔒 In Progress
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="mission-icon">
-                        🔋
-                    </div>
-
-
-                    <h3>
-                        Power Engineer
-                    </h3>
-
-
-                    <p>
-                        Configure voltage and current to generate:
-                    </p>
-
-
-                    <div class="mission-target">
-                        🎯 Target: 1000 W
-                    </div>
-
-
-                    <p class="mission-hint">
-                        Hint: Use the formula P = V × I.
-                    </p>
-
-
-                    <div
-                        class="mission-complete-message"
-                        id="missionCompletePower">
-
-                        ✅ Mission Complete!
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- FINAL ACHIEVEMENT -->
-
-            <div
-                class="all-missions-complete"
-                id="allMissionsComplete">
-
-
-                <div class="achievement-icon">
-                    🏆
-                </div>
-
-
-                <h3>
-                    All Missions Complete!
-                </h3>
-
-
-                <p>
-                    You've successfully completed every VoltLab
-                    engineering challenge.
-                </p>
-
-
-                <button
-                    id="resetMissions"
-                    class="reset-missions-btn">
-
-                    🔄 Reset Missions
-
-                </button>
-
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- QUIZ -->
+        <!-- =========================
+             QUIZ
+        ========================== -->
 
         <section
             class="quiz-section"
             id="quiz">
 
-
-            <div class="section-label">
-                CHALLENGE
-            </div>
-
-
             <h2>
                 🧠 VoltLab Challenge
             </h2>
 
-
             <p class="section-description">
-                Test what you learned and see how strong your
-                electricity fundamentals are.
+                Test what you learned. Answer the questions and
+                see how strong your electricity fundamentals are.
             </p>
 
 
             <div class="quiz-container">
-
 
                 <div
                     class="quiz-progress-text"
@@ -1779,7 +1576,6 @@
                     <div
                         class="quiz-progress-fill"
                         id="quizProgressFill">
-
                     </div>
 
                 </div>
@@ -1789,25 +1585,21 @@
                     class="quiz-card"
                     id="quizCard">
 
-
                     <div
                         class="quiz-question"
                         id="quizQuestion">
-
                     </div>
 
 
                     <div
                         class="quiz-options"
                         id="quizOptions">
-
                     </div>
 
 
                     <div
                         class="quiz-feedback"
                         id="quizFeedback">
-
                     </div>
 
 
@@ -1820,7 +1612,6 @@
 
                     </button>
 
-
                 </div>
 
 
@@ -1828,16 +1619,13 @@
                     class="quiz-result"
                     id="quizResult">
 
-
                     <div class="result-icon">
                         ⚡
                     </div>
 
-
                     <h3>
                         Challenge Complete!
                     </h3>
-
 
                     <p class="final-score">
 
@@ -1855,14 +1643,12 @@
                     <p
                         class="performance-title"
                         id="performanceTitle">
-
                     </p>
 
 
                     <p
                         class="performance-message"
                         id="performanceMessage">
-
                     </p>
 
 
@@ -1874,12 +1660,9 @@
 
                     </button>
 
-
                 </div>
 
-
             </div>
-
 
         </section>
 
@@ -1887,19 +1670,17 @@
     </main>
 
 
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <footer>
 
         <p>
-            Built by Shantanu ⚡ | VoltLab v0.9
-        </p>
-
-        <p class="footer-small">
-            Learn • Experiment • Build
+            Built by Shantanu ⚡ | VoltLab v0.8
         </p>
 
     </footer>
-
 
 
     <button
@@ -1910,7 +1691,6 @@
         ↑
 
     </button>
-
 
 
     <script src="script.js"></script>
