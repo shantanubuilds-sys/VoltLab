@@ -1,416 +1,339 @@
-/* =====================================================
-   VOLTLAB DAY 10
-   Complete JavaScript
-===================================================== */
+/* =========================================
+   VOLTLAB DAY 11
+   INTERACTIVE ELECTRICITY LEARNING
+========================================= */
 
 
-/* =====================================================
-   HELPER FUNCTIONS
-===================================================== */
+/* =========================================
+   HELPERS
+========================================= */
 
-function get(id) {
-    return document.getElementById(id);
-}
+const $ = (id) => document.getElementById(id);
 
-function setText(id, value) {
-    const element = get(id);
-
-    if (element) {
-        element.textContent = value;
-    }
-}
-
-function number(value) {
-    return Number(value);
-}
+const formatNumber = (number, decimals = 2) => {
+    return Number(number).toFixed(decimals);
+};
 
 
-/* =====================================================
+/* =========================================
    OHM'S LAW
-===================================================== */
+========================================= */
 
-const voltageSlider = get("voltageSlider");
-const resistanceSlider = get("resistanceSlider");
+const voltageSlider = $("voltageSlider");
+const resistanceSlider = $("resistanceSlider");
 
 function updateOhmsLaw() {
 
-    if (!voltageSlider || !resistanceSlider) return;
-
-    const voltage = number(voltageSlider.value);
-    const resistance = number(resistanceSlider.value);
+    const voltage = Number(voltageSlider.value);
+    const resistance = Number(resistanceSlider.value);
 
     const current = voltage / resistance;
 
-    setText("voltageValue", voltage);
-    setText("resistanceValue", resistance);
-    setText("currentResult", current.toFixed(2));
+    $("voltageValue").textContent = voltage;
+    $("resistanceValue").textContent = resistance;
+    $("currentResult").textContent = formatNumber(current);
 
-    const bulb = document.querySelector(".bulb-glass");
+    const lamp = $("ohmLamp");
 
-    if (bulb) {
+    const brightness = Math.min(current / 4, 1);
 
-        const brightness = Math.min(
-            0.8,
-            Math.max(0.1, current / 4)
-        );
+    lamp.style.opacity = 0.45 + brightness * 0.55;
 
-        bulb.style.background =
-            `rgba(246,207,112,${brightness})`;
+    lamp.style.transform =
+        `scale(${1 + brightness * 0.08})`;
 
-        bulb.style.boxShadow =
-            `0 0 ${10 + current * 8}px rgba(246,207,112,${brightness})`;
-    }
+    if (current > 3) {
 
-    const statusDot = get("circuitStatusDot");
-    const status = get("circuitStatus");
-    const info = get("circuitInfo");
+        $("ohmStatus").textContent =
+            "⚡ High current flow";
 
-    if (current < 0.5) {
-
-        if (status) status.textContent = "Low Current";
-
-        if (info) {
-            info.textContent =
-                "A small amount of current is flowing.";
-        }
-
-    } else if (current < 2.5) {
-
-        if (status) status.textContent = "Circuit Active";
-
-        if (info) {
-            info.textContent =
-                "Current is flowing normally.";
-        }
+        $("ohmStatus").style.color =
+            "var(--danger)";
 
     } else {
 
-        if (status) status.textContent = "High Current";
+        $("ohmStatus").textContent =
+            "⚡ Circuit operating normally";
 
-        if (info) {
-            info.textContent =
-                "The circuit is carrying a relatively high current.";
-        }
-    }
-
-    if (statusDot) {
-
-        if (current >= 2.5) {
-            statusDot.style.background = "var(--yellow)";
-        } else {
-            statusDot.style.background = "var(--green)";
-        }
+        $("ohmStatus").style.color =
+            "var(--success)";
     }
 }
 
-if (voltageSlider) {
-    voltageSlider.addEventListener("input", updateOhmsLaw);
-}
 
-if (resistanceSlider) {
-    resistanceSlider.addEventListener("input", updateOhmsLaw);
-}
+voltageSlider.addEventListener("input", updateOhmsLaw);
+
+resistanceSlider.addEventListener("input", updateOhmsLaw);
+
+updateOhmsLaw();
 
 
-/* =====================================================
+
+/* =========================================
    SERIES CIRCUIT
-===================================================== */
+========================================= */
 
-const seriesVoltage = get("seriesVoltage");
-const r1 = get("r1");
-const r2 = get("r2");
-const r3 = get("r3");
+const seriesInputs = [
+    $("seriesVoltage"),
+    $("seriesR1"),
+    $("seriesR2"),
+    $("seriesR3")
+];
+
 
 function updateSeries() {
 
-    if (!seriesVoltage || !r1 || !r2 || !r3) return;
+    const voltage = Number($("seriesVoltage").value);
 
-    const voltage = number(seriesVoltage.value);
+    const r1 = Number($("seriesR1").value);
+    const r2 = Number($("seriesR2").value);
+    const r3 = Number($("seriesR3").value);
 
-    const R1 = number(r1.value);
-    const R2 = number(r2.value);
-    const R3 = number(r3.value);
+    const totalResistance =
+        r1 + r2 + r3;
 
-    const totalResistance = R1 + R2 + R3;
+    const current =
+        voltage / totalResistance;
 
-    const current = voltage / totalResistance;
+    const drop1 = current * r1;
+    const drop2 = current * r2;
+    const drop3 = current * r3;
 
-    const drop1 = current * R1;
-    const drop2 = current * R2;
-    const drop3 = current * R3;
 
-    setText("seriesVoltageValue", voltage);
+    $("seriesVoltageValue").textContent = voltage;
 
-    setText("r1Value", R1);
-    setText("r2Value", R2);
-    setText("r3Value", R3);
+    $("seriesR1Value").textContent = r1;
 
-    setText("seriesTotal", totalResistance);
-    setText("seriesCurrent", current.toFixed(2));
+    $("seriesR2Value").textContent = r2;
 
-    setText("drop1", drop1.toFixed(2));
-    setText("drop2", drop2.toFixed(2));
-    setText("drop3", drop3.toFixed(2));
+    $("seriesR3Value").textContent = r3;
 
-    setText("seriesR1Diagram", `${R1}Ω`);
-    setText("seriesR2Diagram", `${R2}Ω`);
-    setText("seriesR3Diagram", `${R3}Ω`);
+
+    $("seriesTotalResistance").textContent =
+        formatNumber(totalResistance, 2);
+
+    $("seriesCurrent").textContent =
+        formatNumber(current);
+
+
+    $("drop1").textContent =
+        `${formatNumber(drop1)} V`;
+
+    $("drop2").textContent =
+        `${formatNumber(drop2)} V`;
+
+    $("drop3").textContent =
+        `${formatNumber(drop3)} V`;
 }
 
-[
-    seriesVoltage,
-    r1,
-    r2,
-    r3
-].forEach(element => {
 
-    if (element) {
-        element.addEventListener("input", updateSeries);
-    }
+seriesInputs.forEach(input => {
+
+    input.addEventListener(
+        "input",
+        updateSeries
+    );
 
 });
 
 
-/* =====================================================
-   PARALLEL CIRCUIT
-===================================================== */
+updateSeries();
 
-const parallelVoltage = get("parallelVoltage");
-const p1 = get("p1");
-const p2 = get("p2");
-const p3 = get("p3");
+
+
+/* =========================================
+   PARALLEL CIRCUIT
+========================================= */
+
+const parallelInputs = [
+    $("parallelVoltage"),
+    $("parallelR1"),
+    $("parallelR2"),
+    $("parallelR3")
+];
+
 
 function updateParallel() {
 
-    if (!parallelVoltage || !p1 || !p2 || !p3) return;
+    const voltage =
+        Number($("parallelVoltage").value);
 
-    const voltage = number(parallelVoltage.value);
+    const r1 =
+        Number($("parallelR1").value);
 
-    const R1 = number(p1.value);
-    const R2 = number(p2.value);
-    const R3 = number(p3.value);
+    const r2 =
+        Number($("parallelR2").value);
+
+    const r3 =
+        Number($("parallelR3").value);
+
 
     const equivalent =
         1 /
         (
-            (1 / R1) +
-            (1 / R2) +
-            (1 / R3)
+            (1 / r1) +
+            (1 / r2) +
+            (1 / r3)
         );
 
-    const branch1 = voltage / R1;
-    const branch2 = voltage / R2;
-    const branch3 = voltage / R3;
+
+    const branch1 = voltage / r1;
+
+    const branch2 = voltage / r2;
+
+    const branch3 = voltage / r3;
 
     const totalCurrent =
-        branch1 +
-        branch2 +
-        branch3;
+        branch1 + branch2 + branch3;
 
-    setText("parallelVoltageValue", voltage);
 
-    setText("p1Value", R1);
-    setText("p2Value", R2);
-    setText("p3Value", R3);
+    $("parallelVoltageValue").textContent =
+        voltage;
 
-    setText(
-        "parallelEquivalent",
-        equivalent.toFixed(2)
-    );
+    $("parallelR1Value").textContent =
+        r1;
 
-    setText(
-        "parallelTotalCurrent",
-        totalCurrent.toFixed(2)
-    );
+    $("parallelR2Value").textContent =
+        r2;
 
-    setText(
-        "branch1",
-        branch1.toFixed(2)
-    );
+    $("parallelR3Value").textContent =
+        r3;
 
-    setText(
-        "branch2",
-        branch2.toFixed(2)
-    );
 
-    setText(
-        "branch3",
-        branch3.toFixed(2)
-    );
+    $("parallelEquivalent").textContent =
+        formatNumber(equivalent);
+
+    $("parallelTotalCurrent").textContent =
+        formatNumber(totalCurrent);
+
+
+    $("branch1").textContent =
+        `${formatNumber(branch1)} A`;
+
+    $("branch2").textContent =
+        `${formatNumber(branch2)} A`;
+
+    $("branch3").textContent =
+        `${formatNumber(branch3)} A`;
 }
 
-[
-    parallelVoltage,
-    p1,
-    p2,
-    p3
-].forEach(element => {
 
-    if (element) {
-        element.addEventListener("input", updateParallel);
-    }
+parallelInputs.forEach(input => {
+
+    input.addEventListener(
+        "input",
+        updateParallel
+    );
 
 });
 
 
-/* =====================================================
-   POWER & ENERGY LAB
-===================================================== */
+updateParallel();
 
-const powerVoltage = get("powerVoltage");
-const powerCurrent = get("powerCurrent");
-const usageTime = get("usageTime");
+
+
+/* =========================================
+   POWER & ENERGY
+========================================= */
+
+const powerInputs = [
+    $("powerVoltage"),
+    $("powerCurrent"),
+    $("powerTime")
+];
+
 
 function updatePower() {
 
-    if (!powerVoltage || !powerCurrent || !usageTime) return;
+    const voltage =
+        Number($("powerVoltage").value);
 
-    const voltage = number(powerVoltage.value);
-    const current = number(powerCurrent.value);
-    const time = number(usageTime.value);
+    const current =
+        Number($("powerCurrent").value);
 
-    const power = voltage * current;
+    const time =
+        Number($("powerTime").value);
 
-    const energyWh = power * time;
 
-    const energyKwh = energyWh / 1000;
+    const power =
+        voltage * current;
 
-    setText("powerVoltageValue", voltage);
-    setText("powerCurrentValue", current);
-    setText("usageTimeValue", time);
+    const energyWh =
+        power * time;
 
-    setText("powerResult", power.toFixed(0));
-    setText("powerResult2", power.toFixed(0));
+    const energyKwh =
+        energyWh / 1000;
 
-    setText(
-        "energyResult",
-        energyWh.toFixed(0)
-    );
 
-    setText(
-        "kwhResult",
-        energyKwh.toFixed(2)
-    );
+    $("powerVoltageValue").textContent =
+        voltage;
 
-    const meterFill = get("powerMeterFill");
+    $("powerCurrentValue").textContent =
+        current;
 
-    if (meterFill) {
+    $("powerTimeValue").textContent =
+        time;
 
-        const percentage =
-            Math.min(
-                100,
-                (power / 4800) * 100
-            );
 
-        meterFill.style.width =
-            `${Math.max(2, percentage)}%`;
-    }
+    $("powerResult").textContent =
+        formatNumber(power, 0);
 
-    let statusText = "";
-
-    if (power < 100) {
-
-        statusText = "Low power load";
-
-    } else if (power < 1000) {
-
-        statusText = "Moderate power load";
-
-    } else {
-
-        statusText = "High power load";
-    }
-
-    setText("powerStatus", statusText);
-
-    let insight = "";
-
-    if (power < 100) {
-
-        insight =
-            "This load uses relatively little power. Longer operation may still add up over time.";
-
-    } else if (power < 1000) {
-
-        insight =
-            "This is a moderate electrical load. Both power rating and operating time affect energy consumption.";
-
-    } else {
-
-        insight =
-            "This is a high-power load. Reducing operating time can significantly reduce energy consumption.";
-    }
-
-    setText("powerInsight", insight);
+    $("energyResult").textContent =
+        `${formatNumber(energyKwh)} kWh`;
 }
 
-[
-    powerVoltage,
-    powerCurrent,
-    usageTime
-].forEach(element => {
 
-    if (element) {
-        element.addEventListener("input", updatePower);
-    }
+powerInputs.forEach(input => {
+
+    input.addEventListener(
+        "input",
+        updatePower
+    );
 
 });
 
 
-/* =====================================================
-   DAY 10
-   ELECTRICITY COST SIMULATOR
-===================================================== */
-
-const appliancePreset = get("appliancePreset");
-const appliancePower = get("appliancePower");
-const dailyHours = get("dailyHours");
-const billingDays = get("billingDays");
-const tariff = get("tariff");
-
-const reducedHours = get("reducedHours");
+updatePower();
 
 
-function calculateCost() {
 
-    if (
-        !appliancePower ||
-        !dailyHours ||
-        !billingDays ||
-        !tariff
-    ) {
-        return;
-    }
+/* =========================================
+   ELECTRICITY COST
+========================================= */
+
+const appliancePreset =
+    $("appliancePreset");
+
+const costPower =
+    $("costPower");
+
+const costHours =
+    $("costHours");
+
+const costDays =
+    $("costDays");
+
+const costTariff =
+    $("costTariff");
+
+const reducedHours =
+    $("reducedHours");
+
+
+function updateCost() {
 
     const powerWatts =
-        Math.max(
-            0,
-            number(appliancePower.value)
-        );
+        Number(costPower.value);
 
     const hoursPerDay =
-        Math.max(
-            0,
-            number(dailyHours.value)
-        );
+        Number(costHours.value);
 
     const days =
-        Math.max(
-            0,
-            number(billingDays.value)
-        );
+        Number(costDays.value);
 
-    const price =
-        Math.max(
-            0,
-            number(tariff.value)
-        );
+    const tariff =
+        Number(costTariff.value);
 
-
-    /*
-        Convert W → kW
-        Energy = Power × Time
-    */
 
     const powerKW =
         powerWatts / 1000;
@@ -422,148 +345,77 @@ function calculateCost() {
         dailyKWh * days;
 
     const dailyCost =
-        dailyKWh * price;
+        dailyKWh * tariff;
 
     const monthlyCost =
-        monthlyKWh * price;
+        monthlyKWh * tariff;
 
 
-    setText(
-        "dailyHoursValue",
-        hoursPerDay
-    );
+    $("costPowerValue").textContent =
+        powerWatts;
 
-    setText(
-        "billingDaysValue",
-        days
-    );
+    $("costHoursValue").textContent =
+        hoursPerDay;
 
+    $("costDaysValue").textContent =
+        days;
 
-    setText(
-        "dailyEnergy",
-        dailyKWh.toFixed(2)
-    );
-
-    setText(
-        "monthlyEnergy",
-        monthlyKWh.toFixed(2)
-    );
-
-    setText(
-        "dailyCost",
-        dailyCost.toFixed(2)
-    );
-
-    setText(
-        "monthlyCost",
-        monthlyCost.toFixed(2)
-    );
+    $("tariffValue").textContent =
+        tariff;
 
 
-    /* -----------------------------------------
-       Consumption Meter
-    ----------------------------------------- */
+    $("dailyEnergy").textContent =
+        `${formatNumber(dailyKWh)} kWh`;
 
-    const consumptionPercent =
-        Math.min(
-            100,
-            (monthlyKWh / 500) * 100
-        );
+    $("monthlyEnergy").textContent =
+        `${formatNumber(monthlyKWh)} kWh`;
 
-    setText(
-        "consumptionPercent",
-        Math.round(consumptionPercent)
-    );
+    $("dailyCost").textContent =
+        `₹${formatNumber(dailyCost)}`;
 
-    const meter =
-        get("costMeterFill");
-
-    if (meter) {
-
-        meter.style.width =
-            `${Math.max(2, consumptionPercent)}%`;
-    }
+    $("monthlyCost").textContent =
+        formatNumber(monthlyCost);
 
 
-    /* -----------------------------------------
-       Message
-    ----------------------------------------- */
-
-    let message = "";
-
-    if (monthlyKWh < 20) {
-
-        message =
-            "This appliance has a relatively low monthly energy demand.";
-
-    } else if (monthlyKWh < 100) {
-
-        message =
-            "This appliance has a moderate monthly energy demand. Usage time makes a noticeable difference.";
-
-    } else if (monthlyKWh < 250) {
-
-        message =
-            "This appliance can contribute significantly to monthly electricity consumption.";
-
-    } else {
-
-        message =
-            "This is a high monthly energy demand. Reducing operating time could make a noticeable difference.";
-    }
-
-    setText(
-        "costMessage",
-        message
-    );
+    $("costMessage").textContent =
+        `Your appliance would cost about ₹${formatNumber(monthlyCost)} per month.`;
 
 
-    /* -----------------------------------------
-       What-if Saving
-    ----------------------------------------- */
-
-    calculateSavings(
-        powerWatts,
-        hoursPerDay,
-        days,
-        price
-    );
+    updateSavings();
 }
 
 
-/* =====================================================
-   SAVINGS CALCULATOR
-===================================================== */
+function updateSavings() {
 
-function calculateSavings(
-    powerWatts,
-    originalHours,
-    days,
-    price
-) {
+    const powerWatts =
+        Number(costPower.value);
 
-    if (!reducedHours) return;
+    const originalHours =
+        Number(costHours.value);
 
     const reduced =
-        Math.min(
-            originalHours,
-            Math.max(
-                0,
-                number(reducedHours.value)
-            )
-        );
+        Number(reducedHours.value);
+
+    const days =
+        Number(costDays.value);
+
+    const tariff =
+        Number(costTariff.value);
+
 
     const originalMonthly =
         (powerWatts / 1000) *
         originalHours *
         days *
-        price;
+        tariff;
+
 
     const reducedMonthly =
         (powerWatts / 1000) *
         reduced *
         days *
-        price;
+        tariff;
+
 
     const saving =
         Math.max(
@@ -571,76 +423,1141 @@ function calculateSavings(
             originalMonthly - reducedMonthly
         );
 
-    setText(
-        "reducedHoursValue",
-        reduced
-    );
 
-    setText(
-        "monthlySaving",
-        saving.toFixed(2)
-    );
+    $("reducedHoursValue").textContent =
+        reduced;
+
+    $("monthlySaving").textContent =
+        formatNumber(saving);
 }
 
 
-/* =====================================================
-   APPLIANCE PRESETS
-===================================================== */
+appliancePreset.addEventListener(
+    "change",
+    () => {
 
-if (appliancePreset) {
+        const value =
+            appliancePreset.value;
 
-    appliancePreset.addEventListener(
-        "change",
-        function () {
+        if (value !== "custom") {
 
-            const selected =
-                appliancePreset.value;
+            costPower.value =
+                value;
 
-            if (selected !== "custom") {
-
-                appliancePower.value =
-                    selected;
-
-                appliancePower.dispatchEvent(
-                    new Event("input")
-                );
-            }
+            updateCost();
         }
-    );
-}
 
+    }
+);
 
-/* =====================================================
-   COST EVENT LISTENERS
-===================================================== */
 
 [
-    appliancePower,
-    dailyHours,
-    billingDays,
-    tariff,
-    reducedHours
-].forEach(element => {
+    costPower,
+    costHours,
+    costDays,
+    costTariff
+].forEach(input => {
 
-    if (element) {
+    input.addEventListener(
+        "input",
+        updateCost
+    );
 
-        element.addEventListener(
-            "input",
-            calculateCost
-        );
-    }
 });
 
 
-/* =====================================================
-   QUIZ
-===================================================== */
+reducedHours.addEventListener(
+    "input",
+    updateSavings
+);
 
-const quizData = [
+
+updateCost();
+
+
+
+/* =========================================
+   DAY 11 CIRCUIT BUILDER
+========================================= */
+
+
+/*
+    Each component:
+
+    {
+        id: Number,
+        type: "bulb" | "resistor" | "switch",
+        resistance: Number,
+        closed: Boolean
+    }
+*/
+
+
+let builderComponents = [];
+
+let builderMode = "series";
+
+let builderPowered = false;
+
+let componentId = 1;
+
+
+
+/* =========================================
+   BUILDER ELEMENTS
+========================================= */
+
+const builderVoltage =
+    $("builderVoltage");
+
+const seriesModeBtn =
+    $("seriesModeBtn");
+
+const parallelModeBtn =
+    $("parallelModeBtn");
+
+const addBulbBtn =
+    $("addBulbBtn");
+
+const addResistorBtn =
+    $("addResistorBtn");
+
+const addSwitchBtn =
+    $("addSwitchBtn");
+
+const powerCircuitBtn =
+    $("powerCircuitBtn");
+
+const resetBuilderBtn =
+    $("resetBuilderBtn");
+
+
+
+/* =========================================
+   COMPONENT DEFAULTS
+========================================= */
+
+const COMPONENT_DEFAULTS = {
+
+    bulb: {
+        resistance: 10,
+        icon: "💡",
+        name: "Bulb"
+    },
+
+    resistor: {
+        resistance: 20,
+        icon: "▰",
+        name: "Resistor"
+    },
+
+    switch: {
+        resistance: 0,
+        icon: "🔘",
+        name: "Switch"
+    }
+
+};
+
+
+
+/* =========================================
+   ADD COMPONENT
+========================================= */
+
+function addComponent(type) {
+
+    const defaults =
+        COMPONENT_DEFAULTS[type];
+
+    builderComponents.push({
+
+        id: componentId++,
+
+        type,
+
+        resistance:
+            defaults.resistance,
+
+        closed:
+            true
+
+    });
+
+
+    renderBuilder();
+
+}
+
+
+addBulbBtn.addEventListener(
+    "click",
+    () => addComponent("bulb")
+);
+
+
+addResistorBtn.addEventListener(
+    "click",
+    () => addComponent("resistor")
+);
+
+
+addSwitchBtn.addEventListener(
+    "click",
+    () => addComponent("switch")
+);
+
+
+
+/* =========================================
+   CIRCUIT MODE
+========================================= */
+
+seriesModeBtn.addEventListener(
+    "click",
+    () => {
+
+        builderMode = "series";
+
+        seriesModeBtn.classList.add("active");
+
+        parallelModeBtn.classList.remove("active");
+
+        renderBuilder();
+    }
+);
+
+
+parallelModeBtn.addEventListener(
+    "click",
+    () => {
+
+        builderMode = "parallel";
+
+        parallelModeBtn.classList.add("active");
+
+        seriesModeBtn.classList.remove("active");
+
+        renderBuilder();
+    }
+);
+
+
+
+/* =========================================
+   POWER CIRCUIT
+========================================= */
+
+powerCircuitBtn.addEventListener(
+    "click",
+    () => {
+
+        builderPowered =
+            !builderPowered;
+
+        renderBuilder();
+    }
+);
+
+
+
+/* =========================================
+   RESET
+========================================= */
+
+resetBuilderBtn.addEventListener(
+    "click",
+    () => {
+
+        builderComponents = [];
+
+        builderPowered = false;
+
+        componentId = 1;
+
+        renderBuilder();
+    }
+);
+
+
+
+/* =========================================
+   BUILDER CALCULATIONS
+========================================= */
+
+function calculateBuilder() {
+
+    const voltage =
+        Number(builderVoltage.value);
+
+
+    const hasOpenSwitch =
+        builderComponents.some(
+            component =>
+                component.type === "switch" &&
+                !component.closed
+        );
+
+
+    const resistors =
+        builderComponents.filter(
+            component =>
+                component.type === "resistor" ||
+                component.type === "bulb"
+        );
+
+
+    if (
+        !builderPowered ||
+        hasOpenSwitch ||
+        resistors.length === 0
+    ) {
+
+        return {
+
+            resistance:
+                calculateResistance(resistors),
+
+            current: 0,
+
+            activeBulbs: 0
+
+        };
+
+    }
+
+
+    let resistance = 0;
+
+    let current = 0;
+
+
+    if (builderMode === "series") {
+
+        resistance =
+            resistors.reduce(
+                (sum, component) =>
+                    sum + component.resistance,
+                0
+            );
+
+        current =
+            voltage / resistance;
+
+    } else {
+
+        resistance =
+            1 /
+            resistors.reduce(
+                (sum, component) =>
+                    sum + (1 / component.resistance),
+                0
+            );
+
+        current =
+            voltage / resistance;
+    }
+
+
+    const bulbs =
+        builderComponents.filter(
+            component =>
+                component.type === "bulb"
+        );
+
+
+    let activeBulbs = 0;
+
+
+    bulbs.forEach(
+        bulb => {
+
+            if (builderMode === "series") {
+
+                if (current > 0) {
+                    activeBulbs++;
+                }
+
+            } else {
+
+                const branchCurrent =
+                    voltage / bulb.resistance;
+
+                if (branchCurrent > 0) {
+                    activeBulbs++;
+                }
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        resistance,
+
+        current,
+
+        activeBulbs
+
+    };
+
+}
+
+
+
+function calculateResistance(resistors) {
+
+    if (resistors.length === 0) {
+        return 0;
+    }
+
+
+    if (builderMode === "series") {
+
+        return resistors.reduce(
+            (sum, component) =>
+                sum + component.resistance,
+            0
+        );
+
+    }
+
+
+    return 1 /
+        resistors.reduce(
+            (sum, component) =>
+                sum + (1 / component.resistance),
+            0
+        );
+}
+
+
+
+/* =========================================
+   BUILDER RENDER
+========================================= */
+
+function renderBuilder() {
+
+    $("builderVoltageValue").textContent =
+        builderVoltage.value;
+
+
+    const circuit =
+        $("builderCircuit");
+
+    const empty =
+        $("emptyBuilder");
+
+
+    if (builderComponents.length === 0) {
+
+        circuit.innerHTML = "";
+
+        empty.style.display = "flex";
+
+    } else {
+
+        empty.style.display = "none";
+
+        renderCircuitDiagram();
+
+    }
+
+
+    renderComponentList();
+
+    updateBuilderResults();
+
+    updateBuilderStatus();
+
+    updateBuilderExplanation();
+}
+
+
+
+/* =========================================
+   CIRCUIT DIAGRAM
+========================================= */
+
+function renderCircuitDiagram() {
+
+    const circuit =
+        $("builderCircuit");
+
+
+    if (builderMode === "series") {
+
+        let html = "";
+
+        html += `
+            <div class="builder-item">
+                <div class="builder-item-icon">🔋</div>
+                <div class="builder-item-label">
+                    ${builderVoltage.value}V Battery
+                </div>
+            </div>
+        `;
+
+
+        builderComponents.forEach(
+            (component, index) => {
+
+                html += `
+                    <div class="builder-connector
+                        ${builderPowered ? "active" : ""}">
+                    </div>
+                `;
+
+
+                html += createBuilderItem(
+                    component
+                );
+
+            }
+        );
+
+
+        circuit.innerHTML = html;
+
+    } else {
+
+        const branches =
+            builderComponents
+                .map(component => {
+
+                    const active =
+                        isComponentActive(component);
+
+                    return `
+                        <div class="
+                            parallel-branch
+                            ${active ? "active" : ""}
+                        ">
+
+                            <div
+                                class="builder-item
+                                ${active ? "active" : ""}"
+                            >
+
+                                <div
+                                    class="builder-item-icon"
+                                >
+                                    ${getComponentIcon(component)}
+                                </div>
+
+                                <div
+                                    class="builder-item-label"
+                                >
+                                    ${getComponentName(component)}
+                                </div>
+
+                            </div>
+
+                        </div>
+                    `;
+
+                })
+                .join("");
+
+
+        circuit.innerHTML = `
+
+            <div class="parallel-layout">
+
+                <div class="builder-item">
+
+                    <div class="builder-item-icon">
+                        🔋
+                    </div>
+
+                    <div class="builder-item-label">
+                        ${builderVoltage.value}V Battery
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="builder-connector
+                    ${builderPowered ? "active" : ""}"
+                >
+                </div>
+
+
+                <div class="parallel-branches">
+
+                    ${branches}
+
+                </div>
+
+            </div>
+        `;
+    }
+
+}
+
+
+
+/* =========================================
+   COMPONENT ITEM
+========================================= */
+
+function createBuilderItem(component) {
+
+    const active =
+        isComponentActive(component);
+
+
+    return `
+
+        <div
+            class="builder-item
+            ${active ? "active" : ""}"
+        >
+
+            <div class="builder-item-icon">
+
+                ${getComponentIcon(component)}
+
+            </div>
+
+            <div class="builder-item-label">
+
+                ${getComponentName(component)}
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+
+function getComponentIcon(component) {
+
+    if (component.type === "bulb") {
+
+        return "💡";
+
+    }
+
+
+    if (component.type === "resistor") {
+
+        return "▰";
+
+    }
+
+
+    if (component.type === "switch") {
+
+        return component.closed
+            ? "🔘"
+            : "⛔";
+    }
+
+
+    return "•";
+}
+
+
+
+function getComponentName(component) {
+
+    const name =
+        COMPONENT_DEFAULTS[component.type].name;
+
+
+    if (component.type === "switch") {
+
+        return component.closed
+            ? "Switch ON"
+            : "Switch OFF";
+
+    }
+
+
+    return name;
+}
+
+
+
+function isComponentActive(component) {
+
+    if (!builderPowered) {
+        return false;
+    }
+
+
+    if (
+        component.type === "switch" &&
+        !component.closed
+    ) {
+        return false;
+    }
+
+
+    return true;
+}
+
+
+
+/* =========================================
+   COMPONENT LIST
+========================================= */
+
+function renderComponentList() {
+
+    const list =
+        $("componentList");
+
+
+    $("componentCount").textContent =
+        `${builderComponents.length} Component${
+            builderComponents.length === 1 ? "" : "s"
+        }`;
+
+
+    if (builderComponents.length === 0) {
+
+        list.innerHTML = `
+
+            <div class="empty-builder"
+                style="position:relative;inset:auto;padding:30px;"
+            >
+
+                <div class="empty-icon">
+                    🧩
+                </div>
+
+                <p>
+                    No components added yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        builderComponents
+            .map(component => {
+
+                const defaults =
+                    COMPONENT_DEFAULTS[component.type];
+
+
+                const resistanceControl =
+                    component.type === "switch"
+
+                        ? `
+                            <span class="component-value">
+                                ${component.closed
+                                    ? "ON"
+                                    : "OFF"}
+                            </span>
+                        `
+
+                        : `
+                            <div class="component-value">
+
+                                <input
+                                    type="number"
+                                    min="1"
+                                    max="500"
+                                    value="${component.resistance}"
+                                    data-resistance-id="${component.id}"
+                                >
+
+                                <span>Ω</span>
+
+                            </div>
+                        `;
+
+
+                const switchButton =
+                    component.type === "switch"
+
+                        ? `
+                            <button
+                                class="remove-component"
+                                data-switch-id="${component.id}"
+                                type="button"
+                            >
+                                ${component.closed
+                                    ? "Turn OFF"
+                                    : "Turn ON"}
+                            </button>
+                        `
+
+                        : `
+                            <button
+                                class="remove-component"
+                                data-remove-id="${component.id}"
+                                type="button"
+                            >
+                                Remove
+                            </button>
+                        `;
+
+
+                return `
+
+                    <div class="component-row">
+
+                        <div class="component-row-icon">
+
+                            ${defaults.icon}
+
+                        </div>
+
+
+                        <div class="component-row-info">
+
+                            <strong>
+                                ${defaults.name}
+                            </strong>
+
+                            <span>
+                                Component #${component.id}
+                            </span>
+
+                        </div>
+
+
+                        ${resistanceControl}
+
+
+                        ${switchButton}
+
+                    </div>
+                `;
+
+            })
+            .join("");
+
+
+    bindComponentListEvents();
+}
+
+
+
+/* =========================================
+   COMPONENT EVENTS
+========================================= */
+
+function bindComponentListEvents() {
+
+    document
+        .querySelectorAll("[data-remove-id]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const id =
+                        Number(
+                            button.dataset.removeId
+                        );
+
+
+                    builderComponents =
+                        builderComponents.filter(
+                            component =>
+                                component.id !== id
+                        );
+
+
+                    renderBuilder();
+
+                }
+            );
+
+        });
+
+
+    document
+        .querySelectorAll("[data-switch-id]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const id =
+                        Number(
+                            button.dataset.switchId
+                        );
+
+
+                    const component =
+                        builderComponents.find(
+                            item =>
+                                item.id === id
+                        );
+
+
+                    if (component) {
+
+                        component.closed =
+                            !component.closed;
+
+                    }
+
+
+                    renderBuilder();
+
+                }
+            );
+
+        });
+
+
+    document
+        .querySelectorAll("[data-resistance-id]")
+        .forEach(input => {
+
+            input.addEventListener(
+                "input",
+                () => {
+
+                    const id =
+                        Number(
+                            input.dataset.resistanceId
+                        );
+
+
+                    const component =
+                        builderComponents.find(
+                            item =>
+                                item.id === id
+                        );
+
+
+                    if (component) {
+
+                        const value =
+                            Number(input.value);
+
+
+                        component.resistance =
+                            Math.max(
+                                1,
+                                Math.min(
+                                    500,
+                                    value || 1
+                                )
+                            );
+
+                    }
+
+
+                    updateBuilderResults();
+
+                    renderCircuitDiagram();
+
+                    updateBuilderExplanation();
+
+                }
+            );
+
+        });
+
+}
+
+
+
+/* =========================================
+   BUILDER RESULTS
+========================================= */
+
+function updateBuilderResults() {
+
+    const results =
+        calculateBuilder();
+
+
+    $("builderResistance").textContent =
+        results.resistance === 0
+            ? "0"
+            : formatNumber(
+                results.resistance
+            );
+
+
+    $("builderCurrent").textContent =
+        formatNumber(
+            results.current
+        );
+
+
+    $("activeBulbs").textContent =
+        results.activeBulbs;
+}
+
+
+
+/* =========================================
+   BUILDER STATUS
+========================================= */
+
+function updateBuilderStatus() {
+
+    const status =
+        $("builderStatus");
+
+
+    if (builderPowered) {
+
+        status.textContent =
+            "● ON";
+
+        status.classList.remove("off");
+
+        status.classList.add("on");
+
+        powerCircuitBtn.textContent =
+            "⏹ Turn OFF";
+
+    } else {
+
+        status.textContent =
+            "● OFF";
+
+        status.classList.remove("on");
+
+        status.classList.add("off");
+
+        powerCircuitBtn.textContent =
+            "⚡ Turn ON";
+    }
+}
+
+
+
+/* =========================================
+   BUILDER EXPLANATION
+========================================= */
+
+function updateBuilderExplanation() {
+
+    const explanation =
+        $("builderExplanation");
+
+
+    if (builderComponents.length === 0) {
+
+        explanation.textContent =
+            "Add components to begin your experiment.";
+
+        return;
+    }
+
+
+    const results =
+        calculateBuilder();
+
+
+    const hasOpenSwitch =
+        builderComponents.some(
+            component =>
+                component.type === "switch" &&
+                !component.closed
+        );
+
+
+    if (!builderPowered) {
+
+        explanation.textContent =
+            "The circuit is OFF, so no current is flowing. Turn the virtual circuit ON to observe the simulation.";
+
+        return;
+    }
+
+
+    if (hasOpenSwitch) {
+
+        explanation.textContent =
+            "The switch is open, so the circuit path is interrupted and current cannot flow through the circuit.";
+
+        return;
+    }
+
+
+    if (
+        builderComponents.filter(
+            component =>
+                component.type === "resistor" ||
+                component.type === "bulb"
+        ).length === 0
+    ) {
+
+        explanation.textContent =
+            "Your circuit needs a resistive component such as a bulb or resistor before current can be calculated.";
+
+        return;
+    }
+
+
+    if (builderMode === "series") {
+
+        explanation.textContent =
+            `In a series circuit, the same current flows through the components. Your circuit has a total resistance of ${formatNumber(results.resistance)} Ω and a current of ${formatNumber(results.current)} A.`;
+
+    } else {
+
+        explanation.textContent =
+            `In a parallel circuit, the current divides between branches while the voltage remains the same across each branch. Your equivalent resistance is ${formatNumber(results.resistance)} Ω.`;
+
+    }
+
+}
+
+
+
+/* =========================================
+   BUILDER VOLTAGE
+========================================= */
+
+builderVoltage.addEventListener(
+    "input",
+    () => {
+
+        $("builderVoltageValue").textContent =
+            builderVoltage.value;
+
+        renderBuilder();
+
+    }
+);
+
+
+
+/* =========================================
+   INITIAL BUILDER
+========================================= */
+
+renderBuilder();
+
+
+
+/* =========================================
+   QUIZ
+========================================= */
+
+const quizQuestions = [
 
     {
         question:
-            "A 12 V source is connected to a 6 Ω resistor. What current flows?",
+            "A 12V battery is connected to a 6Ω resistor. What is the current?",
 
         options: [
             "0.5 A",
@@ -649,10 +1566,7 @@ const quizData = [
             "72 A"
         ],
 
-        answer: 1,
-
-        explanation:
-            "Using I = V / R, 12 / 6 = 2 A."
+        answer: 1
     },
 
 
@@ -667,10 +1581,7 @@ const quizData = [
             "Power"
         ],
 
-        answer: 2,
-
-        explanation:
-            "A series circuit has one path, so the same current flows through every component."
+        answer: 2
     },
 
 
@@ -685,16 +1596,13 @@ const quizData = [
             "Power"
         ],
 
-        answer: 1,
-
-        explanation:
-            "Every parallel branch is connected across the same two points, so each branch receives the same voltage."
+        answer: 1
     },
 
 
     {
         question:
-            "A device uses 10 V and draws 2 A. What is its power?",
+            "A circuit has 10V and 2A. What is its power?",
 
         options: [
             "5 W",
@@ -703,10 +1611,7 @@ const quizData = [
             "100 W"
         ],
 
-        answer: 2,
-
-        explanation:
-            "Power is P = V × I, so 10 × 2 = 20 W."
+        answer: 2
     },
 
 
@@ -715,419 +1620,328 @@ const quizData = [
             "What happens to current in a parallel circuit?",
 
         options: [
-            "It cannot flow",
-            "It becomes zero",
+            "It disappears",
             "It divides between branches",
-            "It becomes identical everywhere"
+            "It becomes zero",
+            "It always doubles"
         ],
 
-        answer: 2,
-
-        explanation:
-            "The total current divides among the available parallel paths."
+        answer: 1
     }
 
 ];
 
 
 let quizIndex = 0;
+
 let quizScore = 0;
+
 let quizAnswered = false;
 
 
-function loadQuiz() {
+
+function loadQuizQuestion() {
 
     const question =
-        quizData[quizIndex];
-
-    if (!question) return;
-
-    setText(
-        "quizCurrent",
-        quizIndex + 1
-    );
-
-    setText(
-        "quizTotal",
-        quizData.length
-    );
-
-    setText(
-        "quizScore",
-        quizScore
-    );
-
-    setText(
-        "quizQuestion",
-        question.question
-    );
+        quizQuestions[quizIndex];
 
 
-    const progress =
-        ((quizIndex + 1) /
-            quizData.length) *
-        100;
-
-    const quizProgress =
-        get("quizProgress");
-
-    if (quizProgress) {
-
-        quizProgress.style.width =
-            `${progress}%`;
-    }
+    $("quizProgress").textContent =
+        `Question ${quizIndex + 1} of ${quizQuestions.length}`;
 
 
-    const optionsContainer =
-        get("quizOptions");
-
-    const feedback =
-        get("quizFeedback");
-
-    if (!optionsContainer) return;
+    $("quizScore").textContent =
+        `Score: ${quizScore}`;
 
 
-    optionsContainer.innerHTML = "";
+    $("quizQuestion").textContent =
+        question.question;
 
-    if (feedback) {
-        feedback.innerHTML = "";
-    }
 
+    const options =
+        $("quizOptions");
+
+
+    options.innerHTML =
+        question.options
+            .map(
+                (option, index) => `
+
+                    <button
+                        class="quiz-option"
+                        data-answer="${index}"
+                        type="button"
+                    >
+                        ${option}
+                    </button>
+
+                `
+            )
+            .join("");
+
+
+    $("quizFeedback").textContent = "";
+
+    $("quizNext").disabled = true;
 
     quizAnswered = false;
 
 
-    question.options.forEach(
-        (option, index) => {
-
-            const button =
-                document.createElement("button");
-
-            button.className =
-                "quiz-option";
-
-            button.textContent =
-                option;
+    document
+        .querySelectorAll(".quiz-option")
+        .forEach(button => {
 
             button.addEventListener(
                 "click",
-                () => checkAnswer(index)
+                () => {
+
+                    answerQuiz(
+                        Number(
+                            button.dataset.answer
+                        )
+                    );
+
+                }
             );
 
-            optionsContainer.appendChild(
-                button
-            );
-        }
-    );
+        });
+
 }
 
 
-/* =====================================================
-   CHECK ANSWER
-===================================================== */
 
-function checkAnswer(selectedIndex) {
+function answerQuiz(selected) {
 
-    if (quizAnswered) return;
+    if (quizAnswered) {
+        return;
+    }
+
 
     quizAnswered = true;
 
+
     const question =
-        quizData[quizIndex];
+        quizQuestions[quizIndex];
+
 
     const buttons =
         document.querySelectorAll(
             ".quiz-option"
         );
 
-    buttons.forEach(button => {
-        button.disabled = true;
-    });
+
+    buttons.forEach(
+        (button, index) => {
+
+            button.disabled = true;
 
 
-    if (
-        selectedIndex ===
-        question.answer
-    ) {
+            if (index === question.answer) {
 
-        quizScore++;
+                button.classList.add(
+                    "correct"
+                );
 
-        if (buttons[selectedIndex]) {
+            }
 
-            buttons[selectedIndex]
-                .classList.add("correct");
+
+            if (
+                index === selected &&
+                selected !== question.answer
+            ) {
+
+                button.classList.add(
+                    "wrong"
+                );
+
+            }
+
         }
-
-        setText(
-            "quizFeedback",
-            `✓ Correct! ${question.explanation}`
-        );
-
-    } else {
-
-        if (buttons[selectedIndex]) {
-
-            buttons[selectedIndex]
-                .classList.add("wrong");
-        }
-
-        if (buttons[question.answer]) {
-
-            buttons[question.answer]
-                .classList.add("correct");
-        }
-
-        setText(
-            "quizFeedback",
-            `✗ Not quite. ${question.explanation}`
-        );
-    }
-
-
-    setText(
-        "quizScore",
-        quizScore
     );
 
 
-    setTimeout(() => {
+    if (selected === question.answer) {
+
+        quizScore++;
+
+        $("quizFeedback").textContent =
+            "✅ Correct!";
+
+        $("quizFeedback").style.color =
+            "var(--success)";
+
+    } else {
+
+        $("quizFeedback").textContent =
+            `❌ Not quite. The correct answer is: ${
+                question.options[question.answer]
+            }`;
+
+        $("quizFeedback").style.color =
+            "var(--danger)";
+    }
+
+
+    $("quizScore").textContent =
+        `Score: ${quizScore}`;
+
+
+    $("quizNext").disabled = false;
+}
+
+
+
+$("quizNext").addEventListener(
+    "click",
+    () => {
 
         quizIndex++;
 
+
         if (
             quizIndex >=
-            quizData.length
+            quizQuestions.length
         ) {
 
             showQuizResult();
 
         } else {
 
-            loadQuiz();
+            loadQuizQuestion();
+
         }
 
-    }, 1400);
-}
+    }
+);
 
 
-/* =====================================================
-   QUIZ RESULT
-===================================================== */
 
 function showQuizResult() {
 
-    const questionArea =
-        document.querySelector(
-            ".question-area"
-        );
-
-    const result =
-        get("quizResult");
-
-    const finalScore =
-        get("finalScore");
-
-    const resultTitle =
-        get("resultTitle");
-
-    const resultMessage =
-        get("resultMessage");
+    $("quizQuestion").textContent =
+        "Challenge Complete 🎉";
 
 
-    if (questionArea) {
+    $("quizOptions").innerHTML = "";
 
-        questionArea.classList.add(
-            "hidden"
-        );
-    }
-
-    if (result) {
-
-        result.classList.remove(
-            "hidden"
-        );
-    }
-
-    if (finalScore) {
-
-        finalScore.textContent =
-            quizScore;
-    }
+    $("quizFeedback").textContent = "";
 
 
-    let title = "";
-    let message = "";
-
-    if (quizScore === 5) {
-
-        title = "⚡ Perfect Run!";
-
-        message =
-            "You nailed every concept. VoltLab has nothing left to hide from you.";
-
-    } else if (quizScore >= 4) {
-
-        title = "🔥 Excellent Work!";
-
-        message =
-            "Your fundamentals are looking strong. One more pass and you're golden.";
-
-    } else if (quizScore >= 3) {
-
-        title = "💪 Solid Understanding!";
-
-        message =
-            "You've got the important ideas. Review the concepts you missed and try again.";
-
-    } else {
-
-        title = "🧠 Keep Experimenting!";
-
-        message =
-            "Electricity takes practice. Go back through the labs, change the values and run the challenge again.";
-    }
+    $("quizNext").style.display =
+        "none";
 
 
-    setText(
-        "resultTitle",
-        title
-    );
+    $("quizResult").textContent =
+        `You scored ${quizScore} / ${quizQuestions.length}.`;
 
-    setText(
-        "resultMessage",
-        message
-    );
+
+    $("quizRestart").hidden = false;
 }
 
 
-/* =====================================================
-   RESTART QUIZ
-===================================================== */
 
-const restartQuiz =
-    get("restartQuiz");
+$("quizRestart").addEventListener(
+    "click",
+    () => {
 
-if (restartQuiz) {
+        quizIndex = 0;
 
-    restartQuiz.addEventListener(
-        "click",
-        () => {
+        quizScore = 0;
 
-            quizIndex = 0;
-            quizScore = 0;
+        $("quizNext").style.display =
+            "inline-block";
 
-            const questionArea =
-                document.querySelector(
-                    ".question-area"
-                );
+        $("quizRestart").hidden =
+            true;
 
-            const result =
-                get("quizResult");
+        $("quizResult").textContent = "";
 
-            if (questionArea) {
+        loadQuizQuestion();
 
-                questionArea.classList.remove(
-                    "hidden"
-                );
-            }
-
-            if (result) {
-
-                result.classList.add(
-                    "hidden"
-                );
-            }
-
-            loadQuiz();
-        }
-    );
-}
+    }
+);
 
 
-/* =====================================================
-   PAGE SCROLL PROGRESS
-===================================================== */
-
-const pageProgress =
-    get("pageProgress");
-
-const backToTop =
-    get("backToTop");
+loadQuizQuestion();
 
 
-function updateScrollUI() {
 
-    const scrollTop =
-        window.scrollY;
+/* =========================================
+   SCROLL PROGRESS
+========================================= */
 
-    const documentHeight =
-        document.documentElement
-            .scrollHeight -
-        window.innerHeight;
+window.addEventListener(
+    "scroll",
+    () => {
 
-    const progress =
-        documentHeight > 0
-            ? (scrollTop / documentHeight) * 100
-            : 0;
+        const scrollTop =
+            window.scrollY;
 
-    if (pageProgress) {
 
-        pageProgress.style.width =
+        const documentHeight =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+
+        const progress =
+            documentHeight > 0
+                ? (scrollTop / documentHeight) * 100
+                : 0;
+
+
+        $("scrollProgress").style.width =
             `${progress}%`;
-    }
 
-
-    if (backToTop) {
 
         if (scrollTop > 500) {
 
-            backToTop.classList.add(
-                "visible"
+            $("backToTop").classList.add(
+                "show"
             );
 
         } else {
 
-            backToTop.classList.remove(
-                "visible"
+            $("backToTop").classList.remove(
+                "show"
             );
-        }
-    }
-}
 
-window.addEventListener(
-    "scroll",
-    updateScrollUI,
-    { passive: true }
+        }
+
+    }
 );
 
 
-/* =====================================================
+
+/* =========================================
    BACK TO TOP
-===================================================== */
+========================================= */
 
-if (backToTop) {
+$("backToTop").addEventListener(
+    "click",
+    () => {
 
-    backToTop.addEventListener(
-        "click",
-        () => {
+        window.scrollTo({
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
-    );
-}
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+);
 
 
-/* =====================================================
+
+/* =========================================
    ACTIVE NAVIGATION
-===================================================== */
+========================================= */
 
 const sections =
     document.querySelectorAll(
-        "main section"
+        "main section[id]"
     );
+
 
 const navLinks =
     document.querySelectorAll(
@@ -1141,36 +1955,40 @@ const observer =
 
             entries.forEach(entry => {
 
-                if (!entry.isIntersecting)
-                    return;
+                if (entry.isIntersecting) {
 
-                const id =
-                    entry.target.id;
+                    navLinks.forEach(link => {
 
-                navLinks.forEach(link => {
-
-                    link.classList.remove(
-                        "active"
-                    );
-
-                    if (
-                        link.getAttribute(
-                            "href"
-                        ) === `#${id}`
-                    ) {
-
-                        link.classList.add(
+                        link.classList.remove(
                             "active"
                         );
+
+                    });
+
+
+                    const activeLink =
+                        document.querySelector(
+                            `.nav-links a[href="#${entry.target.id}"]`
+                        );
+
+
+                    if (activeLink) {
+
+                        activeLink.classList.add(
+                            "active"
+                        );
+
                     }
-                });
+
+                }
 
             });
 
         },
+
         {
             rootMargin:
-                "-30% 0px -60% 0px"
+                "-25% 0px -65% 0px"
         }
     );
 
@@ -1178,28 +1996,14 @@ const observer =
 sections.forEach(section => {
 
     observer.observe(section);
+
 });
 
 
-/* =====================================================
-   INITIALIZE EVERYTHING
-===================================================== */
-
-updateOhmsLaw();
-
-updateSeries();
-
-updateParallel();
-
-updatePower();
-
-calculateCost();
-
-loadQuiz();
-
-updateScrollUI();
-
+/* =========================================
+   END
+========================================= */
 
 console.log(
-    "⚡ VoltLab Day 10 loaded successfully."
+    "⚡ VoltLab Day 11 loaded successfully."
 );
