@@ -1,1483 +1,478 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="VoltLab - Interactive electricity learning laboratory for students.">
-
-    <title>VoltLab ⚡ | Interactive Electricity Learning</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VoltLab - Interactive electricity learning laboratory for students.">
+  <title>VoltLab ⚡ | Interactive Electricity Learning</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- =========================
-         TOP PROGRESS
-    ========================== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-    <div class="scroll-progress" id="scrollProgress"></div>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo"><span>⚡</span> VoltLab</a>
+      <nav class="nav-links">
+        <a href="#ohms">Ohm's Law</a>
+        <a href="#series">Series</a>
+        <a href="#parallel">Parallel</a>
+        <a href="#power">Power</a>
+        <a href="#cost">Cost</a>
+        <a href="#builder">Builder</a>
+        <a href="#compare">Compare</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
 
+  <main>
 
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-
-    <header class="navbar">
-
-        <div class="nav-container">
-
-            <a href="#home" class="logo">
-                <span>⚡</span> VoltLab
-            </a>
-
-            <nav class="nav-links">
-
-                <a href="#ohms">Ohm's Law</a>
-                <a href="#series">Series</a>
-                <a href="#parallel">Parallel</a>
-                <a href="#power">Power</a>
-                <a href="#cost">Cost</a>
-                <a href="#builder">Builder</a>
-                <a href="#compare">Compare</a>
-                <a href="#quiz">Quiz</a>
-
-            </nav>
-
+    <!-- HERO -->
+    <section class="hero section" id="home">
+      <div class="hero-content">
+        <div class="hero-badge">⚡ Interactive Electrical Engineering Lab</div>
+        <h1>Learn Electricity by <span>Experimenting.</span></h1>
+        <p>Explore voltage, current, resistance, power, energy and circuits through interactive simulations.</p>
+        <div class="hero-buttons">
+          <a href="#ohms" class="btn primary-btn">Start Experimenting ⚡</a>
+          <a href="#builder" class="btn secondary-btn">Build a Circuit 🔧</a>
         </div>
-
-    </header>
-
-
-    <main>
-
-        <!-- =========================
-             HERO
-        ========================== -->
-
-        <section class="hero section" id="home">
-
-            <div class="hero-content">
-
-                <div class="hero-badge">
-                    ⚡ Interactive Electrical Engineering Lab
-                </div>
-
-                <h1>
-                    Learn Electricity by
-                    <span>Experimenting.</span>
-                </h1>
-
-                <p>
-                    Explore voltage, current, resistance, power,
-                    energy and circuits through interactive simulations.
-                </p>
-
-                <div class="hero-buttons">
-
-                    <a href="#ohms" class="btn primary-btn">
-                        Start Experimenting ⚡
-                    </a>
-
-                    <a href="#builder" class="btn secondary-btn">
-                        Build a Circuit 🔧
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="hero-stats">
-
-                <div class="stat-card">
-                    <strong>7+</strong>
-                    <span>Interactive Labs</span>
-                </div>
-
-                <div class="stat-card">
-                    <strong>∞</strong>
-                    <span>Experiments</span>
-                </div>
-
-                <div class="stat-card">
-                    <strong>1</strong>
-                    <span>Virtual Lab</span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             OHM'S LAW
-        ========================== -->
-
-        <section class="section" id="ohms">
-
-            <div class="section-heading">
-
-                <span class="section-number">01</span>
-
-                <div>
-                    <h2>Ohm's Law Visualizer</h2>
-
-                    <p>
-                        See how voltage, resistance and current are connected.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="lab-grid">
-
-                <div class="panel controls-panel">
-
-                    <h3>Experiment Controls</h3>
-
-                    <div class="control-group">
-
-                        <label>
-                            Voltage
-                            <strong>
-                                <span id="voltageValue">12</span> V
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="voltageSlider"
-                            min="1"
-                            max="24"
-                            value="12"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            Resistance
-                            <strong>
-                                <span id="resistanceValue">6</span> Ω
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="resistanceSlider"
-                            min="1"
-                            max="50"
-                            value="6"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="panel result-panel">
-
-                    <span class="result-label">CURRENT</span>
-
-                    <div class="big-result">
-                        <span id="currentResult">2.00</span>
-                        <small>A</small>
-                    </div>
-
-                    <div class="formula">
-                        I = V / R
-                    </div>
-
-                    <div class="status" id="ohmStatus">
-                        ⚡ Circuit operating normally
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="circuit-card">
-
-                <h3>Live Circuit</h3>
-
-                <div class="live-circuit">
-
-                    <div class="circuit-wire"></div>
-
-                    <div class="battery">
-                        🔋
-                    </div>
-
-                    <div class="wire"></div>
-
-                    <div class="lamp" id="ohmLamp">
-                        💡
-                    </div>
-
-                    <div class="wire"></div>
-
-                    <div class="resistor-symbol">
-                        ▰
-                    </div>
-
-                    <div class="wire"></div>
-
-                </div>
-
-            </div>
-
-
-            <div class="concept-card">
-
-                <strong>💡 Concept</strong>
-
-                <p>
-                    Ohm's Law states that current increases when voltage
-                    increases, and decreases when resistance increases.
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             SERIES
-        ========================== -->
-
-        <section class="section" id="series">
-
-            <div class="section-heading">
-
-                <span class="section-number">02</span>
-
-                <div>
-                    <h2>Series Circuit Explorer</h2>
-
-                    <p>
-                        Explore what happens when resistors are connected
-                        one after another.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="lab-grid">
-
-                <div class="panel controls-panel">
-
-                    <h3>Series Circuit</h3>
-
-                    <div class="control-group">
-
-                        <label>
-                            Voltage
-                            <strong>
-                                <span id="seriesVoltageValue">12</span> V
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="seriesVoltage"
-                            min="1"
-                            max="24"
-                            value="12"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            R1
-                            <strong>
-                                <span id="seriesR1Value">10</span> Ω
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="seriesR1"
-                            min="1"
-                            max="50"
-                            value="10"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            R2
-                            <strong>
-                                <span id="seriesR2Value">20</span> Ω
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="seriesR2"
-                            min="1"
-                            max="50"
-                            value="20"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            R3
-                            <strong>
-                                <span id="seriesR3Value">30</span> Ω
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="seriesR3"
-                            min="1"
-                            max="50"
-                            value="30"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="panel result-panel">
-
-                    <div class="mini-result">
-
-                        <span>Total Resistance</span>
-
-                        <strong>
-                            <span id="seriesTotalResistance">60</span> Ω
-                        </strong>
-
-                    </div>
-
-
-                    <div class="mini-result">
-
-                        <span>Current</span>
-
-                        <strong>
-                            <span id="seriesCurrent">0.20</span> A
-                        </strong>
-
-                    </div>
-
-
-                    <div class="drops">
-
-                        <div>
-                            <span>R1 Drop</span>
-                            <strong id="drop1">2.00 V</strong>
-                        </div>
-
-                        <div>
-                            <span>R2 Drop</span>
-                            <strong id="drop2">4.00 V</strong>
-                        </div>
-
-                        <div>
-                            <span>R3 Drop</span>
-                            <strong id="drop3">6.00 V</strong>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             PARALLEL
-        ========================== -->
-
-        <section class="section" id="parallel">
-
-            <div class="section-heading">
-
-                <span class="section-number">03</span>
-
-                <div>
-                    <h2>Parallel Circuit Explorer</h2>
-
-                    <p>
-                        Discover how current divides between branches.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="lab-grid">
-
-                <div class="panel controls-panel">
-
-                    <h3>Parallel Circuit</h3>
-
-                    <div class="control-group">
-
-                        <label>
-                            Voltage
-                            <strong>
-                                <span id="parallelVoltageValue">12</span> V
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="parallelVoltage"
-                            min="1"
-                            max="24"
-                            value="12"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            R1
-                            <strong>
-                                <span id="parallelR1Value">10</span> Ω
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="parallelR1"
-                            min="1"
-                            max="50"
-                            value="10"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            R2
-                            <strong>
-                                <span id="parallelR2Value">20</span> Ω
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="parallelR2"
-                            min="1"
-                            max="50"
-                            value="20"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            R3
-                            <strong>
-                                <span id="parallelR3Value">30</span> Ω
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="parallelR3"
-                            min="1"
-                            max="50"
-                            value="30"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="panel result-panel">
-
-                    <div class="mini-result">
-
-                        <span>Equivalent Resistance</span>
-
-                        <strong>
-                            <span id="parallelEquivalent">5.45</span> Ω
-                        </strong>
-
-                    </div>
-
-
-                    <div class="mini-result">
-
-                        <span>Total Current</span>
-
-                        <strong>
-                            <span id="parallelTotalCurrent">2.20</span> A
-                        </strong>
-
-                    </div>
-
-
-                    <div class="drops">
-
-                        <div>
-                            <span>Branch 1</span>
-                            <strong id="branch1">1.20 A</strong>
-                        </div>
-
-                        <div>
-                            <span>Branch 2</span>
-                            <strong id="branch2">0.60 A</strong>
-                        </div>
-
-                        <div>
-                            <span>Branch 3</span>
-                            <strong id="branch3">0.40 A</strong>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             POWER
-        ========================== -->
-
-        <section class="section" id="power">
-
-            <div class="section-heading">
-
-                <span class="section-number">04</span>
-
-                <div>
-                    <h2>Power & Energy Lab</h2>
-
-                    <p>
-                        Understand how electrical power becomes energy usage.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="lab-grid">
-
-                <div class="panel controls-panel">
-
-                    <div class="control-group">
-
-                        <label>
-                            Voltage
-                            <strong>
-                                <span id="powerVoltageValue">230</span> V
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="powerVoltage"
-                            min="1"
-                            max="250"
-                            value="230"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            Current
-                            <strong>
-                                <span id="powerCurrentValue">2</span> A
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="powerCurrent"
-                            min="1"
-                            max="10"
-                            value="2"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            Time
-                            <strong>
-                                <span id="powerTimeValue">5</span> h
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="powerTime"
-                            min="1"
-                            max="24"
-                            value="5"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="panel result-panel">
-
-                    <span class="result-label">POWER</span>
-
-                    <div class="big-result">
-                        <span id="powerResult">460</span>
-                        <small>W</small>
-                    </div>
-
-                    <div class="energy-result">
-
-                        Energy:
-                        <strong id="energyResult">2.30 kWh</strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="concept-card">
-
-                <strong>⚡ Formula</strong>
-
-                <p>
-                    Power = Voltage × Current
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             COST SIMULATOR
-        ========================== -->
-
-        <section class="section" id="cost">
-
-            <div class="section-heading">
-
-                <span class="section-number">05</span>
-
-                <div>
-                    <h2>Electricity Cost Simulator 💰</h2>
-
-                    <p>
-                        Turn electricity usage into a real-world monthly bill.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="cost-layout">
-
-                <div class="panel controls-panel">
-
-                    <h3>Appliance Setup</h3>
-
-
-                    <div class="control-group">
-
-                        <label for="appliancePreset">
-                            Appliance
-                        </label>
-
-                        <select id="appliancePreset">
-
-                            <option value="custom">Custom</option>
-
-                            <option value="10">
-                                LED Bulb • 10W
-                            </option>
-
-                            <option value="75">
-                                Ceiling Fan • 75W
-                            </option>
-
-                            <option value="100">
-                                Laptop • 100W
-                            </option>
-
-                            <option value="200">
-                                TV • 200W
-                            </option>
-
-                            <option value="500">
-                                Refrigerator • 500W
-                            </option>
-
-                            <option value="1000">
-                                Room Heater • 1000W
-                            </option>
-
-                            <option value="1500">
-                                Washing Machine • 1500W
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            Power
-                            <strong>
-                                <span id="costPowerValue">100</span> W
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="costPower"
-                            min="1"
-                            max="2000"
-                            value="100"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            Usage / Day
-                            <strong>
-                                <span id="costHoursValue">5</span> h
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="costHours"
-                            min="0.5"
-                            max="24"
-                            step="0.5"
-                            value="5"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            Billing Days
-                            <strong>
-                                <span id="costDaysValue">30</span>
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="costDays"
-                            min="1"
-                            max="31"
-                            value="30"
-                        >
-
-                    </div>
-
-
-                    <div class="control-group">
-
-                        <label>
-                            Tariff
-                            <strong>
-                                ₹<span id="tariffValue">8</span>/kWh
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="costTariff"
-                            min="1"
-                            max="20"
-                            step="0.5"
-                            value="8"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="panel cost-result-panel">
-
-                    <div class="cost-meter">
-
-                        <span>Estimated Monthly Cost</span>
-
-                        <strong>
-                            ₹<span id="monthlyCost">12.00</span>
-                        </strong>
-
-                    </div>
-
-
-                    <div class="cost-stats">
-
-                        <div>
-                            <span>Daily Energy</span>
-                            <strong id="dailyEnergy">0.50 kWh</strong>
-                        </div>
-
-                        <div>
-                            <span>Monthly Energy</span>
-                            <strong id="monthlyEnergy">15.00 kWh</strong>
-                        </div>
-
-                        <div>
-                            <span>Daily Cost</span>
-                            <strong id="dailyCost">₹4.00</strong>
-                        </div>
-
-                    </div>
-
-
-                    <div class="cost-message" id="costMessage">
-                        Your appliance would cost about ₹12 per month.
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="what-if panel">
-
-                <div>
-
-                    <span class="eyebrow">
-                        WHAT IF?
-                    </span>
-
-                    <h3>
-                        Reduce your usage
-                    </h3>
-
-                    <p>
-                        See how much money you could save by reducing
-                        daily usage.
-                    </p>
-
-                </div>
-
-
-                <div class="control-group">
-
-                    <label>
-                        Reduced Usage
-                        <strong>
-                            <span id="reducedHoursValue">3</span> h/day
-                        </strong>
-                    </label>
-
-                    <input
-                        type="range"
-                        id="reducedHours"
-                        min="0.5"
-                        max="24"
-                        step="0.5"
-                        value="3"
-                    >
-
-                </div>
-
-
-                <div class="saving-result">
-
-                    Monthly Saving
-
-                    <strong>
-                        ₹<span id="monthlySaving">4.80</span>
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="concept-card">
-
-                <strong>💡 Real-world note</strong>
-
-                <p>
-                    Actual electricity bills can include fixed charges,
-                    taxes, slabs and other fees. This simulator uses a
-                    simple energy × tariff model for learning.
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             CIRCUIT BUILDER
-        ========================== -->
-
-        <section class="section" id="builder">
-
-            <div class="section-heading">
-
-                <span class="section-number">06</span>
-
-                <div>
-
-                    <h2>Circuit Builder 🔧</h2>
-
-                    <p>
-                        Build a virtual circuit and watch the electrical
-                        behavior change in real time.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="builder-layout">
-
-                <!-- BUILDER CONTROLS -->
-
-                <div class="panel builder-controls">
-
-                    <h3>Build Your Circuit</h3>
-
-                    <div class="control-group">
-
-                        <label>
-                            Battery Voltage
-                            <strong>
-                                <span id="builderVoltageValue">12</span> V
-                            </strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="builderVoltage"
-                            min="1"
-                            max="24"
-                            value="12"
-                        >
-
-                    </div>
-
-
-                    <div class="builder-type">
-
-                        <span>Circuit Type</span>
-
-                        <div class="toggle-buttons">
-
-                            <button
-                                class="toggle-btn active"
-                                id="seriesModeBtn"
-                                type="button"
-                            >
-                                Series
-                            </button>
-
-                            <button
-                                class="toggle-btn"
-                                id="parallelModeBtn"
-                                type="button"
-                            >
-                                Parallel
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="component-actions">
-
-                        <span>Add Component</span>
-
-                        <div class="component-buttons">
-
-                            <button
-                                class="component-btn"
-                                id="addBulbBtn"
-                                type="button"
-                            >
-                                💡 Bulb
-                            </button>
-
-                            <button
-                                class="component-btn"
-                                id="addResistorBtn"
-                                type="button"
-                            >
-                                ▰ Resistor
-                            </button>
-
-                            <button
-                                class="component-btn"
-                                id="addSwitchBtn"
-                                type="button"
-                            >
-                                🔘 Switch
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="builder-actions">
-
-                        <button
-                            class="btn primary-btn"
-                            id="powerCircuitBtn"
-                            type="button"
-                        >
-                            ⚡ Turn ON
-                        </button>
-
-                        <button
-                            class="btn danger-btn"
-                            id="resetBuilderBtn"
-                            type="button"
-                        >
-                            Reset
-                        </button>
-
-                    </div>
-
-
-                    <div class="builder-note">
-
-                        🛡️ Simulation only.
-                        Experiment safely inside VoltLab.
-
-                    </div>
-
-                </div>
-
-
-                <!-- CIRCUIT VIEW -->
-
-                <div class="panel circuit-builder-panel">
-
-                    <div class="builder-header">
-
-                        <div>
-
-                            <span class="eyebrow">
-                                VIRTUAL LAB
-                            </span>
-
-                            <h3>
-                                Your Circuit
-                            </h3>
-
-                        </div>
-
-                        <div
-                            class="circuit-status off"
-                            id="builderStatus"
-                        >
-                            ● OFF
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="builder-circuit"
-                        id="builderCircuit"
-                    >
-                        <!-- Generated by JavaScript -->
-                    </div>
-
-
-                    <div
-                        class="empty-builder"
-                        id="emptyBuilder"
-                    >
-
-                        <div class="empty-icon">
-                            🔧
-                        </div>
-
-                        <h3>
-                            Your circuit is empty
-                        </h3>
-
-                        <p>
-                            Add a bulb or resistor to start building.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- COMPONENT LIST -->
-
-            <div class="panel component-list-panel">
-
-                <div class="builder-header">
-
-                    <div>
-
-                        <span class="eyebrow">
-                            COMPONENTS
-                        </span>
-
-                        <h3>
-                            Circuit Components
-                        </h3>
-
-                    </div>
-
-                    <span
-                        class="component-count"
-                        id="componentCount"
-                    >
-                        0 Components
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="component-list"
-                    id="componentList"
-                >
-                    <!-- Generated by JavaScript -->
-                </div>
-
-            </div>
-
-
-            <!-- BUILDER RESULTS -->
-
-            <div class="builder-results">
-
-                <div class="metric-card">
-
-                    <span>Total Resistance</span>
-
-                    <strong>
-                        <span id="builderResistance">0</span> Ω
-                    </strong>
-
-                </div>
-
-
-                <div class="metric-card">
-
-                    <span>Total Current</span>
-
-                    <strong>
-                        <span id="builderCurrent">0.00</span> A
-                    </strong>
-
-                </div>
-
-
-                <div class="metric-card">
-
-                    <span>Active Bulbs</span>
-
-                    <strong>
-                        <span id="activeBulbs">0</span>
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXPLANATION -->
-
-            <div class="concept-card builder-explanation">
-
-                <strong>🧠 What's happening?</strong>
-
-                <p id="builderExplanation">
-                    Add components to begin your experiment.
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             COMPARISON
-        ========================== -->
-
-        <section class="section" id="compare">
-
-            <div class="section-heading">
-
-                <span class="section-number">07</span>
-
-                <div>
-
-                    <h2>Series vs Parallel</h2>
-
-                    <p>
-                        Compare the two fundamental circuit arrangements.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="comparison-grid">
-
-                <div class="compare-card">
-
-                    <div class="compare-icon">
-                        🔗
-                    </div>
-
-                    <h3>Series</h3>
-
-                    <ul>
-
-                        <li>Same current flows through components.</li>
-
-                        <li>Total resistance increases.</li>
-
-                        <li>Voltage divides across components.</li>
-
-                        <li>One break can stop the circuit.</li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="compare-card">
-
-                    <div class="compare-icon">
-                        🌐
-                    </div>
-
-                    <h3>Parallel</h3>
-
-                    <ul>
-
-                        <li>Same voltage across branches.</li>
-
-                        <li>Current divides between branches.</li>
-
-                        <li>Equivalent resistance decreases.</li>
-
-                        <li>Branches can operate independently.</li>
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             QUIZ
-        ========================== -->
-
-        <section class="section" id="quiz">
-
-            <div class="section-heading">
-
-                <span class="section-number">08</span>
-
-                <div>
-
-                    <h2>VoltLab Challenge 🧠</h2>
-
-                    <p>
-                        Test what you've learned.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="quiz-panel panel">
-
-                <div class="quiz-top">
-
-                    <span id="quizProgress">
-                        Question 1 of 5
-                    </span>
-
-                    <span id="quizScore">
-                        Score: 0
-                    </span>
-
-                </div>
-
-
-                <h3 id="quizQuestion">
-                    Loading question...
-                </h3>
-
-
-                <div
-                    class="quiz-options"
-                    id="quizOptions"
-                >
-                </div>
-
-
-                <div
-                    class="quiz-feedback"
-                    id="quizFeedback"
-                >
-                </div>
-
-
-                <button
-                    class="btn primary-btn quiz-next"
-                    id="quizNext"
-                    type="button"
-                    disabled
-                >
-                    Next Question →
-                </button>
-
-
-                <div
-                    class="quiz-result"
-                    id="quizResult"
-                >
-                </div>
-
-
-                <button
-                    class="btn secondary-btn"
-                    id="quizRestart"
-                    type="button"
-                    hidden
-                >
-                    Restart Quiz 🔄
-                </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="footer">
-
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card"><strong>7+</strong><span>Interactive Labs</span></div>
+        <div class="stat-card"><strong>∞</strong><span>Experiments</span></div>
+        <div class="stat-card"><strong>1</strong><span>Virtual Lab</span></div>
+      </div>
+    </section>
+
+    <!-- OHM'S LAW -->
+    <section class="section" id="ohms">
+      <div class="section-heading">
+        <span class="section-number">01</span>
         <div>
+          <h2>Ohm's Law Visualizer</h2>
+          <p>See how voltage, resistance and current are connected.</p>
+        </div>
+      </div>
 
-            <strong>
-                VoltLab ⚡
-            </strong>
-
-            <p>
-                Learn • Experiment • Apply
-            </p>
-
+      <div class="lab-grid">
+        <div class="panel controls-panel">
+          <h3>Experiment Controls</h3>
+          <div class="control-group">
+            <label>Voltage <strong><span id="voltageValue">12</span> V</strong></label>
+            <input type="range" id="voltageSlider" min="1" max="24" value="12">
+          </div>
+          <div class="control-group">
+            <label>Resistance <strong><span id="resistanceValue">6</span> Ω</strong></label>
+            <input type="range" id="resistanceSlider" min="1" max="50" value="6">
+          </div>
         </div>
 
+        <div class="panel result-panel">
+          <span class="result-label">CURRENT</span>
+          <div class="big-result"><span id="currentResult">2.00</span><small>A</small></div>
+          <div class="formula">I = V / R</div>
+          <div class="status" id="ohmStatus">⚡ Circuit operating normally</div>
+        </div>
+      </div>
 
+      <div class="circuit-card">
+        <h3>Live Circuit</h3>
+        <div class="live-circuit">
+          <div class="circuit-wire"></div>
+          <div class="battery">🔋</div>
+          <div class="wire"></div>
+          <div class="lamp" id="ohmLamp">💡</div>
+          <div class="wire"></div>
+          <div class="resistor-symbol">▰</div>
+          <div class="wire"></div>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <strong>💡 Concept</strong>
+        <p>Ohm's Law states that current increases when voltage increases, and decreases when resistance increases.</p>
+      </div>
+    </section>
+
+    <!-- SERIES -->
+    <section class="section" id="series">
+      <div class="section-heading">
+        <span class="section-number">02</span>
         <div>
+          <h2>Series Circuit Explorer</h2>
+          <p>Explore what happens when resistors are connected one after another.</p>
+        </div>
+      </div>
 
-            <span>
-                Day 11 • Circuit Builder
-            </span>
-
-            <p>
-                Built by Shantanu ⚡
-            </p>
-
+      <div class="lab-grid">
+        <div class="panel controls-panel">
+          <h3>Series Circuit</h3>
+          <div class="control-group">
+            <label>Voltage <strong><span id="seriesVoltageValue">12</span> V</strong></label>
+            <input type="range" id="seriesVoltage" min="1" max="24" value="12">
+          </div>
+          <div class="control-group">
+            <label>R1 <strong><span id="seriesR1Value">10</span> Ω</strong></label>
+            <input type="range" id="seriesR1" min="1" max="50" value="10">
+          </div>
+          <div class="control-group">
+            <label>R2 <strong><span id="seriesR2Value">20</span> Ω</strong></label>
+            <input type="range" id="seriesR2" min="1" max="50" value="20">
+          </div>
+          <div class="control-group">
+            <label>R3 <strong><span id="seriesR3Value">30</span> Ω</strong></label>
+            <input type="range" id="seriesR3" min="1" max="50" value="30">
+          </div>
         </div>
 
-    </footer>
+        <div class="panel result-panel">
+          <div class="mini-result"><span>Total Resistance</span><strong><span id="seriesTotalResistance">60</span> Ω</strong></div>
+          <div class="mini-result"><span>Current</span><strong><span id="seriesCurrent">0.20</span> A</strong></div>
+          <div class="drops">
+            <div><span>R1 Drop</span><strong id="drop1">2.00 V</strong></div>
+            <div><span>R2 Drop</span><strong id="drop2">4.00 V</strong></div>
+            <div><span>R3 Drop</span><strong id="drop3">6.00 V</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- PARALLEL -->
+    <section class="section" id="parallel">
+      <div class="section-heading">
+        <span class="section-number">03</span>
+        <div>
+          <h2>Parallel Circuit Explorer</h2>
+          <p>Discover how current divides between branches.</p>
+        </div>
+      </div>
 
+      <div class="lab-grid">
+        <div class="panel controls-panel">
+          <h3>Parallel Circuit</h3>
+          <div class="control-group">
+            <label>Voltage <strong><span id="parallelVoltageValue">12</span> V</strong></label>
+            <input type="range" id="parallelVoltage" min="1" max="24" value="12">
+          </div>
+          <div class="control-group">
+            <label>R1 <strong><span id="parallelR1Value">10</span> Ω</strong></label>
+            <input type="range" id="parallelR1" min="1" max="50" value="10">
+          </div>
+          <div class="control-group">
+            <label>R2 <strong><span id="parallelR2Value">20</span> Ω</strong></label>
+            <input type="range" id="parallelR2" min="1" max="50" value="20">
+          </div>
+          <div class="control-group">
+            <label>R3 <strong><span id="parallelR3Value">30</span> Ω</strong></label>
+            <input type="range" id="parallelR3" min="1" max="50" value="30">
+          </div>
+        </div>
 
-    <!-- =========================
-         BACK TO TOP
-    ========================== -->
+        <div class="panel result-panel">
+          <div class="mini-result"><span>Equivalent Resistance</span><strong><span id="parallelEquivalent">5.45</span> Ω</strong></div>
+          <div class="mini-result"><span>Total Current</span><strong><span id="parallelTotalCurrent">2.20</span> A</strong></div>
+          <div class="drops">
+            <div><span>Branch 1</span><strong id="branch1">1.20 A</strong></div>
+            <div><span>Branch 2</span><strong id="branch2">0.60 A</strong></div>
+            <div><span>Branch 3</span><strong id="branch3">0.40 A</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <button
-        id="backToTop"
-        class="back-to-top"
-        type="button"
-        aria-label="Back to top"
-    >
-        ↑
-    </button>
+    <!-- POWER -->
+    <section class="section" id="power">
+      <div class="section-heading">
+        <span class="section-number">04</span>
+        <div>
+          <h2>Power & Energy Lab</h2>
+          <p>Understand how electrical power becomes energy usage.</p>
+        </div>
+      </div>
 
+      <div class="lab-grid">
+        <div class="panel controls-panel">
+          <div class="control-group">
+            <label>Voltage <strong><span id="powerVoltageValue">230</span> V</strong></label>
+            <input type="range" id="powerVoltage" min="1" max="250" value="230">
+          </div>
+          <div class="control-group">
+            <label>Current <strong><span id="powerCurrentValue">2</span> A</strong></label>
+            <input type="range" id="powerCurrent" min="1" max="10" value="2">
+          </div>
+          <div class="control-group">
+            <label>Time <strong><span id="powerTimeValue">5</span> h</strong></label>
+            <input type="range" id="powerTime" min="1" max="24" value="5">
+          </div>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="panel result-panel">
+          <span class="result-label">POWER</span>
+          <div class="big-result"><span id="powerResult">460</span><small>W</small></div>
+          <div class="energy-result">Energy: <strong id="energyResult">2.30 kWh</strong></div>
+        </div>
+      </div>
 
+      <div class="concept-card">
+        <strong>⚡ Formula</strong>
+        <p>Power = Voltage × Current</p>
+      </div>
+    </section>
+
+    <!-- COST SIMULATOR -->
+    <section class="section" id="cost">
+      <div class="section-heading">
+        <span class="section-number">05</span>
+        <div>
+          <h2>Electricity Cost Simulator 💰</h2>
+          <p>Turn electricity usage into a real-world monthly bill.</p>
+        </div>
+      </div>
+
+      <div class="cost-layout">
+        <div class="panel controls-panel">
+          <h3>Appliance Setup</h3>
+
+          <div class="control-group">
+            <label for="appliancePreset">Appliance</label>
+            <select id="appliancePreset">
+              <option value="custom">Custom</option>
+              <option value="10">LED Bulb • 10W</option>
+              <option value="75">Ceiling Fan • 75W</option>
+              <option value="100">Laptop • 100W</option>
+              <option value="200">TV • 200W</option>
+              <option value="500">Refrigerator • 500W</option>
+              <option value="1000">Room Heater • 1000W</option>
+              <option value="1500">Washing Machine • 1500W</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label>Power <strong><span id="costPowerValue">100</span> W</strong></label>
+            <input type="range" id="costPower" min="1" max="2000" value="100">
+          </div>
+          <div class="control-group">
+            <label>Usage / Day <strong><span id="costHoursValue">5</span> h</strong></label>
+            <input type="range" id="costHours" min="0.5" max="24" step="0.5" value="5">
+          </div>
+          <div class="control-group">
+            <label>Billing Days <strong><span id="costDaysValue">30</span></strong></label>
+            <input type="range" id="costDays" min="1" max="31" value="30">
+          </div>
+          <div class="control-group">
+            <label>Tariff <strong>₹<span id="tariffValue">8</span>/kWh</strong></label>
+            <input type="range" id="costTariff" min="1" max="20" step="0.5" value="8">
+          </div>
+        </div>
+
+        <div class="panel cost-result-panel">
+          <div class="cost-meter">
+            <span>Estimated Monthly Cost</span>
+            <strong>₹<span id="monthlyCost">12.00</span></strong>
+          </div>
+          <div class="cost-stats">
+            <div><span>Daily Energy</span><strong id="dailyEnergy">0.50 kWh</strong></div>
+            <div><span>Monthly Energy</span><strong id="monthlyEnergy">15.00 kWh</strong></div>
+            <div><span>Daily Cost</span><strong id="dailyCost">₹4.00</strong></div>
+          </div>
+          <div class="cost-message" id="costMessage">Your appliance would cost about ₹12 per month.</div>
+        </div>
+      </div>
+
+      <div class="what-if panel">
+        <div>
+          <span class="eyebrow">WHAT IF?</span>
+          <h3>Reduce your usage</h3>
+          <p>See how much money you could save by reducing daily usage.</p>
+        </div>
+
+        <div class="control-group">
+          <label>Reduced Usage <strong><span id="reducedHoursValue">3</span> h/day</strong></label>
+          <input type="range" id="reducedHours" min="0.5" max="24" step="0.5" value="3">
+        </div>
+
+        <div class="saving-result">
+          Monthly Saving
+          <strong>₹<span id="monthlySaving">4.80</span></strong>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <strong>💡 Real-world note</strong>
+        <p>Actual electricity bills can include fixed charges, taxes, slabs and other fees. This simulator uses a simple energy × tariff model for learning.</p>
+      </div>
+    </section>
+
+    <!-- CIRCUIT BUILDER -->
+    <section class="section" id="builder">
+      <div class="section-heading">
+        <span class="section-number">06</span>
+        <div>
+          <h2>Circuit Builder 🔧</h2>
+          <p>Build a virtual circuit and watch the electrical behavior change in real time.</p>
+        </div>
+      </div>
+
+      <div class="builder-layout">
+        <div class="panel builder-controls">
+          <h3>Build Your Circuit</h3>
+
+          <div class="control-group">
+            <label>Battery Voltage <strong><span id="builderVoltageValue">12</span> V</strong></label>
+            <input type="range" id="builderVoltage" min="1" max="24" value="12">
+          </div>
+
+          <div class="builder-type">
+            <span>Circuit Type</span>
+            <div class="toggle-buttons">
+              <button class="toggle-btn active" id="seriesModeBtn" type="button">Series</button>
+              <button class="toggle-btn" id="parallelModeBtn" type="button">Parallel</button>
+            </div>
+          </div>
+
+          <div class="component-actions">
+            <span>Add Component</span>
+            <div class="component-buttons">
+              <button class="component-btn" id="addBulbBtn" type="button">💡 Bulb</button>
+              <button class="component-btn" id="addResistorBtn" type="button">▰ Resistor</button>
+              <button class="component-btn" id="addSwitchBtn" type="button">🔘 Switch</button>
+            </div>
+          </div>
+
+          <div class="builder-actions">
+            <button class="btn primary-btn" id="powerCircuitBtn" type="button">⚡ Turn ON</button>
+            <button class="btn danger-btn" id="resetBuilderBtn" type="button">Reset</button>
+          </div>
+
+          <div class="builder-note">🛡️ Simulation only. Experiment safely inside VoltLab.</div>
+        </div>
+
+        <div class="panel circuit-builder-panel">
+          <div class="builder-header">
+            <div>
+              <span class="eyebrow">VIRTUAL LAB</span>
+              <h3>Your Circuit</h3>
+            </div>
+            <div class="circuit-status off" id="builderStatus">● OFF</div>
+          </div>
+
+          <div class="builder-circuit" id="builderCircuit"></div>
+
+          <div class="empty-builder" id="emptyBuilder">
+            <div class="empty-icon">🔧</div>
+            <h3>Your circuit is empty</h3>
+            <p>Add a bulb or resistor to start building.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel component-list-panel">
+        <div class="builder-header">
+          <div>
+            <span class="eyebrow">COMPONENTS</span>
+            <h3>Circuit Components</h3>
+          </div>
+          <span class="component-count" id="componentCount">0 Components</span>
+        </div>
+
+        <div class="component-list" id="componentList"></div>
+      </div>
+
+      <div class="builder-results">
+        <div class="metric-card"><span>Total Resistance</span><strong><span id="builderResistance">0</span> Ω</strong></div>
+        <div class="metric-card"><span>Total Current</span><strong><span id="builderCurrent">0.00</span> A</strong></div>
+        <div class="metric-card"><span>Active Bulbs</span><strong><span id="activeBulbs">0</span></strong></div>
+      </div>
+
+      <div class="concept-card builder-explanation">
+        <strong>🧠 What's happening?</strong>
+        <p id="builderExplanation">Add components to begin your experiment.</p>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="section" id="compare">
+      <div class="section-heading">
+        <span class="section-number">07</span>
+        <div>
+          <h2>Series vs Parallel</h2>
+          <p>Compare the two fundamental circuit arrangements.</p>
+        </div>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="compare-card">
+          <div class="compare-icon">🔗</div>
+          <h3>Series</h3>
+          <ul>
+            <li>Same current flows through components.</li>
+            <li>Total resistance increases.</li>
+            <li>Voltage divides across components.</li>
+            <li>One break can stop the circuit.</li>
+          </ul>
+        </div>
+
+        <div class="compare-card">
+          <div class="compare-icon">🌐</div>
+          <h3>Parallel</h3>
+          <ul>
+            <li>Same voltage across branches.</li>
+            <li>Current divides between branches.</li>
+            <li>Equivalent resistance decreases.</li>
+            <li>Branches can operate independently.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="section" id="quiz">
+      <div class="section-heading">
+        <span class="section-number">08</span>
+        <div>
+          <h2>VoltLab Challenge 🧠</h2>
+          <p>Test what you've learned.</p>
+        </div>
+      </div>
+
+      <div class="quiz-panel panel">
+        <div class="quiz-top">
+          <span id="quizProgress">Question 1 of 5</span>
+          <span id="quizScore">Score: 0</span>
+        </div>
+
+        <h3 id="quizQuestion">Loading question...</h3>
+
+        <div class="quiz-options" id="quizOptions"></div>
+
+        <div class="quiz-feedback" id="quizFeedback"></div>
+
+        <button class="btn primary-btn quiz-next" id="quizNext" type="button" disabled>Next Question →</button>
+
+        <div class="quiz-result" id="quizResult"></div>
+
+        <button class="btn secondary-btn" id="quizRestart" type="button" hidden>Restart Quiz 🔄</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>VoltLab ⚡</strong>
+      <p>Learn • Experiment • Apply</p>
+    </div>
+    <div>
+      <span>Day 11 • Circuit Builder</span>
+      <p>Built by Shantanu ⚡</p>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
